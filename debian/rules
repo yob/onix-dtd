@@ -20,6 +20,7 @@ install: build
 	dh_testdir
 	dh_testroot
 	dh_installdirs
+	cp catalog.xml $(CURDIR)/debian/onix-dtd/usr/share/xml/onix/
 	cp -Rd 2.0 $(CURDIR)/debian/onix-dtd/usr/share/xml/onix/
 	cp -Rd 2.1r1 $(CURDIR)/debian/onix-dtd/usr/share/xml/onix/
 	cp -Rd 2.1r2 $(CURDIR)/debian/onix-dtd/usr/share/xml/onix/
@@ -32,6 +33,7 @@ binary-indep: build install
 	dh_testroot
 	dh_installdocs
 	dh_installchangelogs
+	dh_installxmlcatalogs
 	dh_link
 	dh_compress
 	dh_fixperms

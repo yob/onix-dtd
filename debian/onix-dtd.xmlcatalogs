@@ -1,0 +1,4 @@
+root;system;http://www.editeur.org/onix/
+
+local;catalog.xml;/usr/share/xml/onix/catalog.xml
+package;system;http://www.editeur.org/onix/;/usr/share/xml/onix/catalog.xml
