@@ -1,0 +1,20 @@
+== Overview
+
+This is a debian package that installs local copies of the DTDs for commonly
+seen ONIX files. These DTDs are registered in the system XML catalog, allowing
+libraries like libxml2 to use the local cached copies of the DTDs instead of
+downloading them over and over.
+
+This a niche package and I won't make any attempt to get it added to the debian
+archive. If you need it, best to build and install it yourself. The package in
+arch:all, so should install on both 32 and 64 bit systems as is.
+
+== Building
+
+  git clone git://github.com/yob/onix-dtd.git
+  cd onix-dtd
+  git-buildpackage
+
+== Installing
+
+  dpkg -i onix-dtd_1.0_all.deb
