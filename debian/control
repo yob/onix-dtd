@@ -1,0 +1,14 @@
+Source: onix-dtd
+Section: utils
+Priority: optional
+Maintainer: James Healy <jimmy@deefa.com>
+Build-Depends: debhelper (>= 7)
+Standards-Version: 3.8.3
+Homepage: http://www.editeur.org/83/Overview/
+
+Package: onix-dtd
+Architecture: all
+Depends: ${misc:Depends}
+Description: Copies of various ONIX XML DTDs 
+  Local copies of various ONIX DTDs. Local cached versions means libraries
+  like libxml2 can avoid repeatedly downloading them over the net.

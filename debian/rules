@@ -1,0 +1,44 @@
+#!/usr/bin/make -f
+
+# Uncomment this to turn on verbose mode.
+export DH_VERBOSE=1
+
+build: build-stamp
+
+build-stamp:
+	dh_testdir
+	dh_prep
+	touch build-stamp
+
+clean:
+	dh_testdir
+	dh_testroot
+	rm -f build-stamp
+	dh_clean
+
+install: build
+	dh_testdir
+	dh_testroot
+	dh_installdirs
+	cp -Rd 2.0 $(CURDIR)/debian/onix-dtd/usr/share/xml/onix/
+	cp -Rd 2.1r1 $(CURDIR)/debian/onix-dtd/usr/share/xml/onix/
+	cp -Rd 2.1r2 $(CURDIR)/debian/onix-dtd/usr/share/xml/onix/
+	cp -Rd 2.1r3 $(CURDIR)/debian/onix-dtd/usr/share/xml/onix/
+	cp -Rd 3.0 $(CURDIR)/debian/onix-dtd/usr/share/xml/onix/
+
+binary-arch:
+binary-indep: build install
+	dh_testdir
+	dh_testroot
+	dh_installdocs
+	dh_installchangelogs
+	dh_link
+	dh_compress
+	dh_fixperms
+	dh_installdeb
+	dh_gencontrol
+	dh_md5sums
+	dh_builddeb
+
+binary: binary-indep
+.PHONY: build clean binary-indep binary install configure
