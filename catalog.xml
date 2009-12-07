@@ -9,7 +9,7 @@
   <system systemId="http://www.editeur.org/onix/2.1/01/reference/onix-international.dtd" uri="2.1r1/onix-international.dtd"/>
   <system systemId="http://www.editeur.org/onix/2.1/02/reference/onix-international.dtd" uri="2.1r2/onix-international.dtd"/>
   <system systemId="http://www.editeur.org/onix/2.1/03/reference/onix-international.dtd" uri="2.1r3/onix-international.dtd"/>
-  <system systemId="http://www.editeur.org/onix/3.0/reference/onix-international.dtd" uri=3.0/ONIX_BookProduct_3.0_reference.dtd"/>
+  <system systemId="http://www.editeur.org/onix/3.0/reference/onix-international.dtd" uri="3.0/ONIX_BookProduct_3.0_reference.dtd"/>
 
 </catalog>
 
