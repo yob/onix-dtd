@@ -1,0 +1,551 @@
+<?xml encoding="UTF-8"?>
+
+<!--
+**************************************************
+*                                                *
+*               ONIX INTERNATIONAL               *
+*                                                *
+*     BOOK PRODUCT INFORMATION MESSAGE SCHEMA    *
+*                                                *
+*           CODE LIST DATA TYPES MODULE          *
+*                XML DTD VERSION                 *
+*                                                *
+*                    ISSUE: 9                    *
+*                                                *
+*                 Status: RELEASED               *
+*            Release date: 2009-04-09            *
+*                                                *
+*  Orig filename ONIX_BookProduct_CodeLists.DTD  *
+*                                                *
+*          Original author: Francis Cave         *
+*                                                *
+*              (c) 2003-2009 EDItEUR             *
+*             http://www.editeur.org/            *
+*                                                *
+**************************************************
+
+N.B. PRIMARILY DESIGNED FOR USE WITH ONIX SCHEMAS
+
+TERMS AND CONDITIONS OF USE OF THE ONIX PRODUCT INFORMATION MESSAGE XML SCHEMA
+
+All ONIX standards and documentation are copyright materials, made available 
+free of charge for general use.  If you use the ONIX International Code Lists, 
+you will be deemed to have accepted these terms and conditions:
+
+1.  You agree that you will not add to, delete from or amend any version of the 
+ONIX Product Information Message Schema, or any part of the Schema except for 
+strictly internal use in your own organisation.
+
+2.  You agree that if you wish to add to, amend, or make extracts of any version 
+of the Schema for any purpose that is not strictly internal to your own organisation, 
+you will in the first instance notify EDItEUR and allow EDItEUR to review 
+and comment on your proposed use, in the interest of securing an orderly 
+development of the Schema for the benefit of other users.
+
+If you do not accept these terms, you must not use any version of the ONIX Product 
+Information Message Schema.
+
+Full copies of all published versions of the latest release of this Schema and all 
+associated documentation are available from the EDItEUR web site, where may also be 
+found details of how to contact EDItEUR for advice on the use of this Schema. The URL 
+for the EDItEUR web site is:
+
+http://www.editeur.org/
+
+
+
+MODULE REVISION HISTORY (IN REVERSE CHRONOLOGICAL ORDER)
+
+2009-04-09: Module for public release based upon the ONIX International 
+            Code lists Issue 9 (April 2009)
+
+2009-02-10: Module for public release based upon the ONIX International 
+            Code Lists Issue 8+ (revised February 2009)
+
+2008-12-04: Module for public release based upon the ONIX International 
+            Code Lists Issue 8+ (December 2008)
+
+2008-04-22: Module for public release based upon the ONIX International 
+            Code Lists Issue 8 (April 2008)
+
+2007-03-27: Module for public release based upon the ONIX International
+            Code Lists Issue 7 (March 2007)
+
+2006-07-18: Module for public release based upon the ONIX International
+            Code Lists Issue 6 (July 2006)
+
+2005-11-28: Module for public release based upon the ONIX International
+            Code Lists Issue 5 (November 2005)
+
+2005-02-10: Module for public release based upon the ONIX International
+            Code Lists Issue 4 (February 2005)
+
+2004-11-10: Module for public release based upon the ONIX International 
+            Code Lists Issue 3 (August 2004)
+
+2004-08-10: Second Draft Module based upon the ONIX International 
+            Code Lists Issue 3 (August 2004)
+
+2003-12-30: First Draft Module based upon the ONIX International 
+            Code Lists Issue 2 (December 2003)
+
+-->
+
+<!-- Lists mostly included here for information only. Only Lists 3, 14, 34, 74 and 138 are used by attributes. -->
+
+<!-- 
+<!ENTITY % List1 "01|02|03|04|05|08|09|12|13|14">
+
+<!ENTITY % List2 "00|10|11|20|30"> -->
+
+<!ENTITY % List3 "00|01|02|03|04|05|06">
+
+<!--
+<!ENTITY % List5 "01|02|03|04|05|06|13|14|15|17|22|23|24">
+
+<!ENTITY % List6 "00|01|02|03|04|05|06|07|08|09|10|11|12|13|14|15|16|17
+                  |18|19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35
+                  |36|37|38|39|40|41|42|43|44|45|46|47|48|49|50|51|52|53
+                  |54|55|56|57|58|59|60|61|62|63|64|65|66|67|68|69|70|71
+                  |72|73|74|75">
+
+<!ENTITY % List7 "00|AA|AB|AC|AD|AE|AF|AG|AH|AI|AJ|AK|AL|AZ|BA|BB|BC|BD
+                  |BE|BF|BG|BH|BI|BJ|BK|BL|BM|BN|BO|BZ|CA|CB|CC|CD|CE|CZ
+                  |DA|DB|DC|DD|DE|DF|DG|DH|DI|DJ|DK|DL|DM|DN|DZ|FA|FB|FC
+                  |FD|FE|FF|FZ|MA|MB|MC|MZ|PA|PB|PC|PD|PE|PF|PG|PH|PI|PJ
+                  |PK|PL|PM|PN|PO|PP|PQ|PR|PS|PT|PZ|VA|VB|VC|VD|VE|VF|VG
+                  |VH|VI|VJ|VK|VL|VM|VN|VO|VP|VZ|WW|WX|XA|XB|XC|XD|XE|XF
+                  |XG|XH|XI|XJ|XK|XL|XZ|ZA|ZB|ZC|ZD|ZE|ZF|ZZ">
+
+<!ENTITY % List8 "01|02|03|04|05|06|07">
+
+<!ENTITY % List9 "01|02|03|04|05|06">
+
+<!ENTITY % List10 "000|001|002|003|004|005|006|007|008|009|010|011|012
+                   |013|014|015|016|017|018|019|020|021|022|023|024|025
+                   |026|027|028|029|030|031|098|099">
+
+<!ENTITY % List11 "01|02|03|04|05|06|07|08|09|10|11">
+
+<!ENTITY % List12 "01|02|03|04|05|06|07|08|09|10|11">
+
+<!ENTITY % List13 "01|02|03|04|05|06|22"> -->
+
+<!ENTITY % List14 "00|01|02|03">
+
+<!--
+<!ENTITY % List15 "00|01|02|03|04|05|06|07|08|10|11|12|13">
+
+<!ENTITY % List16 "01|02|06|11|15|18">
+
+<!ENTITY % List17 "A01|A02|A03|A04|A05|A06|A07|A08|A09|A10|A11|A12|A13
+                   |A14|A15|A16|A17|A18|A19|A20|A21|A22|A23|A24|A25|A26
+                   |A27|A29|A30|A31|A32|A33|A34|A35|A36|A37|A38|A39|A40
+                   |A41|A42|A43|A44|A99|B01|B02|B03|B04|B05|B06|B07|B08
+                   |B09|B10|B11|B12|B13|B14|B15|B16|B17|B18|B19|B20|B21
+                   |B22|B23|B24|B25|B99|C01|C02|C99|D01|D02|D03|D99|E01
+                   |E02|E03|E04|E05|E06|E07|E08|E99|F01|F99|Z01|Z99">
+
+<!ENTITY % List18 "00|01|02">
+
+<!ENTITY % List19 "01|02|03|04|05|06|07">
+
+<!ENTITY % List20 "CDATA">
+
+<!ENTITY % List21 "ABR|ADP|ALT|ANN|BLL|BRL|CMB|CRI|CSP|ENL|EXP|FAC|FST
+                   |ILL|LTE|MCP|MDT|MLL|NED|NUM|PRB|REV|SCH|SMP|SPE|STU
+                   |TCH|UBR|ULP|UXP|VAR">
+
+<!ENTITY % List22 "01|02|03|04|05|06|07|08|09">
+
+<!ENTITY % List23 "00|02|03|04|05|06|07|09|22">
+
+<!ENTITY % List24 "02|04|05|06|14|15|16|18|19">
+
+<!ENTITY % List25 "00|01|02|03|04|05|06|07|08|09|10|11|12|13|14|15|16|17
+                   |18|19|20|21|22|23|24|25|26|27|28">
+
+<!ENTITY % List26 "01|02|03|04|05|06|07|08|09|10|11|12|13|14|15|16|17|18
+                   |19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35
+                   |36|37|38|39|40|41|42|43|44|45|46|47|48|49|50|51|52
+                   |53|54|55|56|57|58|59|60|61|62|63|64|65|66|67|68|69
+                   |70|71|72|73|74|75">
+
+<!ENTITY % List27 "01|02|03|04|05|06|07|08|09|10|11|12|13|14|15|16|17|18
+                   |19|20|21|22|23|24|25|26|27|28|29|30|31|32|33|34|35
+                   |36|37|38|39|40|41|42|43|44|45|46|47|48|49|50|51|52
+                   |53|54|55|56|57|58|59|60|61|62|63|64|65|66|67|68|69
+                   |70|71|72|73|74|75">
+
+<!ENTITY % List28 "01|02|03|04|05|06|07|08">
+
+<!ENTITY % List29 "01|02|03|04|05|06|07|08|09|10|11|12|13|14|15|16">
+
+<!ENTITY % List30 "11|12|15|16|17|18|19|20|21|22|23|24|25|26|27">
+
+<!ENTITY % List31 "01|03|04">
+
+<!ENTITY % List32 "01|02">
+
+<!ENTITY % List33 "01|02|03|04|05|06|07|08|09|10|11|12|13|14|15|16|17|18
+                   |19|20|21|23|24|25|26|27|28|30|31|32|33|34|35|40|41
+                   |42"> -->
+
+<!ENTITY % List34 "00|01|02|03|04|05|06|07|08|09|10|11|12|13">
+
+<!--
+<!ENTITY % List35 "01|02|03|04|05|06">
+
+<!ENTITY % List36 "02|03|05">
+
+<!ENTITY % List37 "01|02|03|04|05|06">
+
+<!ENTITY % List38 "01|02|04|06|07|08|10|11|12|17|18|23|24|25|26|27|28|29
+                   |30|31|32|33|34|35|36|37|38|41|42|43|44|45|46|47|51
+                   |52">
+
+<!ENTITY % List39 "02|03|04|05|06|07|08|09">
+
+<!ENTITY % List40 "01|02|03|04|05|06">
+
+<!ENTITY % List41 "01|02|03|04|05|06">
+
+<!ENTITY % List42 "01|02|03|04|10|11|12|13|14|15|16|17|18|19|20|21">
+
+<!ENTITY % List43 "01|06|09|10">
+
+<!ENTITY % List44 "02|03|04|05|06|07|10|13|15">
+
+<!ENTITY % List45 "01|02|03|04|05|06|07|08|09|10|11|12">
+
+<!ENTITY % List46 "01|02|03">
+
+<!ENTITY % List47 "000|001|002|003">
+
+<!ENTITY % List48 "01|02|03|04|05|08|09|10|11|12|13">
+
+<!ENTITY % List49 "CDATA">
+
+<!ENTITY % List50 "cm|gr|in|kg|lb|mm|oz|px">
+
+<!ENTITY % List51 "00|01|02|03|05|06|07|08|09|10|11|12|13|14|15|16|17|18
+                   |19|20|21|22|23|24|25|26|27">
+
+<!ENTITY % List52 "004">
+
+<!ENTITY % List53 "01|02|03">
+
+<!ENTITY % List54 "AB|AD|CS|EX|IP|MD|NP|NY|OF|OI|OP|OR|PP|RF|RM|RP|RU|TO
+                   |TP|TU|UR|WR|WS">
+
+<!ENTITY % List55 "00|01|02|03|04|05|06|07|08|09|10|11|12">
+
+<!ENTITY % List56 "R|X">
+
+<!ENTITY % List57 "01|02|03|04">
+
+<!ENTITY % List58 "01|02|03|04|05|06|07|08|09|11|12|13|14|15|21|22|23|24
+                   |25|31|32">
+
+<!ENTITY % List59 "01|02|03|04">
+
+<!ENTITY % List60 "00|01">
+
+<!ENTITY % List61 "00|01|02">
+
+<!ENTITY % List62 "H|P|R|S|Z">
+
+<!ENTITY % List63 "CDATA">
+
+<!ENTITY % List64 "00|01|02|03|04|05|06|07|08|09|10|11|12">
+
+<!ENTITY % List65 "01|10|11|12|20|21|22|23|30|31|32|33|40|41|42|43|44|45
+                   |46|47|48|49|98|99">
+
+<!ENTITY % List66 "Y|N|C|S">
+
+<!ENTITY % List67 "01|08">
+
+<!ENTITY % List68 "00|01|02|03|04|05|06|07|08|09|10|11|12|13|14">
+
+<!ENTITY % List69 "05|06|07|08">
+
+<!ENTITY % List70 "01|02">
+
+<!ENTITY % List71 "00|01|02|03|04|05|06|07|08">
+
+<!ENTITY % List72 "01|02|03|04|05|06|07">
+
+<!ENTITY % List73 "00|01|02|03|04|05|06|07|08|09|10|11|12|13|14|15|16|17
+                   |18|23|24|25|26|27|28|29|30|31|32"> -->
+
+<!ENTITY % List74 "aar|abk|ace|ach|ada|ady|afa|afh|afr|ain|aka|akk|alb
+                   |ale|alg|alt|amh|ang|anp|apa|ara|arc|arg|arm|arn|arp
+                   |art|arw|asm|ast|ath|aus|ava|ave|awa|aym|aze|bad|bai
+                   |bak|bal|bam|ban|baq|bas|bat|bej|bel|bem|ben|ber|bho
+                   |bih|bik|bin|bis|bla|bnt|bos|bra|bre|btk|bua|bug|bul
+                   |bur|byn|cad|cai|car|cat|cau|ceb|cel|cha|chb|che|chg
+                   |chi|chk|chm|chn|cho|chp|chr|chu|chv|chy|cmc|cop|cor
+                   |cos|cpe|cpf|cpp|cre|crh|crp|csb|cus|cze|dak|dan|dar
+                   |day|del|den|dgr|din|div|doi|dra|dsb|dua|dum|dut|dyu
+                   |dzo|efi|egy|eka|elx|eng|enm|epo|est|ewe|ewo|fan|fao
+                   |fat|fij|fil|fin|fiu|fon|fre|frm|fro|frr|frs|fry|ful
+                   |fur|gaa|gay|gba|gem|geo|ger|gez|gil|gla|gle|glg|glv
+                   |gmh|goh|gon|gor|got|grb|grc|gre|grn|gsw|guj|gwi|hai
+                   |hat|hau|haw|heb|her|hil|him|hin|hit|hmn|hmo|hsb|hun
+                   |hup|iba|ibo|ice|ido|iii|ijo|iku|ile|ilo|ina|inc|ind
+                   |ine|inh|ipk|ira|iro|ita|jav|jbo|jpn|jpr|jrb|kaa|kab
+                   |kac|kal|kam|kan|kar|kas|kau|kaw|kaz|kbd|kha|khi|khm
+                   |kho|kik|kin|kir|kmb|kok|kom|kon|kor|kos|kpe|krc|krl
+                   |kro|kru|kua|kum|kur|kut|lad|lah|lam|lao|lat|lav|lez
+                   |lim|lin|lit|lol|loz|ltz|lua|lub|lug|lui|lun|luo|lus
+                   |mac|mad|mag|mah|mai|mak|mal|man|mao|map|mar|mas|may
+                   |mdf|mdr|men|mga|mic|min|mis|mkh|mlg|mlt|mnc|mni|mno
+                   |moh|mol|mon|mos|mul|mun|mus|mwl|mwr|myn|myv|nah|nai
+                   |nap|nau|nav|nbl|nde|ndo|nds|nep|new|nia|nic|niu|nno
+                   |nob|nog|non|nor|nqo|nso|nub|nwc|nya|nym|nyn|nyo|nzi
+                   |oci|oji|ori|orm|osa|oss|ota|oto|paa|pag|pal|pam|pan
+                   |pap|pau|peo|per|phi|phn|pli|pol|pon|por|pra|pro|pus
+                   |qar|qav|que|raj|rap|rar|roa|roh|rom|rum|run|rup|rus
+                   |sad|sag|sah|sai|sal|sam|san|sas|sat|scc|scn|sco|scr
+                   |sel|sem|sga|sgn|shn|sid|sin|sio|sit|sla|slo|slv|sma
+                   |sme|smi|smj|smn|smo|sms|sna|snd|snk|sog|som|son|sot
+                   |spa|srd|srn|srr|ssa|ssw|suk|sun|sus|sux|swa|swe|syc
+                   |syr|tah|tai|tam|tat|tel|tem|ter|tet|tgk|tgl|tha|tib
+                   |tig|tir|tiv|tkl|tlh|tli|tmh|tog|ton|tpi|tsi|tsn|tso
+                   |tuk|tum|tup|tur|tut|tvl|twi|tyv|udm|uga|uig|ukr|umb
+                   |und|urd|uzb|vai|ven|vie|vol|vot|wak|wal|war|was|wel
+                   |wen|wln|wol|xal|xho|yao|yap|yid|yor|ypk|zap|zbl|zen
+                   |zha|znd|zul|zun|zza">
+
+<!--
+<!ENTITY % List75 "007|008">
+
+<!ENTITY % List76 "0|1|2|3|4|5|6|7|8|A|B|C">
+
+<!ENTITY % List77 "P|K|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17">
+
+<!ENTITY % List78 "A101|A102|A103|A104|A105|A106|A107|A108|A109|A110
+                   |A111|A112|A201|A202|A203|A204|A205|A206|A207|A208
+                   |A209|A210|A211|A212|B101|B102|B103|B104|B105|B106
+                   |B107|B108|B109|B110|B111|B112|B113|B114|B115|B116
+                   |B201|B202|B203|B204|B205|B206|B207|B208|B209|B210
+                   |B211|B221|B301|B302|B303|B304|B305|B306|B307|B308
+                   |B309|B310|B311|B312|B313|B401|B402|B403|B404|B405
+                   |B406|B407|B408|B409|B410|B411|B412|B413|B414|B415
+                   |B501|B502|B503|B504|B505|B506|B507|B508|B509|B601
+                   |B602|B701|B702|B703|D101|D102|D103|D104|D105|D201
+                   |D202|D203|D204|D205|D206|D207|D301|D302|D303|D304
+                   |D305|D306|D307|D308|D309|D310|D311|D312|D313|D314
+                   |D315|D316|L101|P101|P102|P103|P104|P105|P106|P107
+                   |P108|P109|P110|P111|P112|P113|P114|V201|V202|V203">
+
+<!ENTITY % List79 "01|02|03|04|05|11|12">
+
+<!ENTITY % List80 "01|02|03|05|09|10|11|12|13|14|15|16|17|18|19|20|21|22
+                   |23">
+
+<!ENTITY % List81 "01|02|03|04|05|06|07|08|09|10|11">
+
+<!ENTITY % List82 "AP|AQ|AX|AY|AZ|GA|GC|GE|GS|OT|NT|NP|PE|PP|PS|PT|ZZ">
+
+<!ENTITY % List83 "ALV|AMP|ANM|ASV|CEI|CEN|CEV|CNC|DDI|DDN|DOU|EIN|ESV
+                   |FBB|FRA|FRK|FRM|GDW|GEN|GNB|GPR|GRK|GRM|HBR|HCS|ICB
+                   |ILC|JER|KJV|KJT|LVB|LZZ|MSG|NAB|NAS|NAU|NBA|NBB|NBC
+                   |NBD|NBE|NBF|NBG|NBH|NCV|NEB|NGO|NIV|NIR|NJB|NKJ|NNK
+                   |NLV|NRS|NVB|NVI|PHP|REB|REV|RSV|RVL|SBB|SMK|TEV|TNI
+                   |ZZZ">
+
+<!ENTITY % List84 "CAM|LIF|MAC|OXF|NNT|NOX|NSB|RYR|SCO|SPR">
+
+<!ENTITY % List85 "AW|BB|BR|CF|CH|CM|CR|DR|DV|FM|GT|GF|LP|MN|PS|PW|SC|SL
+                   |ST|SU|WG|WM|YT">
+
+<!ENTITY % List86 "CHR|CHA|INT|PAR|STN">
+
+<!ENTITY % List87 "CCL|PGE|SID|VER|UNK|ZZZ">
+
+<!ENTITY % List88 "CDATA">
+
+<!ENTITY % List89 "01">
+
+<!ENTITY % List90 "01|02|03|04|05|06|07|08|09|10|11">
+
+<!ENTITY % List91 "AD|AE|AF|AG|AI|AL|AM|AN|AO|AQ|AR|AS|AT|AU|AW|AX|AZ|BA
+                   |BB|BD|BE|BF|BG|BH|BI|BJ|BL|BM|BN|BO|BR|BS|BT|BV|BW
+                   |BY|BZ|CA|CC|CD|CF|CG|CH|CI|CK|CL|CM|CN|CO|CR|CS|CU
+                   |CV|CX|CY|CZ|DE|DJ|DK|DM|DO|DZ|EC|EE|EG|EH|ER|ES|ET
+                   |FI|FJ|FK|FM|FO|FR|GA|GB|GD|GE|GF|GG|GH|GI|GL|GM|GN
+                   |GP|GQ|GR|GS|GT|GU|GW|GY|HK|HM|HN|HR|HT|HU|ID|IE|IL
+                   |IM|IN|IO|IQ|IR|IS|IT|JE|JM|JO|JP|KE|KG|KH|KI|KM|KN
+                   |KP|KR|KW|KY|KZ|LA|LB|LC|LI|LK|LR|LS|LT|LU|LV|LY|MA
+                   |MC|MD|ME|MF|MG|MH|MK|ML|MM|MN|MO|MP|MQ|MR|MS|MT|MU
+                   |MV|MW|MX|MY|MZ|NA|NC|NE|NF|NG|NI|NL|NO|NP|NR|NU|NZ
+                   |OM|PA|PE|PF|PG|PH|PK|PL|PM|PN|PR|PS|PT|PW|PY|QA|RE
+                   |RO|RS|RU|RW|SA|SB|SC|SD|SE|SG|SH|SI|SJ|SK|SL|SM|SN
+                   |SO|SR|ST|SV|SY|SZ|TC|TD|TF|TG|TH|TJ|TK|TL|TM|TN|TO
+                   |TR|TT|TV|TW|TZ|UA|UG|UM|US|UY|UZ|VA|VC|VE|VG|VI|VN
+                   |VU|WF|WS|YE|YT|YU|ZA|ZM|ZW">
+
+<!ENTITY % List92 "02|04|05|06|07|12|13">
+
+<!ENTITY % List93 "00|01|02|03|04|05|06|07|08|09|10|11|12">
+
+<!ENTITY % List94 "cm|in|mm">
+
+<!ENTITY % List95 "lb|gr|oz">
+
+<!ENTITY % List96 "AED|AFA|AFN|ALL|AMD|ANG|AOA|ARS|ATS|AUD|AWG|AZN|BAM
+                   |BBD|BDT|BEF|BGL|BGN|BHD|BIF|BMD|BND|BOB|BRL|BSD|BTN
+                   |BWP|BYR|BZD|CAD|CDF|CHF|CLP|CNY|COP|CRC|CSD|CUC|CUP
+                   |CVE|CYP|CZK|DEM|DJF|DKK|DOP|DZD|EEK|EGP|ERN|ESP|ETB
+                   |EUR|FIM|FJD|FKP|FRF|GBP|GEL|GHC|GIP|GMD|GNF|GRD|GTQ
+                   |GWP|GYD|HKD|HNL|HRK|HTG|HUF|IDR|IEP|ILS|INR|IQD|IRR
+                   |ISK|ITL|JMD|JOD|JPY|KES|KGS|KHR|KMF|KPW|KRW|KWD|KYD
+                   |KZT|LAK|LBP|LKR|LRD|LSL|LTL|LUF|LVL|LYD|MAD|MDL|MGA
+                   |MGF|MKD|MMK|MNT|MOP|MRO|MTL|MUR|MVR|MWK|MXN|MYR|MZN
+                   |NAD|NGN|NIO|NLG|NOK|NPR|NZD|OMR|PAB|PEN|PGK|PHP|PKR
+                   |PLN|PTE|PYG|QAR|ROL|RON|RUB|RUR|RWF|SAR|SBD|SCR|SDD
+                   |SEK|SGD|SHP|SIT|SKK|SLL|SOS|SRD|SRG|STD|SVC|SYP|SZL
+                   |THB|TJS|TMM|TND|TOP|TPE|TRL|TRY|TTD|TWD|TZS|UAH|UGX
+                   |USD|UYU|UZS|VEB|VND|VUV|WST|XAF|XCD|XOF|XPF|YER|YUM
+                   |ZAR|ZMK|ZWD">
+
+<!ENTITY % List97 "RL">
+
+<!ENTITY % List98 "BLK|BLU|BRN|BUR|CRE|FCO|FCS|GLD|GRN|GRY|MUL|NAV|ORG
+                   |PNK|PUR|RED|SLV|TAN|WHI|YEL|ZZZ">
+
+<!ENTITY % List99 "01|02|03|04|05|06|07|08|09|10|11|12|13|14|15|16|17|18
+                   |19|20|21|22|23|24">
+
+<!ENTITY % List100 "01|02|03|04">
+
+<!ENTITY % List101 "01|02">
+
+<!ENTITY % List102 "01|02|03">
+
+<!ENTITY % List121 "Arab|Armi|Armn|Avst|Bali|Batk|Beng|Blis|Bopo|Brah
+                    |Brai|Bugi|Buhd|Cakm|Cans|Cari|Cham|Cher|Cirt|Copt
+                    |Cprt|Cyrl|Cyrs|Deva|Dsrt|Egyd|Egyh|Egyp|Ethi|Geok
+                    |Geor|Glag|Goth|Grek|Gujr|Guru|Hang|Hani|Hano|Hans
+                    |Hant|Hebr|Hira|Hmng|Hrkt|Hung|Inds|Ital|Java|Kali
+                    |Kana|Khar|Khmr|Knda|Kore|Kthi|Lana|Laoo|Latf|Latg
+                    |Latn|Lepc|Limb|Lina|Linb|Lyci|Lydi|Mand|Mani|Maya
+                    |Mero|Mlym|Mong|Mymr|Nkoo|Ogam|Olck|Orkh|Orya|Osma
+                    |Perm|Phag|Phli|Phlp|Phlv|Phnx|Plrd|Prti|Qaaa|Qabx
+                    |Rjng|Roro|Runr|Samr|Sara|Saur|Shaw|Sinh|Sund|Sylo
+                    |Syrc|Syre|Syrj|Syrn|Tagb|Tale|Talu|Taml|Tavt|Telu
+                    |Teng|Tfng|Tglg|Thaa|Thai|Tibt|Ugar|Vaii|Visp|Xpeo
+                    |Xsux|Yiii|Zmth|Zsym|Zxxx|Zyyy|Zzzz"> -->
+
+<!ENTITY % List138 "SFS4900|SFS5807|SFS5755|SFS3602|ISO3602|ISO7098">
+
+<!--
+<!ENTITY % List139 "ACM|AAP|ALB|AMZ|ANR|APC|ASD|AUD|BDL|BNO|BBB|BST|BJW
+                    |BLK|BCA|BKP|BKM|BRD|BRB|BRT|CST|CRB|CVS|DSG|DYM|ELC
+                    |ESN|ENH|FRY|GMS|HST|HMV|HMD|IND|JSM|KMT|KRG|LWE|MKS
+                    |MCR|MRR|MTC|NTR|OFD|OFM|PST|PTS|PTC|PLY|PTB|RST|RTZ
+                    |SFW|SNS|SLF|STP|TRG|TES|TSR|TSO|VRG|WHS|WTR|WLM|WST
+                    |WHT|WLS|WLW|ZVV|ZZZ">
+
+<!ENTITY % List140 "01|02|03|04|05|06|07">
+
+<!ENTITY % List141 "00|01|02|03|04|05|06|07|08|09">
+
+<!ENTITY % List142 "00|01|02|03|04|05|06|07|08|09|10|11">
+
+<!ENTITY % List143 "01|02|03|04|05|06|07">
+
+<!ENTITY % List144 "00|01|02">
+
+<!ENTITY % List145 "01|02|03|04|05">
+
+<!ENTITY % List146 "01|02|03">
+
+<!ENTITY % List147 "01|02|03|04|05|06|07">
+
+<!ENTITY % List148 "00|10|20">
+
+<!ENTITY % List149 "01|02|03">
+
+<!ENTITY % List150 "00|AA|AB|AC|AD|AE|AF|AG|AH|AI|AJ|AK|AL|AZ|BA|BB|BC
+                    |BD|BE|BF|BG|BH|BI|BJ|BK|BL|BM|BN|BO|BZ|CA|CB|CC|CD
+                    |CE|CZ|DA|DB|DC|DE|DF|DI|DJ|DK|DL|DM|DN|DZ|EA|EB|EC
+                    |ED|FA|FC|FD|FE|FF|FZ|MA|MB|MC|MZ|PA|PB|PC|PD|PE|PF
+                    |PG|PH|PI|PJ|PK|PL|PM|PN|PO|PP|PQ|PR|PS|PT|PZ|SA|SB
+                    |SC|SD|SE|SF|VA|VF|VI|VJ|VK|VL|VM|VN|VO|VP|VZ|XA|XB
+                    |XC|XD|XE|XF|XG|XH|XI|XJ|XK|XL|XZ|ZA|ZB|ZC|ZD|ZE|ZF
+                    |ZZ">
+
+<!ENTITY % List151 "01|02|03|04|05|06|07">
+
+<!ENTITY % List152 "01|02">
+
+<!ENTITY % List153 "CDATA">
+
+<!ENTITY % List154 "CDATA">
+
+<!ENTITY % List155 "CDATA">
+
+<!ENTITY % List156 "CDATA">
+
+<!ENTITY % List157 "CDATA">
+
+<!ENTITY % List158 "CDATA">
+
+<!ENTITY % List159 "CDATA">
+
+<!ENTITY % List160 "CDATA">
+
+<!ENTITY % List161 "CDATA">
+
+<!ENTITY % List162 "CDATA">
+
+<!ENTITY % List163 "01|09|10|11|12|13|16">
+
+<!ENTITY % List164 "01|02">
+
+<!ENTITY % List165 "01|02">
+
+<!ENTITY % List166 "02|08">
+
+<!ENTITY % List167 "01|02|03">
+
+<!ENTITY % List168 "01|02">
+
+<!ENTITY % List169 "00|08|09">
+
+<!ENTITY % List170 "CDATA">
+
+<!ENTITY % List171 "01|02">
+
+<!ENTITY % List172 "EU">
+
+<!ENTITY % List173 "14|15">
+
+<!ENTITY % List174 "01|02">
+
+<!ENTITY % List175 "A101|A102|A103|A104|A105|A106|A107|A108|A109|A110
+                    |A111|A112|A201|A202|A203|A204|A205|A206|A207|A208
+                    |A209|A210|A211|A212|B101|B102|B103|B104|B105|B106
+                    |B107|B108|B109|B110|B111|B112|B113|B114|B115|B116
+                    |B201|B202|B203|B204|B205|B206|B207|B208|B209|B210
+                    |B211|B221|B301|B302|B303|B304|B305|B306|B307|B308
+                    |B309|B310|B311|B312|B313|B401|B402|B403|B404|B405
+                    |B406|B409|B410|B411|B412|B413|B414|B415|B501|B502
+                    |B503|B504|B505|B506|B507|B508|B509|B601|B602|B701
+                    |B702|B703|D101|D102|D103|D104|D105|D201|D202|D203
+                    |D204|D205|D206|D207|D301|D302|D303|D304|D305|D306
+                    |D307|D308|D309|D310|D311|D312|D313|D314|D315|D316
+                    |L101|P101|P102|P103|P104|P105|P106|P107|P108|P109
+                    |P110|P111|P112|P113|P114|V201|V202|V203">
+
+<!ENTITY % List177 "50|51"> -->
+<!ENTITY % SourceTypeCode "%List3;">
+
+<!ENTITY % TextCaseCode "%List14;">
+
+<!ENTITY % TextFormatCode "%List34;">
+
+<!ENTITY % TransliterationCode "%List138;">

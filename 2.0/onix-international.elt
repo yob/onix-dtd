@@ -1,0 +1,3267 @@
+<!--
+**************************************************
+*                                                *
+*               ONIX INTERNATIONAL               *
+*                                                *
+*                    XML DTD                     *
+*                  MAIN MODULE                   *
+*                                                *
+*    Original filename: ONIX-INTERNATIONAL.ELT   *
+*                                                *
+*          Original author: Francis Cave         *
+*                                                *
+*                  Version 2.0                   *
+*                  Revision 00                   *
+*                 Status: PUBLIC                 *
+*            Release date: 2001-07-25            *
+*                                                *
+*             (c) 2000, 2001 EDItEUR             *
+*             http://www.editeur.org/            *
+*                                                *
+**************************************************
+
+THIS MODULE IS ONE OF FIVE THAT COMPRISES THE ONIX INTERNATIONAL XML DTD. 
+IN XML PROCESSING TERMS IT FOLLOWS THE LOCAL TAG NAMES DEFINITION MODULE 
+(ORIGINAL FILENAME: ONIX-INTERNATIONAL.DTD), WHICH CONTAINS A REFERENCE
+LINK TO THIS MODULE. THE OTHER THREE MODULES DEFINE SPECIAL CHARACTERS 
+AND ARE IDENTICAL TO THOSE USED IN THE W3C XHTML 1.0 DTD.
+
+
+
+TERMS AND CONDITIONS OF USE
+
+All ONIX International standards and documentation are copyright
+materials.  If you use the ONIX International DTD, you will be deemed to
+have accepted these terms and conditions:
+
+1.  You agree that you will not add to, delete from, amend, or copy for
+use outside of the ONIX International DTD, any part of the DTD except in
+those ways which are expressly described in ONIX documentation.
+
+2.  You agree that if you wish to use supergroup "Z" which is provided
+for local extensions, you will in the first instance notify EDItEUR and
+allow EDItEUR to review and comment on your proposed use.
+
+3.  You further agree that if, in the light of EDItEUR comments, you
+proceed to develop an application of supergroup "Z", you will provide
+EDItEUR with a copy of your extended ONIX International DTD, including 
+any supporting documentation that is required to understand fully the 
+nature and application of the extension, and EDItEUR will be free to 
+make such use as it sees fit of any part of your application for the 
+future development of ONIX International.
+
+If you do not accept these terms, you must not use this DTD.
+
+
+
+Full copies of the latest release of this DTD and all associated 
+documentation are available from the EDItEUR web site, where may also 
+be found details of how to contact EDItEUR for advice on the use of 
+this DTD. The URL for the EDItEUR web site is:
+
+http://www.editeur.org/
+
+
+
+MODULE REVISION HISTORY (IN REVERSE CHRONOLOGICAL ORDER)
+
+2001-07-25: Major revision of Release 1.2.1 for Release 2.0
+
+     1. New record-level elements added with verbose names "MainSeriesRecord" and "SubSeriesRecord".
+     2. New attributes "textformat", "language", "transliteration", "datestamp", "sourcetype" and
+        "sourcename" added to all element types.
+     3. All SuperGroups except SuperGroup Z removed.
+     4. Groups re-ordered as follows: 
+              Group 0 becomes Message Header Group MH6 
+              Groups 1 - 3 become Product Groups PR1 - PR3 
+              Groups 4 - 13 become Product Groups PR5 - PR14 
+              Groups 18 - 20 become Product Groups PR15 - PR17 
+              Groups 14 - 17 become Product Groups PR19 - PR22 
+              Groups 21 - 23 become Product Groups PR23 - PR25.
+        Several Product Groups have revised descriptive names.
+     5. New Product Groups PR4 (Epublication detail) and PR18 (Content items) added.
+     6. New composite element added to Group PR2 with verbose name "ProductIdentifier", 
+        to contain new data elements with verbose names "ProductIDType", "IDTypeName", and 
+        "IDValue" and short tag names "b221", "b233" and "b244" respectively.
+     7. New data element added to Group PR2 with verbose name "Barcode" 
+        and short name "b246".
+     8. New composite element added to Group PR3 with verbose name "ProductClassification", 
+        to contain new data elements with verbose names "ProductClassificationType" and 
+        "ProductClassificationCode" and short tag names "b274" and "b275" respectively.
+     9. New data elements added to new Group PR4 with verbose names "EpubType", 
+        "EpubTypeVersion", "EpubTypeDescription", "EpubFormat", "EpubFormatVersion", 
+        "EpubFormatDescription", "EpubSource", "EpubSourceVersion", "EpubSourceDescription" 
+        and "EpubTypeNote", and short tag names "b212", "b213", "b214", "b215", "b216", 
+        "b278", "b279", "b280" and "b277" respectively.
+    10. New composite element added to Group PR5 with verbose name "SeriesIdentifier", 
+        to contain new data element with verbose name "SeriesIDType" and short tag name 
+        "b273".
+    11. Content model for series in Group PR5 modified to include composite element 
+        %Contributor;, to be optional and repeatable following %TitleOfSeries;.
+    12. Verbose name "ItemNumberWithinSeries" renamed "NumberWithinSeries".
+    13. Content model for set in Group PR6 modified to include composite element 
+        %ProductIdentifier;, to be optional and repeatable before %TitleOfSet;, and 
+        to contain new data element at end with verbose name "SetItemTitle" and short 
+        tag name "b281".
+    14. New composite element added to Group PR7 with verbose name "Title", to contain 
+        new data elements with verbose names "TitleType", "AbbreviatedLength" and "TitleText" 
+        and short tag names "b202", "b276" and "b203" respectively.
+    15. New composite element added to Group PR7 with verbose name "WorkIdentifier", to 
+        contain new data element with verbose name "WorkIDType" and short tag name "b201".
+    16. Verbose name "ContributorSequenceNumber" renamed "SequenceNumber".
+    17. New data element added to content model of %Contributor; in Group PR8 
+        with verbose name "LanguageCode" and short tag name "b252".
+    18. New data elements added to structured name model in Group PR8 with verbose names 
+        "PrefixToKey" and "SuffixToKey" and short tag names "b247" and "b248" respectively.
+    19. New composite element added to content model of composite element %Contributor; in 
+        Group PR8 with verbose name "Name", to contain a new data element with verbose name 
+        "PersonNameType" and short tag name "b250".
+    20. New data element added to content model of composite element %Contributor; in 
+        Group PR8 with verbose name "UnnamedPersons" and short tag name "b249".
+    21. New data element added to Group PR10 with verbose name "EditionVersionNumber" and 
+        short tag name "b217".
+    22. New composite element added to Group PR11 with verbose name "Language", to contain 
+        new data elements with verbose names "LanguageRole" and "CountryCode" 
+        amd short tag names "b253" and "b251" respectively.
+    23. New data elements added to Group PR12 with verbose names "PagesRoman" and "PagesArabic" 
+        and short tag names "b254" and "b255" respectively.
+    24. New composite element added to Group PR12 with verbose name "Illustrations", to contain 
+        new data elements with verbose names "IllustrationType" and "Number" and short tag names 
+        "b256" and "b257".
+    25. Composite element %Name; and data element %CorporateName; added to content models of 
+        composite elements %Imprint; and %Publisher; in Group PR19.
+    26. Verbose names "Rights" and "RightsTypeCode" renamed "SalesRights" and 
+        "SalesRightsType" respectively.
+    27. New data element added to Group PR22 with verbose name "Dimensions" and short tag name 
+        "c258".
+    28. Composite element %ProductIdentifier; added to content model of composite element 
+        %RelatedProduct; in Group PR23.
+    29. Data elements for epublications added to content model of %RelatedProduct; in Group PR23.
+    30. New data elements added to content model of composite element %SupplyDetail; in Group 
+        PR24, with verbose names "TelephoneNumber", "FaxNumber" and "EmailAddress" and short tag 
+        names "j270", "j271" and "j272" respectively.
+    31. New data elements added to content model of %SupplyDetail; with verbose names 
+        "ReturnsCodeType" and "ReturnsCode" and short tag names "j268" and "j269" respectively.
+    32. New composite element added to content model of %SupplyDetail; with verbose name "NewSupplier".
+    33. New data element added to content model of %SupplyDetail; with verbose name "DateFormat" 
+        and short tag name "j260".
+    34. New data elements added to content model of composite element %Price; in Group PR24 with 
+        verbose names "PriceQualifier" and "PriceTypeDescription" and short tag names "j261" and 
+        "j262" respectively.
+    35. New data element added to content model of %Price; with verbose name "MinimumOrderQuantity" 
+        and short tag name "j263".
+    36. New composite element added with verbose name "BatchBonus", to contain new data elements 
+        with verbose names "BatchQuantity" and "FreeQuantity" and short tag names "j264" and 
+        "j265" respectively.
+    37. Verbose name "DiscountGroupCode" renamed "BICDiscountGroupCode". 
+    38. New data elements added to the content model of %Price; with verbose names 
+        "DiscountPercent" and "PriceStatus" and short tag names "j267" and "j266" 
+        respectively.
+    39. Data element %CountryCode; added to content model of %Price;.
+    40. New Groups MS1 - MS6 added for %MainSeriesRecord; records.
+    41. New Groups SS1 - SS7 added for %SubSeriesRecord; records.
+    40. New data element added to new Group MS6 with verbose name "SubordinateEntries" 
+        and short tag name "a245".
+    41. New composite element added to new Group SS2 with verbose name "ParentIdentifier".
+    42. New data elements added to new Group SS3 with verbose names "LevelSequenceNumber" 
+        and "SeriesPartName" and short tag names "b284" and "b282" respectively. 
+    43. New data element added to composite element %Publisher; in Group PR19 with verbose 
+        name "PublishingRole" and short tag name "b291".
+    44. New composite element added to new Group PR18 with verbose name "ContentItem", to 
+        contain new composite elements with verbose names "TextItem" and 
+        "TextItemIdentifier" and new data elements with verbose names 
+        "TextItemType", "TextItemIDType", "FirstPageNumber", "LastPageNumber", 
+        "ComponentTypeName" and "ComponentNumber" and short tag names "b290", "b285", "b286", 
+        "b287", "b288" and "b289" respectively.
+    45. New data element added to Group MH6 with verbose name "FromEmail" and short tag 
+        name "m283".
+    46. Group PR1 content model changed to move %DeletionCode; and %DeletionText; to 
+        immediately after %NotificationType;.
+    47. Content model of composite element %PersonAsSubject; in Group PR13 changed for 
+        the sake of consistency to use %StructuredNameModel; from Group PR8.
+    48. Verbose names "Rights" and "RightsTypeCode" renamed "SalesRights" and 
+        "SalesRightsType".
+    49. New data element added to content model of composite element %MediaFile; in Group 
+        PR16 with verbose name "ImageResolution" and short tag name "f259".
+
+2001-04-11: Amendment of Release 1.2 for Release 1.2.1
+
+     1. Content model of composite element %AudienceRange; in Group 13 corrected to allow 
+        two occurrences of %AudienceRangePrecision; and %AudienceRangeValue;.
+     2. Group 16 content model corrected to allow three occurrences of composite element 
+        %Rights;.
+     3. New composite element added to Group 14 with verbose name "Imprint", to contain 
+        new data elements with verbose names "NameCodeType", "NameCodeTypeName" and
+        "NameCodeValue" and short tag names "b241", "b242" and "b243" respectively.
+     4. New composite element added to Group 14 with verbose name "Publisher", to contain 
+        the same data elements as the new composite element "Publisher".
+     5. Removed data elements with verbose names "ImprintCode" and "PublisherCode".
+     6. New data element added to Group 14 with verbose name "OriginalPublisher" and short 
+        tag name "b240".
+     7. New data element added to composite element %Price; in Group 22, with verbose name 
+        "PricePer" and short tag name "j239".
+     8. New composite element added with verbose name "Header", to contain existing 
+        header elements in Group 0, to enable the header data elements to be grouped within 
+        a composite structure.
+
+2000-11-27: Amendment of Revision 03c for Release 1.2
+
+     1. A new version and revision numbering system has been introduced. In future the 
+        DTD version number will match the public release number and the revision number 
+        will be incremented by one for each revision of the DTD that is publicly 
+        released, however minor. Revision numbers will be kept in step on both this 
+        file and ONIX-INTERNATIONAL.DTD. If at a future time the DTD is replaced by a 
+        Schema, it is anticipated that revisions of code lists will use the same release 
+        number but will not carry a revision number, as only the most recently-issued 
+        version is expected to be valid.
+     2. Marked sections have been added using the parameter entity %GroupsAsElements; to 
+        enable a version of the DTD to be generated that contains all Groups and 
+        SuperGroups declared as elements instead of simply as parameter entities 
+        containing content model fragments. This device has been added to facilitate the 
+        generation of graphical views of the DTD for use in the ONIX Level 2 Guide.
+     3. New elements added to Group 1 to indicate the source of a record, with verbose 
+        names "RecordSourceType", "RecordSourceIdentifierType", "RecordSourceIdentifier" 
+        and "RecordSourceName"
+     4. New elements added to Group 1 to indicate why a record has been deleted, with 
+        verbose names "DeletionCode" and "DeletionText"
+     5. Verbose name "ProductFormDetail" in Group 3 renamed "BookFormDetail" and made 
+        repeatable in Group 3 content model
+     6. New element added to Group 3 and to %ContainedItem;, to represent the number of 
+        pieces in a product or contained item within a product, with verbose name 
+        "NumberOfPieces"
+     7. Element %ContributorRole; made repeatable in Group 7 content model
+     8. New composite element added to Group 11 with verbose name "Extent", to contain 
+        new data elements with verbose names "ExtentType", "ExtentValue" and "ExtentUnit"
+     9. New element added to Group 12 to represent the BASIC subject categories version 
+        number, with verbose name "BASICVersion"
+    10. New composite element added to Group 13 with verbose name "Audience", to contain 
+        new data elements with verbose names "AudienceCodeType", "AudienceCodeTypeName" 
+        and "AudienceCodeValue"
+    11. New element added to Group 13 with verbose name "AudienceDescription"
+    12. Group 16 content model changed so that %Rights; may only occur up to twice
+    13. Element with verbose name "RightsRegion" (formerly "Region") reinstated in 
+        composite in Group 16, forming part of a content model fragment contained in a 
+        new parameter entity %TerritoriesModel;
+    14. New composite element added to Group 16 with verbose name "NotForSale"
+    15. New composite element added with verbose name "RelatedProduct", to contain 
+        new data element with verbose name "RelationCode" and other existing data 
+        elements %ISBN; %EAN13;, %ProductForm;, %BookFormDetail; and %ProductFormDescription;
+    16. Group 12 content model of corrected to remove redundant "?" after %BICMainSubject;
+
+2000-09-01: Amendment of Revision 03b following user test results (NO REVISION RELEASED)
+
+     1. Content model of %MediaFile; changed to make element 
+        %MediaFileFormatType; optional
+     2. Content model of %MediaFile; changed to allow optionally either 
+        %TextWithDownload; or any of %DownloadCaption;, %DownloadCredit; 
+        or %DownloadCopyrightNotice;, and to make the inclusion of 
+        %DownloadTerms; independent of them
+     3. Short tag name of element %Prize; changed from "Prize" to "prize"
+     4. Short tag names moved into this module.
+
+2000-08-08: Alteration of Revision 03a to enable use with Icon XML Spy
+
+     1. Parentheses added around %PriceAmount; and %UnpricedItemType; 
+        in content model of %SupplyDetail;
+
+2000-08-01: Correction to Revision 03 to enable use with Microsoft IE 5.x
+
+     1. Parentheses added around %BICMainSubject; in Group 12 content model
+
+2000-07-25: Amendments to Revision 02 for Release 1.1 of ONIX International
+
+     1. Element %BiographicalNote; made optional after %CorporateName; 
+        in content model of %Contributor;
+     2. Element %PackQuantity; added to content model of %SupplyDetail;
+     3. Element %TaxRateCode2; added to content model of %Price;
+     4. Entities declared and referenced for the special character entity sets 
+        XHTML-LAT1.ENT, XHTML-SPECIAL.ENT and XHTML-SYMBOL.ENT
+     5. Group 14 model changed to allow %PublisherName; or %PublisherCode;
+        to occur without %ImprintName; or %ImprintCode;
+     6. Content model of %subject; changed to allow %SubjectHeadingText; 
+        following %SubjectCode;
+     7. Default namespace attribute declaration removed for %ONIXmessage;
+     8. Group 2, %ContainedItem;, %SetModel; and Group 21 models changed to 
+        put all ISBN elements before EAN13 elements
+     9. Group 7 model changed to allow any combination of %PersonName;, 
+        %PersonNameInverted; and %StructuredNameModel; (a new parameter entity 
+        containing the six structured name elements)
+    10. New element added to Group 22 for prices specified as "free of charge" 
+        and "to be announced", with entity and verbose name "UnpricedItemType", 
+        and included as an alternative to %PriceAmount;, but only when used 
+        outside the composite %Price;
+    11. New composite added to Group 12 for Main subject, with entity and verbose 
+        name "MainSubject" and short tag name "mainsubject", to be an alternative to 
+        %BASICMainSubject; and %BICMainSubject;
+    12. New element added to Group 12 for Main subject scheme identifier with entity 
+        and verbose name "MainSubjectSchemeIdentifier", and included in the new
+        composite %MainSubject;
+    13. Group 12 model changed so that any combination of single instances of 
+        %BASICMainSubject;, %BICMainSubject; and %MainSubject;, or none of these, is valid
+    14. Mechanism added for including an extension module that defines an
+        additional supergroup Z containing additional elements required for
+        local use; where used, supergroup Z forms the final structure within the
+        element %Product;
+    15. Reference name "ClassOfTradeCode" changed to "ClassOfTrade"
+    16. Fixed attribute added to element %ONIXMessage; to contain DTD release number "1.1"
+    17. Group 6 model changed to allow %FormerTitle; to be repeatable
+    18. Group 7 model changed to make %Contributor; non-mandatory
+    19. Content model of %Contributor; changed to make %ContributorRole; mandatory
+    20. Group 16 model changed to allow %Rights; to be repeated only three times
+    21. New element added to Group 0 for default class of trade with entity and verbose 
+        name "DefaultClassOfTrade"
+    22. Group 22 model changed so that %ClassOfTrade; may only occur in the composite 
+        %Price;
+
+2000-05-20: Amendments to Revision 01 for Release 1.0 of ONIX International
+
+     1. Removed elements with verbose names "multiple", "quantity" and "tradeonly"
+     2. Amended content model of %ContainedItem; in Group 3 to include
+        %ProductForm;, %ProductFormDetail; and %Productionformdescription;
+     3. Corrected content model of %ContainedItem; - %quantity; replaced by %ItemQuantity;
+     4. Amended Group 3 model so that %ProductForm; is not repeatable
+     5. Entity and verbose names for Series ISSN changed 
+        from "issn" to "SeriesISSN"
+     6. Entity and verbose names for Contributor sequence number changed 
+        from "contributornumber" to "ContributorSequenceNumber"
+     7. New element added to Group 11 for Number of illustrations
+        with entity and verbose name "NumberOfIllustrations"
+     8. Entity and verbose names "lexilecode" and "lexilenumber" replaced by
+        "ComplexitySchemeIdentifier" and "ComplexityCode"
+     9. New composite added to Group 13 for Complexity with tag name "Complexity"
+    10. Removed elements from Group 16 with verbose names "region" and "countryexcluded"
+    11. Amended Group 18 so that %ReviewQuote; is repeatable
+    12. New element added to Group 19 for Product website composite with name "ProductWebsite"
+        and made repeatable in place of %ProductWebsiteLink; which it now contains
+    13. New element added to Group 19 for Product website description with entity and verbose 
+        name "ProductWebsiteDescription", for inclusion in composite %ProductWebsite;
+    14. New elements added to Group 21 for Other alternative Product ISBN and Other alternative Product EAN-13
+        with entity and verbose names "AlternativeProductISBN" and "AlternativeProductEAN13"
+    15. Added new Group 23 Sales promotion information
+    16. New elements added to Group 23 for Promotion campaign information, Promotion contact details, 
+        Initial print run, Copies sold and Book Club adoption, with entity and verbose names
+        "PromotionCampaign", "PromotionContact", "InitialPrintRun", "CopiesSold" and "BookClubAdoption"
+    17. Added new Supergroup K containing Group 23 elements
+    18. Changed all other names to UpperCamelCase
+    19. New element added to Group 12 (subject composite) for Proprietary subject scheme name, 
+        with entity and verbose name "SubjectSchemeName"
+    20. New Group 0 added, containing the following message elements: 
+        ELEMENT TITLE:             ENTITY AND VERBOSE NAME:
+        Sender EAN number          FromEANNumber
+        Sender SAN                 FromSAN
+        Sender company name        FromCompany
+        Sender contact             FromPerson
+        Addressee EAN number       ToEANNumber
+        Addressee SAN              ToSAN
+        Addressee company name     ToCompany
+        Addressee contact          ToPerson
+        Message sequence number    MessageNumber
+        Message repeat number      MessageRepeat
+        Transmission date          SentDate
+        Message note               MessageNote
+        Default language of text   DefaultLanguageOfText
+        Default price type         DefaultPriceTypeCode
+        Default currency           DefaultCurrencyCode
+        Default linear unit        DefaultLinearUnit
+        Default unit of weight     DefaultWeightUnit
+    21. %publicationdate; moved from Group 1 to Group 15
+    22. Amended content model for %ContainedItem; in Group 3 so that it doesn't need 
+        to have either an %ISBN; or an %EAN13;
+    23. Top-level element entity and verbose name changed from "Message" to "ONIXMessage"
+    24. Amended content model for %SupplyDetail; to make %PriceAmount; and
+        %ClassOfTradeCode; available outside the %Price; composite (for Level 1)
+    25. Removed elements from Group 17 with entity and verbose names "PageTrimHeight" 
+        and "PageTrimWidth"
+    26. Added new composite element to Group 17 with entity and verbose name "Measure"
+    27. Added new elements to Group 17 with entity and verbose names "MeasureTypeCode" 
+        and "Measurement"
+    28. Added new elements to Group 13 with entity and verbose names "USSchoolGrade" 
+        and "InterestAge", outside composite %AudienceRange;
+    29. Changed entity and verbose names "SalesRestrictionFlag" and "SalesRestrictionNote"
+        in Group 22 to "AudienceRestrictionFlag" and "AudienceRestrictionNote"
+    30. Default namespace declaration attribute added to %ONIXmessage;
+
+2000-05-04: First draft of Version 1 released
+
+-->
+<!--
+**************************************************
+*                                                *
+*          A BRIEF GUIDE TO XML SYNTAX           *
+*                                                *
+**************************************************
+
+
+<!ELEMENT ...>	declares an XML element
+
+<!ENTITY % ...>  declares a "parameter entity" to be either a literal string or the content of an external file
+
+%name;	inserts the content of the string or external file that parameter entity "name" refers to
+
+<!ATTLIST name ...> declares attributes for the element "name"
+
+In element declarations:
+
+(...)		contains the structural model of the content of the element, or some part of it if nested
+
+and within the model
+
+, = "followed by"
+
+| = "exclusive or"
+
+? = "0 or 1"
+
+* = "0 or more"
+
++ = "1 or more"
+
+#PCDATA = "parsed character data", i.e. unstructured Text
+
+-->
+<!--
+**************************************************
+*                                                *
+*     !!! WARNING !!! WARNING !!! WARNING !!!    *
+*                                                *
+**************************************************
+
+THIS FILE IS NOT TO BE EDITED! CHANGES TO THIS FILE WILL RESULT IN ERRORS IN ONIX MESSAGE VERIFICATION!
+
+-->
+
+<![%UsingReferenceNames;[
+<!ENTITY % UsingShortNames "IGNORE" >
+]]>
+<!ENTITY % UsingShortNames "INCLUDE">
+
+<!--
+**************************************************
+*                                                *
+*                 SHORT TAG NAMES                *
+*                                                *
+**************************************************
+
+Declared below are the names to be used by default in ONIX International applications. If the replacement value of the parameter entity %UsingReferenceNames; is set to "INCLUDE" (in the local names definition module), the reference names are used in their place. Alternatively a list of local names is defined and activated in the local names template at the top of this file by defining a complete set of local names and by setting the replacement value of the parameter entity %UsingLocalNames; to "INCLUDE".
+
+-->
+<![%UsingShortNames;[
+
+<!ENTITY % ONIXMessage                  "ONIXmessage">
+<!ENTITY % Product                      "product">
+<!ENTITY % MainSeriesRecord             "mainseriesrecord">
+<!ENTITY % SubSeriesRecord              "subseriesrecord">
+<!ENTITY % RecordReference              "a001">
+<!ENTITY % NotificationType             "a002">
+<!ENTITY % RecordSourceType             "a194">
+<!ENTITY % RecordSourceIdentifierType   "a195">
+<!ENTITY % RecordSourceIdentifier       "a196">
+<!ENTITY % RecordSourceName             "a197">
+<!ENTITY % DeletionCode                 "a198">
+<!ENTITY % DeletionText                 "a199">
+<!ENTITY % ISBN                         "b004">
+<!ENTITY % EAN13                        "b005">
+<!ENTITY % UPC                          "b006">
+<!ENTITY % PublisherProductNo           "b007">
+<!ENTITY % ISMN                         "b008">
+<!ENTITY % DOI                          "b009">
+<!ENTITY % ProductIdentifier            "productidentifier">
+<!ENTITY % ProductIDType                "b221">
+<!ENTITY % IDTypeName                   "b233">
+<!ENTITY % IDValue                      "b244">
+<!ENTITY % Barcode                      "b246">
+<!ENTITY % ReplacesISBN                 "b010">
+<!ENTITY % ReplacesEAN13                "b011">
+<!ENTITY % ProductForm                  "b012">
+<!ENTITY % BookFormDetail               "b013">
+<!ENTITY % ProductFormDescription       "b014">
+<!ENTITY % ContainedItem                "containeditem">
+<!ENTITY % NumberOfPieces               "b210">	
+<!ENTITY % ItemQuantity                 "b015">
+<!ENTITY % ProductClassification        "productclassification">
+<!ENTITY % ProductClassificationType    "b274">
+<!ENTITY % ProductClassificationCode    "b275">
+<!ENTITY % EpubType                     "b211">
+<!ENTITY % EpubTypeVersion              "b212">
+<!ENTITY % EpubTypeDescription          "b213">
+<!ENTITY % EpubFormat                   "b214">
+<!ENTITY % EpubFormatVersion            "b215">
+<!ENTITY % EpubFormatDescription        "b216">
+<!ENTITY % EpubSource                   "b278">
+<!ENTITY % EpubSourceVersion            "b279">
+<!ENTITY % EpubSourceDescription        "b280">
+<!ENTITY % EpubTypeNote                 "b277">
+<!ENTITY % Series                       "series">
+<!ENTITY % SeriesISSN                   "b016">
+<!ENTITY % PublisherSeriesCode          "b017">
+<!ENTITY % SeriesIdentifier             "seriesidentifier">
+<!ENTITY % SeriesIDType                 "b273">
+<!ENTITY % TitleOfSeries                "b018">
+<!ENTITY % NumberWithinSeries           "b019">
+<!ENTITY % YearOfAnnual                 "b020">
+<!ENTITY % Set                          "set">
+<!ENTITY % ISBNOfSet                    "b021">
+<!ENTITY % EAN13OfSet                   "b022">
+<!ENTITY % TitleOfSet                   "b023">
+<!ENTITY % SetPartNumber                "b024">
+<!ENTITY % SetPartTitle                 "b025">
+<!ENTITY % ItemNumberWithinSet          "b026">
+<!ENTITY % SetItemTitle                 "b281">
+<!ENTITY % TextCaseFlag                 "b027">
+<!ENTITY % DistinctiveTitle             "b028">
+<!ENTITY % Subtitle                     "b029">
+<!ENTITY % TitlePrefix                  "b030">
+<!ENTITY % TitleWithoutPrefix           "b031">
+<!ENTITY % TranslationOfTitle           "b032">
+<!ENTITY % FormerTitle                  "b033">
+<!ENTITY % Title                        "title">
+<!ENTITY % TitleType                    "b202">
+<!ENTITY % AbbreviatedLength            "b276">
+<!ENTITY % TitleText                    "b203">
+<!ENTITY % WorkIdentifier               "workidentifier">
+<!ENTITY % WorkIDType                   "b201">
+<!ENTITY % Contributor                  "contributor">
+<!ENTITY % SequenceNumber               "b034">
+<!ENTITY % ContributorRole              "b035">
+<!ENTITY % LanguageCode                 "b252">
+<!ENTITY % PersonName                   "b036">
+<!ENTITY % PersonNameInverted           "b037">
+<!ENTITY % TitlesBeforeNames            "b038">
+<!ENTITY % NamesBeforeKey               "b039">
+<!ENTITY % PrefixToKey                  "b247">
+<!ENTITY % SuffixToKey                  "b248">
+<!ENTITY % KeyNames                     "b040">
+<!ENTITY % NamesAfterKey                "b041">
+<!ENTITY % LettersAfterNames            "b042">
+<!ENTITY % TitlesAfterNames             "b043">
+<!ENTITY % Name                         "name">
+<!ENTITY % PersonNameType               "b250">
+<!ENTITY % BiographicalNote             "b044">
+<!ENTITY % ProfessionalPosition         "b045">
+<!ENTITY % Affiliation                  "b046">
+<!ENTITY % CorporateName                "b047">
+<!ENTITY % ContributorDescription       "b048">
+<!ENTITY % UnnamedPersons               "b249">
+<!ENTITY % ContributorStatement         "b049">
+<!ENTITY % ConferenceDescription        "b050">
+<!ENTITY % ConferenceRole               "b051">
+<!ENTITY % ConferenceName               "b052">
+<!ENTITY % ConferenceNumber             "b053">
+<!ENTITY % ConferenceDate               "b054">
+<!ENTITY % ConferencePlace              "b055">
+<!ENTITY % EditionTypeCode              "b056">
+<!ENTITY % EditionNumber                "b057">
+<!ENTITY % EditionVersionNumber         "b217">
+<!ENTITY % EditionStatement             "b058">
+<!ENTITY % LanguageOfText               "b059">
+<!ENTITY % OriginalLanguage             "b060">
+<!ENTITY % Language                     "language">
+<!ENTITY % LanguageRole                 "b253">
+<!ENTITY % CountryCode                  "b251">
+<!ENTITY % NumberOfPages                "b061">
+<!ENTITY % PagesRoman                   "b254">
+<!ENTITY % PagesArabic                  "b255">
+<!ENTITY % NumberOfIllustrations        "b125">
+<!ENTITY % IllustrationsNote            "b062">
+<!ENTITY % Illustrations                "illustrations">
+<!ENTITY % IllustrationType             "b256">
+<!ENTITY % Number                       "b257">
+<!ENTITY % MapScale                     "b063">
+<!ENTITY % Extent                       "extent">
+<!ENTITY % ExtentType                   "b218">
+<!ENTITY % ExtentValue                  "b219">
+<!ENTITY % ExtentUnit                   "b220">
+<!ENTITY % BASICMainSubject             "b064">
+<!ENTITY % BASICVersion                 "b200">
+<!ENTITY % BICMainSubject               "b065">
+<!ENTITY % BICVersion                   "b066">
+<!ENTITY % MainSubject                  "mainsubject">
+<!ENTITY % MainSubjectSchemeIdentifier  "b191">
+<!ENTITY % Subject                      "subject">
+<!ENTITY % SubjectSchemeIdentifier      "b067">
+<!ENTITY % SubjectSchemeName            "b171">
+<!ENTITY % SubjectSchemeVersion         "b068">
+<!ENTITY % SubjectCode                  "b069">
+<!ENTITY % SubjectHeadingText           "b070">
+<!ENTITY % PersonAsSubject              "personassubject">
+<!ENTITY % CorporateBodyAsSubject       "b071">
+<!ENTITY % PlaceAsSubject               "b072">
+<!ENTITY % AudienceCode                 "b073">
+<!ENTITY % Audience                     "audience">
+<!ENTITY % AudienceCodeType             "b204">
+<!ENTITY % AudienceCodeTypeName         "b205">
+<!ENTITY % AudienceCodeValue            "b206">
+<!ENTITY % USSchoolGrade                "b189">
+<!ENTITY % InterestAge                  "b190">
+<!ENTITY % AudienceRange                "audiencerange">
+<!ENTITY % AudienceRangeQualifier       "b074">
+<!ENTITY % AudienceRangePrecision       "b075">
+<!ENTITY % AudienceRangeValue           "b076">
+<!ENTITY % AudienceDescription          "b207">
+<!ENTITY % Complexity                   "complexity">
+<!ENTITY % ComplexitySchemeIdentifier   "b077">
+<!ENTITY % ComplexityCode               "b078">
+<!ENTITY % ImprintName                  "b079">
+<!ENTITY % PublisherName                "b081">
+<!ENTITY % PublishingRole               "b291">
+<!ENTITY % Imprint                      "imprint">
+<!ENTITY % Publisher                    "publisher">
+<!ENTITY % NameCodeType                 "b241">
+<!ENTITY % NameCodeTypeName             "b242">
+<!ENTITY % NameCodeValue                "b243">
+<!ENTITY % CityOfPublication            "b209">
+<!ENTITY % CountryOfPublication         "b083">
+<!ENTITY % CopublisherName              "b084">
+<!ENTITY % SponsorName                  "b085">
+<!ENTITY % OriginalPublisher            "b240">
+<!ENTITY % AnnouncementDate             "b086">
+<!ENTITY % PublicationDate              "b003">
+<!ENTITY % CopyrightYear                "b087">
+<!ENTITY % YearFirstPublished           "b088">
+<!ENTITY % SalesRights                  "salesrights">
+<!ENTITY % NotForSale                   "notforsale">
+<!ENTITY % SalesRightsType              "b089">
+<!ENTITY % RightsCountry                "b090">
+<!ENTITY % RightsRegion                 "b091">
+<!ENTITY % Measure                      "measure">
+<!ENTITY % MeasureTypeCode              "c093">
+<!ENTITY % Measurement                  "c094">
+<!ENTITY % MeasureUnitCode              "c095">
+<!ENTITY % Height                       "c096">
+<!ENTITY % Width                        "c097">
+<!ENTITY % Thickness                    "c098">
+<!ENTITY % Weight                       "c099">
+<!ENTITY % Dimensions                   "c258">
+<!ENTITY % Annotation                   "d100">
+<!ENTITY % MainDescription              "d101">
+<!ENTITY % OtherText                    "othertext">
+<!ENTITY % TextTypeCode                 "d102">
+<!ENTITY % TextFormat                   "d103">
+<!ENTITY % Text                         "d104">
+<!ENTITY % TextLinkType                 "d105">
+<!ENTITY % TextLink                     "d106">
+<!ENTITY % TextAuthor                   "d107">
+<!ENTITY % TextSourceTitle              "d108">
+<!ENTITY % TextPublicationDate          "d109">
+<!ENTITY % ReviewQuote                  "e110">
+<!ENTITY % CoverImageFormatCode         "f111">
+<!ENTITY % CoverImageLinkTypeCode       "f112">
+<!ENTITY % CoverImageLink               "f113">
+<!ENTITY % MediaFile                    "mediafile">
+<!ENTITY % MediaFileTypeCode            "f114">
+<!ENTITY % MediaFileFormatCode          "f115">
+<!ENTITY % ImageResolution              "f259">
+<!ENTITY % MediaFileLinkTypeCode        "f116">
+<!ENTITY % MediaFileLink                "f117">
+<!ENTITY % TextWithDownload             "f118">
+<!ENTITY % DownloadCaption              "f119">
+<!ENTITY % DownloadCredit               "f120">
+<!ENTITY % DownloadCopyrightNotice      "f121">
+<!ENTITY % DownloadTerms                "f122">
+<!ENTITY % ProductWebsite               "productwebsite">
+<!ENTITY % ProductWebsiteDescription    "f170">
+<!ENTITY % ProductWebsiteLink           "f123">
+<!ENTITY % PrizesDescription            "g124">
+<!ENTITY % Prize                        "prize">
+<!ENTITY % PrizeName                    "g126">
+<!ENTITY % PrizeYear                    "g127">
+<!ENTITY % PrizeCountry                 "g128">
+<!ENTITY % PrizeCode                    "g129">
+<!ENTITY % ContentItem                  "contentitem">
+<!ENTITY % LevelSequenceNumber          "b284">
+<!ENTITY % TextItem                     "textitem">
+<!ENTITY % TextItemType                 "b290">
+<!ENTITY % TextItemIdentifier           "textitemidentifier">
+<!ENTITY % TextItemIDType               "b285">
+<!ENTITY % FirstPageNumber              "b286">
+<!ENTITY % LastPageNumber               "b287">
+<!ENTITY % ComponentTypeName            "b288">
+<!ENTITY % ComponentNumber              "b289">
+<!ENTITY % ReplacedByISBN               "h130">
+<!ENTITY % ReplacedByEAN13              "h131">
+<!ENTITY % RelatedProduct               "relatedproduct">
+<!ENTITY % RelationCode                 "h208">
+<!ENTITY % AlternativeFormatISBN        "h132">
+<!ENTITY % AlternativeFormatEAN13       "h133">
+<!ENTITY % AlternativeProductISBN       "h163">
+<!ENTITY % AlternativeProductEAN13      "h164">
+<!ENTITY % OutOfPrintDate               "h134">
+<!ENTITY % SupplyDetail                 "supplydetail">
+<!ENTITY % SupplierEANLocationNumber    "j135">
+<!ENTITY % SupplierSAN                  "j136">
+<!ENTITY % SupplierName                 "j137">
+<!ENTITY % TelephoneNumber              "j270">
+<!ENTITY % FaxNumber                    "j271">
+<!ENTITY % EmailAddress                 "j272">
+<!ENTITY % SupplyToCountry              "j138">
+<!ENTITY % SupplyToRegion               "j139">
+<!ENTITY % SupplyToCountryExcluded      "j140">
+<!ENTITY % ReturnsCodeType              "j268">
+<!ENTITY % ReturnsCode                  "j269">
+<!ENTITY % AvailabilityCode             "j141">
+<!ENTITY % NewSupplier                  "newsupplier">
+<!ENTITY % DateFormat                   "j260">
+<!ENTITY % ExpectedShipDate             "j142">
+<!ENTITY % OnSaleDate                   "j143">
+<!ENTITY % OrderTime                    "j144">
+<!ENTITY % PackQuantity                 "j145">
+<!ENTITY % AudienceRestrictionFlag      "j146">
+<!ENTITY % AudienceRestrictionNote      "j147">
+<!ENTITY % Price                        "price">
+<!ENTITY % PriceTypeCode                "j148">
+<!ENTITY % PriceQualifier               "j261">
+<!ENTITY % PriceTypeDescription         "j262">
+<!ENTITY % PricePer                     "j239">
+<!ENTITY % MinimumOrderQuantity         "j263">
+<!ENTITY % BatchBonus                   "batchbonus">
+<!ENTITY % BatchQuantity                "j264">
+<!ENTITY % FreeQuantity                 "j265">
+<!ENTITY % ClassOfTrade                 "j149">
+<!ENTITY % BICDiscountGroupCode         "j150">
+<!ENTITY % DiscountPercent              "j267">
+<!ENTITY % PriceStatus                  "j266">
+<!ENTITY % PriceAmount                  "j151">
+<!ENTITY % UnpricedItemType             "j192">
+<!ENTITY % CurrencyCode                 "j152">
+<!ENTITY % TaxRateCode1                 "j153">
+<!ENTITY % TaxRatePercent1              "j154">
+<!ENTITY % TaxableAmount1               "j155">
+<!ENTITY % TaxAmount1                   "j156">
+<!ENTITY % TaxRateCode2                 "j157">
+<!ENTITY % TaxRatePercent2              "j158">
+<!ENTITY % TaxableAmount2               "j159">
+<!ENTITY % TaxAmount2                   "j160">
+<!ENTITY % PriceEffectiveFrom           "j161">
+<!ENTITY % PriceEffectiveUntil          "j162">
+<!ENTITY % PromotionCampaign            "k165">
+<!ENTITY % PromotionContact             "k166">
+<!ENTITY % InitialPrintRun              "k167">
+<!ENTITY % CopiesSold                   "k168">
+<!ENTITY % BookClubAdoption             "k169">
+<!ENTITY % SubordinateEntries           "a245">
+<!ENTITY % ParentIdentifier             "parentidentifier">
+<!ENTITY % SeriesPartName               "b282">
+<!ENTITY % FromEANNumber                "m172">
+<!ENTITY % FromSAN                      "m173">
+<!ENTITY % FromCompany                  "m174">
+<!ENTITY % FromPerson                   "m175">
+<!ENTITY % FromEmail                    "m283">
+<!ENTITY % ToEANNumber                  "m176">
+<!ENTITY % ToSAN                        "m177">
+<!ENTITY % ToCompany                    "m178">
+<!ENTITY % ToPerson                     "m179">
+<!ENTITY % MessageNumber                "m180">
+<!ENTITY % MessageRepeat                "m181">
+<!ENTITY % SentDate                     "m182">
+<!ENTITY % MessageNote                  "m183">
+<!ENTITY % DefaultLanguageOfText        "m184">
+<!ENTITY % DefaultPriceTypeCode         "m185">
+<!ENTITY % DefaultCurrencyCode          "m186">
+<!ENTITY % DefaultLinearUnit            "m187">
+<!ENTITY % DefaultWeightUnit            "m188">
+<!ENTITY % DefaultClassOfTrade          "m193">
+<!ENTITY % Header                       "header">
+
+]]>
+<!--
+**************************************************
+*                                                *
+*               REFERENCE TAG NAMES              *
+*                                                *
+**************************************************
+-->
+
+<!--  The reference names are defined here and are used unless substituted by local names within the Local Name Definitions Module. Even if the names are changed, the reference names are still available to an XML application as fixed attributes of each element.
+-->
+
+<!-- The strings used in reference names are actually defined here -->
+
+<!ENTITY % ref.ONIXMessage "ONIXMessage">
+<!ENTITY % ref.Product "Product">
+<!ENTITY % ref.MainSeriesRecord "MainSeriesRecord">
+<!ENTITY % ref.SubSeriesRecord "SubSeriesRecord">
+<!ENTITY % ref.RecordReference "RecordReference">
+<!ENTITY % ref.NotificationType "NotificationType">
+<!ENTITY % ref.RecordSourceType "RecordSourceType">
+<!ENTITY % ref.RecordSourceIdentifierType "RecordSourceIdentifierType">
+<!ENTITY % ref.RecordSourceIdentifier "RecordSourceIdentifier">
+<!ENTITY % ref.RecordSourceName "RecordSourceName">
+<!ENTITY % ref.DeletionCode "DeletionCode">
+<!ENTITY % ref.DeletionText "DeletionText">
+<!ENTITY % ref.ISBN "ISBN">
+<!ENTITY % ref.EAN13 "EAN13">
+<!ENTITY % ref.UPC "UPC">
+<!ENTITY % ref.PublisherProductNo "PublisherProductNo">
+<!ENTITY % ref.ISMN "ISMN">
+<!ENTITY % ref.DOI "DOI">
+<!ENTITY % ref.ProductIdentifier "ProductIdentifier">
+<!ENTITY % ref.ProductIDType "ProductIDType">
+<!ENTITY % ref.IDTypeName "IDTypeName">
+<!ENTITY % ref.IDValue "IDValue">
+<!ENTITY % ref.Barcode "Barcode">
+<!ENTITY % ref.ReplacesISBN "ReplacesISBN">
+<!ENTITY % ref.ReplacesEAN13 "ReplacesEAN13">
+<!ENTITY % ref.ProductForm "ProductForm">
+<!ENTITY % ref.BookFormDetail "BookFormDetail">
+<!ENTITY % ref.ProductFormDescription "ProductFormDescription">
+<!ENTITY % ref.ContainedItem "ContainedItem">
+<!ENTITY % ref.NumberOfPieces "NumberOfPieces">
+<!ENTITY % ref.ItemQuantity "ItemQuantity">
+<!ENTITY % ref.ProductClassification "ProductClassification">
+<!ENTITY % ref.ProductClassificationType "ProductClassificationType">
+<!ENTITY % ref.ProductClassificationCode "ProductClassificationCode">
+<!ENTITY % ref.EpubType "EpubType">
+<!ENTITY % ref.EpubTypeVersion "EpubTypeVersion">
+<!ENTITY % ref.EpubTypeDescription "EpubTypeDescription">
+<!ENTITY % ref.EpubFormat "EpubFormat">
+<!ENTITY % ref.EpubFormatVersion "EpubFormatVersion">
+<!ENTITY % ref.EpubFormatDescription "EpubFormatDescription">
+<!ENTITY % ref.EpubSource "EpubSource">
+<!ENTITY % ref.EpubSourceVersion "EpubSourceVersion">
+<!ENTITY % ref.EpubSourceDescription "EpubSourceDescription">
+<!ENTITY % ref.EpubTypeNote "EpubTypeNote">
+<!ENTITY % ref.Series "Series">
+<!ENTITY % ref.SeriesISSN "SeriesISSN">
+<!ENTITY % ref.PublisherSeriesCode "PublisherSeriesCode">
+<!ENTITY % ref.SeriesIdentifier "SeriesIdentifier">
+<!ENTITY % ref.SeriesIDType "SeriesIDType">
+<!ENTITY % ref.TitleOfSeries "TitleOfSeries">
+<!ENTITY % ref.NumberWithinSeries "NumberWithinSeries">
+<!ENTITY % ref.YearOfAnnual "YearOfAnnual">
+<!ENTITY % ref.Set "Set">
+<!ENTITY % ref.ISBNOfSet "ISBNOfSet">
+<!ENTITY % ref.EAN13OfSet "EAN13OfSet">
+<!ENTITY % ref.TitleOfSet "TitleOfSet">
+<!ENTITY % ref.SetPartNumber "SetPartNumber">
+<!ENTITY % ref.SetPartTitle "SetPartTitle">
+<!ENTITY % ref.ItemNumberWithinSet "ItemNumberWithinSet">
+<!ENTITY % ref.SetItemTitle "SetItemTitle">
+<!ENTITY % ref.TextCaseFlag "TextCaseFlag">
+<!ENTITY % ref.DistinctiveTitle "DistinctiveTitle">
+<!ENTITY % ref.Subtitle "Subtitle">
+<!ENTITY % ref.TitlePrefix "TitlePrefix">
+<!ENTITY % ref.TitleWithoutPrefix "TitleWithoutPrefix">
+<!ENTITY % ref.TranslationOfTitle "TranslationOfTitle">
+<!ENTITY % ref.FormerTitle "FormerTitle">
+<!ENTITY % ref.Title "Title">
+<!ENTITY % ref.TitleType "TitleType">
+<!ENTITY % ref.AbbreviatedLength "AbbreviatedLength">
+<!ENTITY % ref.TitleText "TitleText">
+<!ENTITY % ref.WorkIdentifier "WorkIdentifier">
+<!ENTITY % ref.WorkIDType "WorkIDType">
+<!ENTITY % ref.Contributor "Contributor">
+<!ENTITY % ref.SequenceNumber "SequenceNumber">
+<!ENTITY % ref.ContributorRole "ContributorRole">
+<!ENTITY % ref.LanguageCode "LanguageCode">
+<!ENTITY % ref.PersonName "PersonName">
+<!ENTITY % ref.PersonNameInverted "PersonNameInverted">
+<!ENTITY % ref.TitlesBeforeNames "TitlesBeforeNames">
+<!ENTITY % ref.NamesBeforeKey "NamesBeforeKey">
+<!ENTITY % ref.PrefixToKey "PrefixToKey">
+<!ENTITY % ref.SuffixToKey "SuffixToKey">
+<!ENTITY % ref.KeyNames "KeyNames">
+<!ENTITY % ref.NamesAfterKey "NamesAfterKey">
+<!ENTITY % ref.LettersAfterNames "LettersAfterNames">
+<!ENTITY % ref.TitlesAfterNames "TitlesAfterNames">
+<!ENTITY % ref.Name "Name">
+<!ENTITY % ref.PersonNameType "PersonNameType">
+<!ENTITY % ref.BiographicalNote "BiographicalNote">
+<!ENTITY % ref.ProfessionalPosition "ProfessionalPosition">
+<!ENTITY % ref.Affiliation "Affiliation">
+<!ENTITY % ref.CorporateName "CorporateName">
+<!ENTITY % ref.ContributorDescription "ContributorDescription">
+<!ENTITY % ref.UnnamedPersons "UnnamedPersons">
+<!ENTITY % ref.ContributorStatement "ContributorStatement">
+<!ENTITY % ref.ConferenceDescription "ConferenceDescription">
+<!ENTITY % ref.ConferenceRole "ConferenceRole">
+<!ENTITY % ref.ConferenceName "ConferenceName">
+<!ENTITY % ref.ConferenceNumber "ConferenceNumber">
+<!ENTITY % ref.ConferenceDate "ConferenceDate">
+<!ENTITY % ref.ConferencePlace "ConferencePlace">
+<!ENTITY % ref.EditionTypeCode "EditionTypeCode">
+<!ENTITY % ref.EditionNumber "EditionNumber">
+<!ENTITY % ref.EditionVersionNumber "EditionVersionNumber">
+<!ENTITY % ref.EditionStatement "EditionStatement">
+<!ENTITY % ref.LanguageOfText "LanguageOfText">
+<!ENTITY % ref.OriginalLanguage "OriginalLanguage">
+<!ENTITY % ref.Language "Language">
+<!ENTITY % ref.LanguageRole "LanguageRole">
+<!ENTITY % ref.CountryCode "CountryCode">
+<!ENTITY % ref.NumberOfPages "NumberOfPages">
+<!ENTITY % ref.PagesRoman "PagesRoman">
+<!ENTITY % ref.PagesArabic "PagesArabic">
+<!ENTITY % ref.NumberOfIllustrations "NumberOfIllustrations">
+<!ENTITY % ref.IllustrationsNote "IllustrationsNote">
+<!ENTITY % ref.Illustrations "Illustrations">
+<!ENTITY % ref.IllustrationType "IllustrationType">
+<!ENTITY % ref.Number "Number">
+<!ENTITY % ref.MapScale "MapScale">
+<!ENTITY % ref.Extent "Extent">
+<!ENTITY % ref.ExtentType "ExtentType">
+<!ENTITY % ref.ExtentValue "ExtentValue">
+<!ENTITY % ref.ExtentUnit "ExtentUnit">
+<!ENTITY % ref.BASICMainSubject "BASICMainSubject">
+<!ENTITY % ref.BASICVersion "BASICVersion">
+<!ENTITY % ref.BICMainSubject "BICMainSubject">
+<!ENTITY % ref.BICVersion "BICVersion">
+<!ENTITY % ref.MainSubject "MainSubject">
+<!ENTITY % ref.MainSubjectSchemeIdentifier "MainSubjectSchemeIdentifier">
+<!ENTITY % ref.Subject "Subject">
+<!ENTITY % ref.SubjectSchemeIdentifier "SubjectSchemeIdentifier">
+<!ENTITY % ref.SubjectSchemeName "SubjectSchemeName">
+<!ENTITY % ref.SubjectSchemeVersion "SubjectSchemeVersion">
+<!ENTITY % ref.SubjectCode "SubjectCode">
+<!ENTITY % ref.SubjectHeadingText "SubjectHeadingText">
+<!ENTITY % ref.PersonAsSubject "PersonAsSubject">
+<!ENTITY % ref.CorporateBodyAsSubject "CorporateBodyAsSubject">
+<!ENTITY % ref.PlaceAsSubject "PlaceAsSubject">
+<!ENTITY % ref.AudienceCode "AudienceCode">
+<!ENTITY % ref.Audience "Audience">
+<!ENTITY % ref.AudienceCodeType "AudienceCodeType">
+<!ENTITY % ref.AudienceCodeTypeName "AudienceCodeTypeName">
+<!ENTITY % ref.AudienceCodeValue "AudienceCodeValue">
+<!ENTITY % ref.USSchoolGrade "USSchoolGrade">
+<!ENTITY % ref.InterestAge "InterestAge">
+<!ENTITY % ref.AudienceRange "AudienceRange">
+<!ENTITY % ref.AudienceRangeQualifier "AudienceRangeQualifier">
+<!ENTITY % ref.AudienceRangePrecision "AudienceRangePrecision">
+<!ENTITY % ref.AudienceRangeValue "AudienceRangeValue">
+<!ENTITY % ref.AudienceDescription "AudienceDescription">
+<!ENTITY % ref.Complexity "Complexity">
+<!ENTITY % ref.ComplexitySchemeIdentifier "ComplexitySchemeIdentifier">
+<!ENTITY % ref.ComplexityCode "ComplexityCode">
+<!ENTITY % ref.ImprintName "ImprintName">
+<!ENTITY % ref.PublisherName "PublisherName">
+<!ENTITY % ref.PublishingRole "PublishingRole">
+<!ENTITY % ref.Imprint "Imprint">
+<!ENTITY % ref.Publisher "Publisher">
+<!ENTITY % ref.NameCodeType "NameCodeType">
+<!ENTITY % ref.NameCodeTypeName "NameCodeTypeName">
+<!ENTITY % ref.NameCodeValue "NameCodeValue">
+<!ENTITY % ref.CityOfPublication "CityOfPublication">
+<!ENTITY % ref.CountryOfPublication "CountryOfPublication">
+<!ENTITY % ref.CopublisherName "CopublisherName">
+<!ENTITY % ref.SponsorName "SponsorName">
+<!ENTITY % ref.OriginalPublisher "OriginalPublisher">
+<!ENTITY % ref.AnnouncementDate "AnnouncementDate">
+<!ENTITY % ref.PublicationDate "PublicationDate">
+<!ENTITY % ref.CopyrightYear "CopyrightYear">
+<!ENTITY % ref.YearFirstPublished "YearFirstPublished">
+<!ENTITY % ref.SalesRights "SalesRights">
+<!ENTITY % ref.NotForSale "NotForSale">
+<!ENTITY % ref.SalesRightsType "SalesRightsType">
+<!ENTITY % ref.RightsCountry "RightsCountry">
+<!ENTITY % ref.RightsRegion "RightsRegion">
+<!ENTITY % ref.Measure "Measure">
+<!ENTITY % ref.MeasureTypeCode "MeasureTypeCode">
+<!ENTITY % ref.Measurement "Measurement">
+<!ENTITY % ref.MeasureUnitCode "MeasureUnitCode">
+<!ENTITY % ref.Height "Height">
+<!ENTITY % ref.Width "Width">
+<!ENTITY % ref.Thickness "Thickness">
+<!ENTITY % ref.Weight "Weight">
+<!ENTITY % ref.Dimensions "Dimensions">
+<!ENTITY % ref.Annotation "Annotation">
+<!ENTITY % ref.MainDescription "MainDescription">
+<!ENTITY % ref.OtherText "OtherText">
+<!ENTITY % ref.TextTypeCode "TextTypeCode">
+<!ENTITY % ref.TextFormat "TextFormat">
+<!ENTITY % ref.Text "Text">
+<!ENTITY % ref.TextLinkType "TextLinkType">
+<!ENTITY % ref.TextLink "TextLink">
+<!ENTITY % ref.TextAuthor "TextAuthor">
+<!ENTITY % ref.TextSourceTitle "TextSourceTitle">
+<!ENTITY % ref.TextPublicationDate "TextPublicationDate">
+<!ENTITY % ref.ReviewQuote "ReviewQuote">
+<!ENTITY % ref.CoverImageFormatCode "CoverImageFormatCode">
+<!ENTITY % ref.CoverImageLinkTypeCode "CoverImageLinkTypeCode">
+<!ENTITY % ref.CoverImageLink "CoverImageLink">
+<!ENTITY % ref.MediaFile "MediaFile">
+<!ENTITY % ref.MediaFileTypeCode "MediaFileTypeCode">
+<!ENTITY % ref.MediaFileFormatCode "MediaFileFormatCode">
+<!ENTITY % ref.ImageResolution "ImageResolution">
+<!ENTITY % ref.MediaFileLinkTypeCode "MediaFileLinkTypeCode">
+<!ENTITY % ref.MediaFileLink "MediaFileLink">
+<!ENTITY % ref.TextWithDownload "TextWithDownload">
+<!ENTITY % ref.DownloadCaption "DownloadCaption">
+<!ENTITY % ref.DownloadCredit "DownloadCredit">
+<!ENTITY % ref.DownloadCopyrightNotice "DownloadCopyrightNotice">
+<!ENTITY % ref.DownloadTerms "DownloadTerms">
+<!ENTITY % ref.ProductWebsite "ProductWebsite">
+<!ENTITY % ref.ProductWebsiteDescription "ProductWebsiteDescription">
+<!ENTITY % ref.ProductWebsiteLink "ProductWebsiteLink">
+<!ENTITY % ref.PrizesDescription "PrizesDescription">
+<!ENTITY % ref.Prize "Prize">
+<!ENTITY % ref.PrizeName "PrizeName">
+<!ENTITY % ref.PrizeYear "PrizeYear">
+<!ENTITY % ref.PrizeCountry "PrizeCountry">
+<!ENTITY % ref.PrizeCode "PrizeCode">
+<!ENTITY % ref.ContentItem "ContentItem">
+<!ENTITY % ref.LevelSequenceNumber "LevelSequenceNumber">
+<!ENTITY % ref.TextItem "TextItem">
+<!ENTITY % ref.TextItemType "TextItemType">
+<!ENTITY % ref.TextItemIdentifier "TextItemIdentifier">
+<!ENTITY % ref.TextItemIDType "TextItemIDType">
+<!ENTITY % ref.FirstPageNumber "FirstPageNumber">
+<!ENTITY % ref.LastPageNumber "LastPageNumber">
+<!ENTITY % ref.ComponentTypeName "ComponentTypeName">
+<!ENTITY % ref.ComponentNumber "ComponentNumber">
+<!ENTITY % ref.ReplacedByISBN "ReplacedByISBN">
+<!ENTITY % ref.ReplacedByEAN13 "ReplacedByEAN13">
+<!ENTITY % ref.RelatedProduct "RelatedProduct">
+<!ENTITY % ref.RelationCode "RelationCode">
+<!ENTITY % ref.AlternativeFormatISBN "AlternativeFormatISBN">
+<!ENTITY % ref.AlternativeFormatEAN13 "AlternativeFormatEAN13">
+<!ENTITY % ref.AlternativeProductISBN "AlternativeProductISBN">
+<!ENTITY % ref.AlternativeProductEAN13 "AlternativeProductEAN13">
+<!ENTITY % ref.OutOfPrintDate "OutOfPrintDate">
+<!ENTITY % ref.SupplyDetail "SupplyDetail">
+<!ENTITY % ref.SupplierEANLocationNumber "SupplierEANLocationNumber">
+<!ENTITY % ref.SupplierSAN "SupplierSAN">
+<!ENTITY % ref.SupplierName "SupplierName">
+<!ENTITY % ref.TelephoneNumber "TelephoneNumber">
+<!ENTITY % ref.FaxNumber "FaxNumber">
+<!ENTITY % ref.EmailAddress "EmailAddress">
+<!ENTITY % ref.SupplyToCountry "SupplyToCountry">
+<!ENTITY % ref.SupplyToRegion "SupplyToRegion">
+<!ENTITY % ref.SupplyToCountryExcluded "SupplyToCountryExcluded">
+<!ENTITY % ref.ReturnsCodeType "ReturnsCodeType">
+<!ENTITY % ref.ReturnsCode "ReturnsCode">
+<!ENTITY % ref.AvailabilityCode "AvailabilityCode">
+<!ENTITY % ref.NewSupplier "NewSupplier">
+<!ENTITY % ref.DateFormat "DateFormat">
+<!ENTITY % ref.ExpectedShipDate "ExpectedShipDate">
+<!ENTITY % ref.OnSaleDate "OnSaleDate">
+<!ENTITY % ref.OrderTime "OrderTime">
+<!ENTITY % ref.PackQuantity "PackQuantity">
+<!ENTITY % ref.AudienceRestrictionFlag "AudienceRestrictionFlag">
+<!ENTITY % ref.AudienceRestrictionNote "AudienceRestrictionNote">
+<!ENTITY % ref.Price "Price">
+<!ENTITY % ref.PriceTypeCode "PriceTypeCode">
+<!ENTITY % ref.PriceQualifier "PriceQualifier">
+<!ENTITY % ref.PriceTypeDescription "PriceTypeDescription">
+<!ENTITY % ref.PricePer "PricePer">
+<!ENTITY % ref.MinimumOrderQuantity "MinimumOrderQuantity">
+<!ENTITY % ref.BatchBonus "BatchBonus">
+<!ENTITY % ref.BatchQuantity "BatchQuantity">
+<!ENTITY % ref.FreeQuantity "FreeQuantity">
+<!ENTITY % ref.ClassOfTrade "ClassOfTrade">
+<!ENTITY % ref.BICDiscountGroupCode "BICDiscountGroupCode">
+<!ENTITY % ref.DiscountPercent "DiscountPercent">
+<!ENTITY % ref.PriceStatus "PriceStatus">
+<!ENTITY % ref.PriceAmount "PriceAmount">
+<!ENTITY % ref.UnpricedItemType "UnpricedItemType">
+<!ENTITY % ref.CurrencyCode "CurrencyCode">
+<!ENTITY % ref.TaxRateCode1 "TaxRateCode1">
+<!ENTITY % ref.TaxRatePercent1 "TaxRatePercent1">
+<!ENTITY % ref.TaxableAmount1 "TaxableAmount1">
+<!ENTITY % ref.TaxAmount1 "TaxAmount1">
+<!ENTITY % ref.TaxRateCode2 "TaxRateCode2">
+<!ENTITY % ref.TaxRatePercent2 "TaxRatePercent2">
+<!ENTITY % ref.TaxableAmount2 "TaxableAmount2">
+<!ENTITY % ref.TaxAmount2 "TaxAmount2">
+<!ENTITY % ref.PriceEffectiveFrom "PriceEffectiveFrom">
+<!ENTITY % ref.PriceEffectiveUntil "PriceEffectiveUntil">
+<!ENTITY % ref.PromotionCampaign "PromotionCampaign">
+<!ENTITY % ref.PromotionContact "PromotionContact">
+<!ENTITY % ref.InitialPrintRun "InitialPrintRun">
+<!ENTITY % ref.CopiesSold "CopiesSold">
+<!ENTITY % ref.BookClubAdoption "BookClubAdoption">
+<!ENTITY % ref.SubordinateEntries "SubordinateEntries">
+<!ENTITY % ref.ParentIdentifier "ParentIdentifier">
+<!ENTITY % ref.SeriesPartName "SeriesPartName">
+<!ENTITY % ref.FromEANNumber "FromEANNumber">
+<!ENTITY % ref.FromSAN "FromSAN">
+<!ENTITY % ref.FromCompany "FromCompany">
+<!ENTITY % ref.FromPerson "FromPerson">
+<!ENTITY % ref.FromEmail "FromEmail">
+<!ENTITY % ref.ToEANNumber "ToEANNumber">
+<!ENTITY % ref.ToSAN "ToSAN">
+<!ENTITY % ref.ToCompany "ToCompany">
+<!ENTITY % ref.ToPerson "ToPerson">
+<!ENTITY % ref.MessageNumber "MessageNumber">
+<!ENTITY % ref.MessageRepeat "MessageRepeat">
+<!ENTITY % ref.SentDate "SentDate">
+<!ENTITY % ref.MessageNote "MessageNote">
+<!ENTITY % ref.DefaultLanguageOfText "DefaultLanguageOfText">
+<!ENTITY % ref.DefaultPriceTypeCode "DefaultPriceTypeCode">
+<!ENTITY % ref.DefaultCurrencyCode "DefaultCurrencyCode">
+<!ENTITY % ref.DefaultLinearUnit "DefaultLinearUnit">
+<!ENTITY % ref.DefaultWeightUnit "DefaultWeightUnit">
+<!ENTITY % ref.DefaultClassOfTrade "DefaultClassOfTrade">
+<!ENTITY % ref.Header "Header">
+
+<!-- The reference tag names are defined here -->
+
+<!ENTITY % ONIXMessage "%ref.ONIXMessage;">
+<!ENTITY % Product "%ref.Product;">
+<!ENTITY % MainSeriesRecord "%ref.MainSeriesRecord;">
+<!ENTITY % SubSeriesRecord "%ref.SubSeriesRecord;">
+<!ENTITY % RecordReference "%ref.RecordReference;">
+<!ENTITY % NotificationType "%ref.NotificationType;">
+<!ENTITY % RecordSourceType "%ref.RecordSourceType;">
+<!ENTITY % RecordSourceIdentifierType "%ref.RecordSourceIdentifierType;">
+<!ENTITY % RecordSourceIdentifier "%ref.RecordSourceIdentifier;">
+<!ENTITY % RecordSourceName "%ref.RecordSourceName;">
+<!ENTITY % DeletionCode "%ref.DeletionCode;">
+<!ENTITY % DeletionText "%ref.DeletionText;">
+<!ENTITY % ISBN "%ref.ISBN;">
+<!ENTITY % EAN13 "%ref.EAN13;">
+<!ENTITY % UPC "%ref.UPC;">
+<!ENTITY % PublisherProductNo "%ref.PublisherProductNo;">
+<!ENTITY % ISMN "%ref.ISMN;">
+<!ENTITY % DOI "%ref.DOI;">
+<!ENTITY % ProductIdentifier "%ref.ProductIdentifier;">
+<!ENTITY % ProductIDType "%ref.ProductIDType;">
+<!ENTITY % IDTypeName "%ref.IDTypeName;">
+<!ENTITY % IDValue "%ref.IDValue;">
+<!ENTITY % Barcode "%ref.Barcode;">
+<!ENTITY % ReplacesISBN "%ref.ReplacesISBN;">
+<!ENTITY % ReplacesEAN13 "%ref.ReplacesEAN13;">
+<!ENTITY % ProductForm "%ref.ProductForm;">
+<!ENTITY % BookFormDetail "%ref.BookFormDetail;">
+<!ENTITY % ProductFormDescription "%ref.ProductFormDescription;">
+<!ENTITY % ContainedItem "%ref.ContainedItem;">
+<!ENTITY % NumberOfPieces "%ref.NumberOfPieces;">
+<!ENTITY % ItemQuantity "%ref.ItemQuantity;">
+<!ENTITY % ProductClassification "%ref.ProductClassification;">
+<!ENTITY % ProductClassificationType "%ref.ProductClassificationType;">
+<!ENTITY % ProductClassificationCode "%ref.ProductClassificationCode;">
+<!ENTITY % EpubType "%ref.EpubType;">
+<!ENTITY % EpubTypeVersion "%ref.EpubTypeVersion;">
+<!ENTITY % EpubTypeDescription "%ref.EpubTypeDescription;">
+<!ENTITY % EpubFormat "%ref.EpubFormat;">
+<!ENTITY % EpubFormatVersion "%ref.EpubFormatVersion;">
+<!ENTITY % EpubFormatDescription "%ref.EpubFormatDescription;">
+<!ENTITY % EpubSource "%ref.EpubSource;">
+<!ENTITY % EpubSourceVersion "%ref.EpubSourceVersion;">
+<!ENTITY % EpubSourceDescription "%ref.EpubSourceDescription;">
+<!ENTITY % EpubTypeNote "%ref.EpubTypeNote;">
+<!ENTITY % Series "%ref.Series;">
+<!ENTITY % SeriesISSN "%ref.SeriesISSN;">
+<!ENTITY % PublisherSeriesCode "%ref.PublisherSeriesCode;">
+<!ENTITY % SeriesIdentifier "%ref.SeriesIdentifier;">
+<!ENTITY % SeriesIDType "%ref.SeriesIDType;">
+<!ENTITY % TitleOfSeries "%ref.TitleOfSeries;">
+<!ENTITY % NumberWithinSeries "%ref.NumberWithinSeries;">
+<!ENTITY % YearOfAnnual "%ref.YearOfAnnual;">
+<!ENTITY % Set "%ref.Set;">
+<!ENTITY % ISBNOfSet "%ref.ISBNOfSet;">
+<!ENTITY % EAN13OfSet "%ref.EAN13OfSet;">
+<!ENTITY % TitleOfSet "%ref.TitleOfSet;">
+<!ENTITY % SetPartNumber "%ref.SetPartNumber;">
+<!ENTITY % SetPartTitle "%ref.SetPartTitle;">
+<!ENTITY % ItemNumberWithinSet "%ref.ItemNumberWithinSet;">
+<!ENTITY % SetItemTitle "%ref.SetItemTitle;">
+<!ENTITY % TextCaseFlag "%ref.TextCaseFlag;">
+<!ENTITY % DistinctiveTitle "%ref.DistinctiveTitle;">
+<!ENTITY % Subtitle "%ref.Subtitle;">
+<!ENTITY % TitlePrefix "%ref.TitlePrefix;">
+<!ENTITY % TitleWithoutPrefix "%ref.TitleWithoutPrefix;">
+<!ENTITY % TranslationOfTitle "%ref.TranslationOfTitle;">
+<!ENTITY % FormerTitle "%ref.FormerTitle;">
+<!ENTITY % Title "%ref.Title;">
+<!ENTITY % TitleType "%ref.TitleType;">
+<!ENTITY % AbbreviatedLength "%ref.AbbreviatedLength;">
+<!ENTITY % TitleText "%ref.TitleText;">
+<!ENTITY % WorkIdentifier "%ref.WorkIdentifier;">
+<!ENTITY % WorkIDType "%ref.WorkIDType;">
+<!ENTITY % Contributor "%ref.Contributor;">
+<!ENTITY % SequenceNumber "%ref.SequenceNumber;">
+<!ENTITY % ContributorRole "%ref.ContributorRole;">
+<!ENTITY % LanguageCode "%ref.LanguageCode;">
+<!ENTITY % PersonName "%ref.PersonName;">
+<!ENTITY % PersonNameInverted "%ref.PersonNameInverted;">
+<!ENTITY % TitlesBeforeNames "%ref.TitlesBeforeNames;">
+<!ENTITY % NamesBeforeKey "%ref.NamesBeforeKey;">
+<!ENTITY % PrefixToKey "%ref.PrefixToKey;">
+<!ENTITY % SuffixToKey "%ref.SuffixToKey;">
+<!ENTITY % KeyNames "%ref.KeyNames;">
+<!ENTITY % NamesAfterKey "%ref.NamesAfterKey;">
+<!ENTITY % LettersAfterNames "%ref.LettersAfterNames;">
+<!ENTITY % TitlesAfterNames "%ref.TitlesAfterNames;">
+<!ENTITY % Name "%ref.Name;">
+<!ENTITY % PersonNameType "%ref.PersonNameType;">
+<!ENTITY % BiographicalNote "%ref.BiographicalNote;">
+<!ENTITY % ProfessionalPosition "%ref.ProfessionalPosition;">
+<!ENTITY % Affiliation "%ref.Affiliation;">
+<!ENTITY % CorporateName "%ref.CorporateName;">
+<!ENTITY % ContributorDescription "%ref.ContributorDescription;">
+<!ENTITY % UnnamedPersons "%ref.UnnamedPersons;">
+<!ENTITY % ContributorStatement "%ref.ContributorStatement;">
+<!ENTITY % ConferenceDescription "%ref.ConferenceDescription;">
+<!ENTITY % ConferenceRole "%ref.ConferenceRole;">
+<!ENTITY % ConferenceName "%ref.ConferenceName;">
+<!ENTITY % ConferenceNumber "%ref.ConferenceNumber;">
+<!ENTITY % ConferenceDate "%ref.ConferenceDate;">
+<!ENTITY % ConferencePlace "%ref.ConferencePlace;">
+<!ENTITY % EditionTypeCode "%ref.EditionTypeCode;">
+<!ENTITY % EditionNumber "%ref.EditionNumber;">
+<!ENTITY % EditionVersionNumber "%ref.EditionVersionNumber;">
+<!ENTITY % EditionStatement "%ref.EditionStatement;">
+<!ENTITY % LanguageOfText "%ref.LanguageOfText;">
+<!ENTITY % OriginalLanguage "%ref.OriginalLanguage;">
+<!ENTITY % Language "%ref.Language;">
+<!ENTITY % LanguageRole "%ref.LanguageRole;">
+<!ENTITY % CountryCode "%ref.CountryCode;">
+<!ENTITY % NumberOfPages "%ref.NumberOfPages;">
+<!ENTITY % PagesRoman "%ref.PagesRoman;">
+<!ENTITY % PagesArabic "%ref.PagesArabic;">
+<!ENTITY % NumberOfIllustrations "%ref.NumberOfIllustrations;">
+<!ENTITY % IllustrationsNote "%ref.IllustrationsNote;">
+<!ENTITY % Illustrations "%ref.Illustrations;">
+<!ENTITY % IllustrationType "%ref.IllustrationType;">
+<!ENTITY % Number "%ref.Number;">
+<!ENTITY % MapScale "%ref.MapScale;">
+<!ENTITY % Extent "%ref.Extent;">
+<!ENTITY % ExtentType "%ref.ExtentType;">
+<!ENTITY % ExtentValue "%ref.ExtentValue;">
+<!ENTITY % ExtentUnit "%ref.ExtentUnit;">
+<!ENTITY % BASICMainSubject "%ref.BASICMainSubject;">
+<!ENTITY % BASICVersion "%ref.BASICVersion;">
+<!ENTITY % BICMainSubject "%ref.BICMainSubject;">
+<!ENTITY % BICVersion "%ref.BICVersion;">
+<!ENTITY % MainSubject "%ref.MainSubject;">
+<!ENTITY % MainSubjectSchemeIdentifier "%ref.MainSubjectSchemeIdentifier;">
+<!ENTITY % Subject "%ref.Subject;">
+<!ENTITY % SubjectSchemeIdentifier "%ref.SubjectSchemeIdentifier;">
+<!ENTITY % SubjectSchemeName "%ref.SubjectSchemeName;">
+<!ENTITY % SubjectSchemeVersion "%ref.SubjectSchemeVersion;">
+<!ENTITY % SubjectCode "%ref.SubjectCode;">
+<!ENTITY % SubjectHeadingText "%ref.SubjectHeadingText;">
+<!ENTITY % PersonAsSubject "%ref.PersonAsSubject;">
+<!ENTITY % CorporateBodyAsSubject "%ref.CorporateBodyAsSubject;">
+<!ENTITY % PlaceAsSubject "%ref.PlaceAsSubject;">
+<!ENTITY % AudienceCode "%ref.AudienceCode;">
+<!ENTITY % Audience "%ref.Audience;">
+<!ENTITY % AudienceCodeType "%ref.AudienceCodeType;">
+<!ENTITY % AudienceCodeTypeName "%ref.AudienceCodeTypeName;">
+<!ENTITY % AudienceCodeValue "%ref.AudienceCodeValue;">
+<!ENTITY % AudienceDescription "%ref.AudienceDescription;">
+<!ENTITY % USSchoolGrade "%ref.USSchoolGrade;">
+<!ENTITY % InterestAge "%ref.InterestAge;">
+<!ENTITY % AudienceRange "%ref.AudienceRange;">
+<!ENTITY % AudienceRangeQualifier "%ref.AudienceRangeQualifier;">
+<!ENTITY % AudienceRangePrecision "%ref.AudienceRangePrecision;">
+<!ENTITY % AudienceRangeValue "%ref.AudienceRangeValue;">
+<!ENTITY % Complexity "%ref.Complexity;">
+<!ENTITY % ComplexitySchemeIdentifier "%ref.ComplexitySchemeIdentifier;">
+<!ENTITY % ComplexityCode "%ref.ComplexityCode;">
+<!ENTITY % ImprintName "%ref.ImprintName;">
+<!ENTITY % PublisherName "%ref.PublisherName;">
+<!ENTITY % PublishingRole "%ref.PublishingRole;">
+<!ENTITY % Imprint "%ref.Imprint;">
+<!ENTITY % Publisher "%ref.Publisher;">
+<!ENTITY % NameCodeType "%ref.NameCodeType;">
+<!ENTITY % NameCodeTypeName "%ref.NameCodeTypeName;">
+<!ENTITY % NameCodeValue "%ref.NameCodeValue;">
+<!ENTITY % CityOfPublication "%ref.CityOfPublication;">
+<!ENTITY % CountryOfPublication "%ref.CountryOfPublication;">
+<!ENTITY % CopublisherName "%ref.CopublisherName;">
+<!ENTITY % SponsorName "%ref.SponsorName;">
+<!ENTITY % OriginalPublisher "%ref.OriginalPublisher;">
+<!ENTITY % AnnouncementDate "%ref.AnnouncementDate;">
+<!ENTITY % PublicationDate "%ref.PublicationDate;">
+<!ENTITY % CopyrightYear "%ref.CopyrightYear;">
+<!ENTITY % YearFirstPublished "%ref.YearFirstPublished;">
+<!ENTITY % SalesRights "%ref.SalesRights;">
+<!ENTITY % NotForSale "%ref.NotForSale;">
+<!ENTITY % SalesRightsType "%ref.SalesRightsType;">
+<!ENTITY % RightsCountry "%ref.RightsCountry;">
+<!ENTITY % RightsRegion "%ref.RightsRegion;">
+<!ENTITY % Measure "%ref.Measure;">
+<!ENTITY % MeasureTypeCode "%ref.MeasureTypeCode;">
+<!ENTITY % Measurement "%ref.Measurement;">
+<!ENTITY % MeasureUnitCode "%ref.MeasureUnitCode;">
+<!ENTITY % Height "%ref.Height;">
+<!ENTITY % Width "%ref.Width;">
+<!ENTITY % Thickness "%ref.Thickness;">
+<!ENTITY % Weight "%ref.Weight;">
+<!ENTITY % Dimensions "%ref.Dimensions;">
+<!ENTITY % Annotation "%ref.Annotation;">
+<!ENTITY % MainDescription "%ref.MainDescription;">
+<!ENTITY % OtherText "%ref.OtherText;">
+<!ENTITY % TextTypeCode "%ref.TextTypeCode;">
+<!ENTITY % TextFormat "%ref.TextFormat;">
+<!ENTITY % Text "%ref.Text;">
+<!ENTITY % TextLinkType "%ref.TextLinkType;">
+<!ENTITY % TextLink "%ref.TextLink;">
+<!ENTITY % TextAuthor "%ref.TextAuthor;">
+<!ENTITY % TextSourceTitle "%ref.TextSourceTitle;">
+<!ENTITY % TextPublicationDate "%ref.TextPublicationDate;">
+<!ENTITY % ReviewQuote "%ref.ReviewQuote;">
+<!ENTITY % CoverImageFormatCode "%ref.CoverImageFormatCode;">
+<!ENTITY % CoverImageLinkTypeCode "%ref.CoverImageLinkTypeCode;">
+<!ENTITY % CoverImageLink "%ref.CoverImageLink;">
+<!ENTITY % MediaFile "%ref.MediaFile;">
+<!ENTITY % MediaFileTypeCode "%ref.MediaFileTypeCode;">
+<!ENTITY % MediaFileFormatCode "%ref.MediaFileFormatCode;">
+<!ENTITY % ImageResolution "%ref.ImageResolution;">
+<!ENTITY % MediaFileLinkTypeCode "%ref.MediaFileLinkTypeCode;">
+<!ENTITY % MediaFileLink "%ref.MediaFileLink;">
+<!ENTITY % TextWithDownload "%ref.TextWithDownload;">
+<!ENTITY % DownloadCaption "%ref.DownloadCaption;">
+<!ENTITY % DownloadCredit "%ref.DownloadCredit;">
+<!ENTITY % DownloadCopyrightNotice "%ref.DownloadCopyrightNotice;">
+<!ENTITY % DownloadTerms "%ref.DownloadTerms;">
+<!ENTITY % ProductWebsite "%ref.ProductWebsite;">
+<!ENTITY % ProductWebsiteDescription "%ref.ProductWebsiteDescription;">
+<!ENTITY % ProductWebsiteLink "%ref.ProductWebsiteLink;">
+<!ENTITY % PrizesDescription "%ref.PrizesDescription;">
+<!ENTITY % Prize "%ref.Prize;">
+<!ENTITY % PrizeName "%ref.PrizeName;">
+<!ENTITY % PrizeYear "%ref.PrizeYear;">
+<!ENTITY % PrizeCountry "%ref.PrizeCountry;">
+<!ENTITY % PrizeCode "%ref.PrizeCode;">
+<!ENTITY % ContentItem "%ref.ContentItem;">
+<!ENTITY % LevelSequenceNumber "%ref.LevelSequenceNumber;">
+<!ENTITY % TextItem "%ref.TextItem;">
+<!ENTITY % TextItemType "%ref.TextItemType;">
+<!ENTITY % TextItemIdentifier "%ref.TextItemIdentifier;">
+<!ENTITY % TextItemIDType "%ref.TextItemIDType;">
+<!ENTITY % FirstPageNumber "%ref.FirstPageNumber;">
+<!ENTITY % LastPageNumber "%ref.LastPageNumber;">
+<!ENTITY % ComponentTypeName "%ref.ComponentTypeName;">
+<!ENTITY % ComponentNumber "%ref.ComponentNumber;">
+<!ENTITY % ReplacedByISBN "%ref.ReplacedByISBN;">
+<!ENTITY % ReplacedByEAN13 "%ref.ReplacedByEAN13;">
+<!ENTITY % RelatedProduct "%ref.RelatedProduct;">
+<!ENTITY % RelationCode "%ref.RelationCode;">
+<!ENTITY % AlternativeFormatISBN "%ref.AlternativeFormatISBN;">
+<!ENTITY % AlternativeFormatEAN13 "%ref.AlternativeFormatEAN13;">
+<!ENTITY % AlternativeProductISBN "%ref.AlternativeProductISBN;">
+<!ENTITY % AlternativeProductEAN13 "%ref.AlternativeProductEAN13;">
+<!ENTITY % OutOfPrintDate "%ref.OutOfPrintDate;">
+<!ENTITY % SupplyDetail "%ref.SupplyDetail;">
+<!ENTITY % SupplierEANLocationNumber "%ref.SupplierEANLocationNumber;">
+<!ENTITY % SupplierSAN "%ref.SupplierSAN;">
+<!ENTITY % SupplierName "%ref.SupplierName;">
+<!ENTITY % TelephoneNumber "%ref.TelephoneNumber;">
+<!ENTITY % FaxNumber "%ref.FaxNumber;">
+<!ENTITY % EmailAddress "%ref.EmailAddress;">
+<!ENTITY % SupplyToCountry "%ref.SupplyToCountry;">
+<!ENTITY % SupplyToRegion "%ref.SupplyToRegion;">
+<!ENTITY % SupplyToCountryExcluded "%ref.SupplyToCountryExcluded;">
+<!ENTITY % ReturnsCodeType "%ref.ReturnsCodeType;">
+<!ENTITY % ReturnsCode "%ref.ReturnsCode;">
+<!ENTITY % AvailabilityCode "%ref.AvailabilityCode;">
+<!ENTITY % NewSupplier "%ref.NewSupplier;">
+<!ENTITY % DateFormat "%ref.DateFormat;">
+<!ENTITY % ExpectedShipDate "%ref.ExpectedShipDate;">
+<!ENTITY % OnSaleDate "%ref.OnSaleDate;">
+<!ENTITY % OrderTime "%ref.OrderTime;">
+<!ENTITY % PackQuantity "%ref.PackQuantity;">
+<!ENTITY % AudienceRestrictionFlag "%ref.AudienceRestrictionFlag;">
+<!ENTITY % AudienceRestrictionNote "%ref.AudienceRestrictionNote;">
+<!ENTITY % Price "%ref.Price;">
+<!ENTITY % PriceTypeCode "%ref.PriceTypeCode;">
+<!ENTITY % PriceQualifier "%ref.PriceQualifier;">
+<!ENTITY % PriceTypeDescription "%ref.PriceTypeDescription;">
+<!ENTITY % PricePer "%ref.PricePer;">
+<!ENTITY % MinimumOrderQuantity "%ref.MinimumOrderQuantity;">
+<!ENTITY % BatchBonus "%ref.BatchBonus;">
+<!ENTITY % BatchQuantity "%ref.BatchQuantity;">
+<!ENTITY % FreeQuantity "%ref.FreeQuantity;">
+<!ENTITY % ClassOfTrade "%ref.ClassOfTrade;">
+<!ENTITY % BICDiscountGroupCode "%ref.BICDiscountGroupCode;">
+<!ENTITY % DiscountPercent "%ref.DiscountPercent;">
+<!ENTITY % PriceStatus "%ref.PriceStatus;">
+<!ENTITY % PriceAmount "%ref.PriceAmount;">
+<!ENTITY % UnpricedItemType "%ref.UnpricedItemType;">
+<!ENTITY % CurrencyCode "%ref.CurrencyCode;">
+<!ENTITY % TaxRateCode1 "%ref.TaxRateCode1;">
+<!ENTITY % TaxRatePercent1 "%ref.TaxRatePercent1;">
+<!ENTITY % TaxableAmount1 "%ref.TaxableAmount1;">
+<!ENTITY % TaxAmount1 "%ref.TaxAmount1;">
+<!ENTITY % TaxRateCode2 "%ref.TaxRateCode2;">
+<!ENTITY % TaxRatePercent2 "%ref.TaxRatePercent2;">
+<!ENTITY % TaxableAmount2 "%ref.TaxableAmount2;">
+<!ENTITY % TaxAmount2 "%ref.TaxAmount2;">
+<!ENTITY % PriceEffectiveFrom "%ref.PriceEffectiveFrom;">
+<!ENTITY % PriceEffectiveUntil "%ref.PriceEffectiveUntil;">
+<!ENTITY % PromotionCampaign "%ref.PromotionCampaign;">
+<!ENTITY % PromotionContact "%ref.PromotionContact;">
+<!ENTITY % InitialPrintRun "%ref.InitialPrintRun;">
+<!ENTITY % CopiesSold "%ref.CopiesSold;">
+<!ENTITY % BookClubAdoption "%ref.BookClubAdoption;">
+<!ENTITY % SubordinateEntries "%ref.SubordinateEntries;">
+<!ENTITY % ParentIdentifier "%ref.ParentIdentifier;">
+<!ENTITY % SeriesPartName "%ref.SeriesPartName;">
+<!ENTITY % FromEANNumber "%ref.FromEANNumber;">
+<!ENTITY % FromSAN "%ref.FromSAN;">
+<!ENTITY % FromCompany "%ref.FromCompany;">
+<!ENTITY % FromPerson "%ref.FromPerson;">
+<!ENTITY % FromEmail "%ref.FromEmail;">
+<!ENTITY % ToEANNumber "%ref.ToEANNumber;">
+<!ENTITY % ToSAN "%ref.ToSAN;">
+<!ENTITY % ToCompany "%ref.ToCompany;">
+<!ENTITY % ToPerson "%ref.ToPerson;">
+<!ENTITY % MessageNumber "%ref.MessageNumber;">
+<!ENTITY % MessageRepeat "%ref.MessageRepeat;">
+<!ENTITY % SentDate "%ref.SentDate;">
+<!ENTITY % MessageNote "%ref.MessageNote;">
+<!ENTITY % DefaultLanguageOfText "%ref.DefaultLanguageOfText;">
+<!ENTITY % DefaultPriceTypeCode "%ref.DefaultPriceTypeCode;">
+<!ENTITY % DefaultCurrencyCode "%ref.DefaultCurrencyCode;">
+<!ENTITY % DefaultLinearUnit "%ref.DefaultLinearUnit;">
+<!ENTITY % DefaultWeightUnit "%ref.DefaultWeightUnit;">
+<!ENTITY % DefaultClassOfTrade "%ref.DefaultClassOfTrade;">
+<!ENTITY % Header "%ref.Header;">
+
+<!-- The fixed attribute specifications are defined here -->
+
+<!ENTITY % common.atts "textformat      CDATA #IMPLIED
+                        language        CDATA #IMPLIED
+                        transliteration CDATA #IMPLIED
+                        datestamp       CDATA #IMPLIED
+                        sourcetype      CDATA #IMPLIED
+                        sourcename      CDATA #IMPLIED
+                        refname         NMTOKEN #FIXED">
+
+<!ENTITY % ONIXMessage.attspec '%common.atts; "%ref.ONIXMessage;"'>
+<!ENTITY % Product.attspec '%common.atts; "%ref.Product;"'>
+<!ENTITY % MainSeriesRecord.attspec '%common.atts; "%ref.MainSeriesRecord;"'>
+<!ENTITY % SubSeriesRecord.attspec '%common.atts; "%ref.SubSeriesRecord;"'>
+<!ENTITY % RecordReference.attspec '%common.atts; "%ref.RecordReference;"'>
+<!ENTITY % NotificationType.attspec '%common.atts; "%ref.NotificationType;"'>
+<!ENTITY % RecordSourceType.attspec '%common.atts; "%ref.RecordSourceType;"'>
+<!ENTITY % RecordSourceIdentifierType.attspec '%common.atts; "%ref.RecordSourceIdentifierType;"'>
+<!ENTITY % RecordSourceIdentifier.attspec '%common.atts; "%ref.RecordSourceIdentifier;"'>
+<!ENTITY % RecordSourceName.attspec '%common.atts; "%ref.RecordSourceName;"'>
+<!ENTITY % DeletionCode.attspec '%common.atts; "%ref.DeletionCode;"'>
+<!ENTITY % DeletionText.attspec '%common.atts; "%ref.DeletionText;"'>
+<!ENTITY % ISBN.attspec '%common.atts; "%ref.ISBN;"'>
+<!ENTITY % EAN13.attspec '%common.atts; "%ref.EAN13;"'>
+<!ENTITY % UPC.attspec '%common.atts; "%ref.UPC;"'>
+<!ENTITY % PublisherProductNo.attspec '%common.atts; "%ref.PublisherProductNo;"'>
+<!ENTITY % ISMN.attspec '%common.atts; "%ref.ISMN;"'>
+<!ENTITY % DOI.attspec '%common.atts; "%ref.DOI;"'>
+<!ENTITY % ProductIdentifier.attspec '%common.atts; "%ref.ProductIdentifier;"'>
+<!ENTITY % ProductIDType.attspec '%common.atts; "%ref.ProductIDType;"'>
+<!ENTITY % IDTypeName.attspec '%common.atts; "%ref.IDTypeName;"'>
+<!ENTITY % IDValue.attspec '%common.atts; "%ref.IDValue;"'>
+<!ENTITY % Barcode.attspec '%common.atts; "%ref.Barcode;"'>
+<!ENTITY % ReplacesISBN.attspec '%common.atts; "%ref.ReplacesISBN;"'>
+<!ENTITY % ReplacesEAN13.attspec '%common.atts; "%ref.ReplacesEAN13;"'>
+<!ENTITY % ProductForm.attspec '%common.atts; "%ref.ProductForm;"'>
+<!ENTITY % BookFormDetail.attspec '%common.atts; "%ref.BookFormDetail;"'>
+<!ENTITY % ProductFormDescription.attspec '%common.atts; "%ref.ProductFormDescription;"'>
+<!ENTITY % ContainedItem.attspec '%common.atts; "%ref.ContainedItem;"'>
+<!ENTITY % NumberOfPieces.attspec '%common.atts; "%ref.NumberOfPieces;"'>
+<!ENTITY % ItemQuantity.attspec '%common.atts; "%ref.ItemQuantity;"'>
+<!ENTITY % ProductClassification.attspec '%common.atts; "%ref.ProductClassification;"'>
+<!ENTITY % ProductClassificationType.attspec '%common.atts; "%ref.ProductClassificationType;"'>
+<!ENTITY % ProductClassificationCode.attspec '%common.atts; "%ref.ProductClassificationCode;"'>
+<!ENTITY % EpubType.attspec '%common.atts; "%ref.EpubType;"'>
+<!ENTITY % EpubTypeVersion.attspec '%common.atts; "%ref.EpubTypeVersion;"'>
+<!ENTITY % EpubTypeDescription.attspec '%common.atts; "%ref.EpubTypeDescription;"'>
+<!ENTITY % EpubFormat.attspec '%common.atts; "%ref.EpubFormat;"'>
+<!ENTITY % EpubFormatVersion.attspec '%common.atts; "%ref.EpubFormatVersion;"'>
+<!ENTITY % EpubFormatDescription.attspec '%common.atts; "%ref.EpubFormatDescription;"'>
+<!ENTITY % EpubSource.attspec '%common.atts; "%ref.EpubSource;"'>
+<!ENTITY % EpubSourceVersion.attspec '%common.atts; "%ref.EpubSourceVersion;"'>
+<!ENTITY % EpubSourceDescription.attspec '%common.atts; "%ref.EpubSourceDescription;"'>
+<!ENTITY % EpubTypeNote.attspec '%common.atts; "%ref.EpubTypeNote;"'>
+<!ENTITY % Series.attspec '%common.atts; "%ref.Series;"'>
+<!ENTITY % SeriesISSN.attspec '%common.atts; "%ref.SeriesISSN;"'>
+<!ENTITY % PublisherSeriesCode.attspec '%common.atts; "%ref.PublisherSeriesCode;"'>
+<!ENTITY % SeriesIdentifier.attspec '%common.atts; "%ref.SeriesIdentifier;"'>
+<!ENTITY % SeriesIDType.attspec '%common.atts; "%ref.SeriesIDType;"'>
+<!ENTITY % TitleOfSeries.attspec '%common.atts; "%ref.TitleOfSeries;"'>
+<!ENTITY % NumberWithinSeries.attspec '%common.atts; "%ref.NumberWithinSeries;"'>
+<!ENTITY % YearOfAnnual.attspec '%common.atts; "%ref.YearOfAnnual;"'>
+<!ENTITY % Set.attspec '%common.atts; "%ref.Set;"'>
+<!ENTITY % ISBNOfSet.attspec '%common.atts; "%ref.ISBNOfSet;"'>
+<!ENTITY % EAN13OfSet.attspec '%common.atts; "%ref.EAN13OfSet;"'>
+<!ENTITY % TitleOfSet.attspec '%common.atts; "%ref.TitleOfSet;"'>
+<!ENTITY % SetPartNumber.attspec '%common.atts; "%ref.SetPartNumber;"'>
+<!ENTITY % SetPartTitle.attspec '%common.atts; "%ref.SetPartTitle;"'>
+<!ENTITY % ItemNumberWithinSet.attspec '%common.atts; "%ref.ItemNumberWithinSet;"'>
+<!ENTITY % SetItemTitle.attspec '%common.atts; "%ref.SetItemTitle;"'>
+<!ENTITY % TextCaseFlag.attspec '%common.atts; "%ref.TextCaseFlag;"'>
+<!ENTITY % DistinctiveTitle.attspec '%common.atts; "%ref.DistinctiveTitle;"'>
+<!ENTITY % Subtitle.attspec '%common.atts; "%ref.Subtitle;"'>
+<!ENTITY % TitlePrefix.attspec '%common.atts; "%ref.TitlePrefix;"'>
+<!ENTITY % TitleWithoutPrefix.attspec '%common.atts; "%ref.TitleWithoutPrefix;"'>
+<!ENTITY % TranslationOfTitle.attspec '%common.atts; "%ref.TranslationOfTitle;"'>
+<!ENTITY % FormerTitle.attspec '%common.atts; "%ref.FormerTitle;"'>
+<!ENTITY % Title.attspec '%common.atts; "%ref.Title;"'>
+<!ENTITY % TitleType.attspec '%common.atts; "%ref.TitleType;"'>
+<!ENTITY % AbbreviatedLength.attspec '%common.atts; "%ref.AbbreviatedLength;"'>
+<!ENTITY % TitleText.attspec '%common.atts; "%ref.TitleText;"'>
+<!ENTITY % WorkIdentifier.attspec '%common.atts; "%ref.WorkIdentifier;"'>
+<!ENTITY % WorkIDType.attspec '%common.atts; "%ref.WorkIDType;"'>
+<!ENTITY % Contributor.attspec '%common.atts; "%ref.Contributor;"'>
+<!ENTITY % SequenceNumber.attspec '%common.atts; "%ref.SequenceNumber;"'>
+<!ENTITY % ContributorRole.attspec '%common.atts; "%ref.ContributorRole;"'>
+<!ENTITY % LanguageCode.attspec '%common.atts; "%ref.LanguageCode;"'>
+<!ENTITY % PersonName.attspec '%common.atts; "%ref.PersonName;"'>
+<!ENTITY % PersonNameInverted.attspec '%common.atts; "%ref.PersonNameInverted;"'>
+<!ENTITY % TitlesBeforeNames.attspec '%common.atts; "%ref.TitlesBeforeNames;"'>
+<!ENTITY % NamesBeforeKey.attspec '%common.atts; "%ref.NamesBeforeKey;"'>
+<!ENTITY % PrefixToKey.attspec '%common.atts; "%ref.PrefixToKey;"'>
+<!ENTITY % SuffixToKey.attspec '%common.atts; "%ref.SuffixToKey;"'>
+<!ENTITY % KeyNames.attspec '%common.atts; "%ref.KeyNames;"'>
+<!ENTITY % NamesAfterKey.attspec '%common.atts; "%ref.NamesAfterKey;"'>
+<!ENTITY % LettersAfterNames.attspec '%common.atts; "%ref.LettersAfterNames;"'>
+<!ENTITY % TitlesAfterNames.attspec '%common.atts; "%ref.TitlesAfterNames;"'>
+<!ENTITY % Name.attspec '%common.atts; "%ref.Name;"'>
+<!ENTITY % PersonNameType.attspec '%common.atts; "%ref.PersonNameType;"'>
+<!ENTITY % BiographicalNote.attspec '%common.atts; "%ref.BiographicalNote;"'>
+<!ENTITY % ProfessionalPosition.attspec '%common.atts; "%ref.ProfessionalPosition;"'>
+<!ENTITY % Affiliation.attspec '%common.atts; "%ref.Affiliation;"'>
+<!ENTITY % CorporateName.attspec '%common.atts; "%ref.CorporateName;"'>
+<!ENTITY % ContributorDescription.attspec '%common.atts; "%ref.ContributorDescription;"'>
+<!ENTITY % UnnamedPersons.attspec '%common.atts; "%ref.UnnamedPersons;"'>
+<!ENTITY % ContributorStatement.attspec '%common.atts; "%ref.ContributorStatement;"'>
+<!ENTITY % ConferenceDescription.attspec '%common.atts; "%ref.ConferenceDescription;"'>
+<!ENTITY % ConferenceRole.attspec '%common.atts; "%ref.ConferenceRole;"'>
+<!ENTITY % ConferenceName.attspec '%common.atts; "%ref.ConferenceName;"'>
+<!ENTITY % ConferenceNumber.attspec '%common.atts; "%ref.ConferenceNumber;"'>
+<!ENTITY % ConferenceDate.attspec '%common.atts; "%ref.ConferenceDate;"'>
+<!ENTITY % ConferencePlace.attspec '%common.atts; "%ref.ConferencePlace;"'>
+<!ENTITY % EditionTypeCode.attspec '%common.atts; "%ref.EditionTypeCode;"'>
+<!ENTITY % EditionNumber.attspec '%common.atts; "%ref.EditionNumber;"'>
+<!ENTITY % EditionVersionNumber.attspec '%common.atts; "%ref.EditionVersionNumber;"'>
+<!ENTITY % EditionStatement.attspec '%common.atts; "%ref.EditionStatement;"'>
+<!ENTITY % LanguageOfText.attspec '%common.atts; "%ref.LanguageOfText;"'>
+<!ENTITY % OriginalLanguage.attspec '%common.atts; "%ref.OriginalLanguage;"'>
+<!ENTITY % Language.attspec '%common.atts; "%ref.Language;"'>
+<!ENTITY % LanguageRole.attspec '%common.atts; "%ref.LanguageRole;"'>
+<!ENTITY % CountryCode.attspec '%common.atts; "%ref.CountryCode;"'>
+<!ENTITY % NumberOfPages.attspec '%common.atts; "%ref.NumberOfPages;"'>
+<!ENTITY % PagesRoman.attspec '%common.atts; "%ref.PagesRoman;"'>
+<!ENTITY % PagesArabic.attspec '%common.atts; "%ref.PagesArabic;"'>
+<!ENTITY % NumberOfIllustrations.attspec '%common.atts; "%ref.NumberOfIllustrations;"'>
+<!ENTITY % IllustrationsNote.attspec '%common.atts; "%ref.IllustrationsNote;"'>
+<!ENTITY % Illustrations.attspec '%common.atts; "%ref.Illustrations;"'>
+<!ENTITY % IllustrationType.attspec '%common.atts; "%ref.IllustrationType;"'>
+<!ENTITY % Number.attspec '%common.atts; "%ref.Number;"'>
+<!ENTITY % MapScale.attspec '%common.atts; "%ref.MapScale;"'>
+<!ENTITY % Extent.attspec '%common.atts; "%ref.Extent;"'>
+<!ENTITY % ExtentType.attspec '%common.atts; "%ref.ExtentType;"'>
+<!ENTITY % ExtentValue.attspec '%common.atts; "%ref.ExtentValue;"'>
+<!ENTITY % ExtentUnit.attspec '%common.atts; "%ref.ExtentUnit;"'>
+<!ENTITY % BASICMainSubject.attspec '%common.atts; "%ref.BASICMainSubject;"'>
+<!ENTITY % BASICVersion.attspec '%common.atts; "%ref.BASICVersion;"'>
+<!ENTITY % BICMainSubject.attspec '%common.atts; "%ref.BICMainSubject;"'>
+<!ENTITY % BICVersion.attspec '%common.atts; "%ref.BICVersion;"'>
+<!ENTITY % MainSubject.attspec '%common.atts; "%ref.MainSubject;"'>
+<!ENTITY % MainSubjectSchemeIdentifier.attspec '%common.atts; "%ref.MainSubjectSchemeIdentifier;"'>
+<!ENTITY % Subject.attspec '%common.atts; "%ref.Subject;"'>
+<!ENTITY % SubjectSchemeIdentifier.attspec '%common.atts; "%ref.SubjectSchemeIdentifier;"'>
+<!ENTITY % SubjectSchemeName.attspec '%common.atts; "%ref.SubjectSchemeName;"'>
+<!ENTITY % SubjectSchemeVersion.attspec '%common.atts; "%ref.SubjectSchemeVersion;"'>
+<!ENTITY % SubjectCode.attspec '%common.atts; "%ref.SubjectCode;"'>
+<!ENTITY % SubjectHeadingText.attspec '%common.atts; "%ref.SubjectHeadingText;"'>
+<!ENTITY % PersonAsSubject.attspec '%common.atts; "%ref.PersonAsSubject;"'>
+<!ENTITY % CorporateBodyAsSubject.attspec '%common.atts; "%ref.CorporateBodyAsSubject;"'>
+<!ENTITY % PlaceAsSubject.attspec '%common.atts; "%ref.PlaceAsSubject;"'>
+<!ENTITY % AudienceCode.attspec '%common.atts; "%ref.AudienceCode;"'>
+<!ENTITY % Audience.attspec '%common.atts; "%ref.Audience;"'>
+<!ENTITY % AudienceCodeType.attspec '%common.atts; "%ref.AudienceCodeType;"'>
+<!ENTITY % AudienceCodeTypeName.attspec '%common.atts; "%ref.AudienceCodeTypeName;"'>
+<!ENTITY % AudienceCodeValue.attspec '%common.atts; "%ref.AudienceCodeValue;"'>
+<!ENTITY % USSchoolGrade.attspec '%common.atts; "%ref.USSchoolGrade;"'>
+<!ENTITY % InterestAge.attspec '%common.atts; "%ref.InterestAge;"'>
+<!ENTITY % AudienceRange.attspec '%common.atts; "%ref.AudienceRange;"'>
+<!ENTITY % AudienceRangeQualifier.attspec '%common.atts; "%ref.AudienceRangeQualifier;"'>
+<!ENTITY % AudienceRangePrecision.attspec '%common.atts; "%ref.AudienceRangePrecision;"'>
+<!ENTITY % AudienceRangeValue.attspec '%common.atts; "%ref.AudienceRangeValue;"'>
+<!ENTITY % AudienceDescription.attspec '%common.atts; "%ref.AudienceDescription;"'>
+<!ENTITY % Complexity.attspec '%common.atts; "%ref.Complexity;"'>
+<!ENTITY % ComplexitySchemeIdentifier.attspec '%common.atts; "%ref.ComplexitySchemeIdentifier;"'>
+<!ENTITY % ComplexityCode.attspec '%common.atts; "%ref.ComplexityCode;"'>
+<!ENTITY % ImprintName.attspec '%common.atts; "%ref.ImprintName;"'>
+<!ENTITY % PublisherName.attspec '%common.atts; "%ref.PublisherName;"'>
+<!ENTITY % PublishingRole.attspec '%common.atts; "%ref.PublishingRole;"'>
+<!ENTITY % Imprint.attspec '%common.atts; "%ref.Imprint;"'>
+<!ENTITY % Publisher.attspec '%common.atts; "%ref.Publisher;"'>
+<!ENTITY % NameCodeType.attspec '%common.atts; "%ref.NameCodeType;"'>
+<!ENTITY % NameCodeTypeName.attspec '%common.atts; "%ref.NameCodeTypeName;"'>
+<!ENTITY % NameCodeValue.attspec '%common.atts; "%ref.NameCodeValue;"'>
+<!ENTITY % CityOfPublication.attspec '%common.atts; "%ref.CityOfPublication;"'>
+<!ENTITY % CountryOfPublication.attspec '%common.atts; "%ref.CountryOfPublication;"'>
+<!ENTITY % CopublisherName.attspec '%common.atts; "%ref.CopublisherName;"'>
+<!ENTITY % SponsorName.attspec '%common.atts; "%ref.SponsorName;"'>
+<!ENTITY % OriginalPublisher.attspec '%common.atts; "%ref.OriginalPublisher;"'>
+<!ENTITY % AnnouncementDate.attspec '%common.atts; "%ref.AnnouncementDate;"'>
+<!ENTITY % PublicationDate.attspec '%common.atts; "%ref.PublicationDate;"'>
+<!ENTITY % CopyrightYear.attspec '%common.atts; "%ref.CopyrightYear;"'>
+<!ENTITY % YearFirstPublished.attspec '%common.atts; "%ref.YearFirstPublished;"'>
+<!ENTITY % SalesRights.attspec '%common.atts; "%ref.SalesRights;"'>
+<!ENTITY % NotForSale.attspec '%common.atts; "%ref.NotForSale;"'>
+<!ENTITY % SalesRightsType.attspec '%common.atts; "%ref.SalesRightsType;"'>
+<!ENTITY % RightsCountry.attspec '%common.atts; "%ref.RightsCountry;"'>
+<!ENTITY % RightsRegion.attspec '%common.atts; "%ref.RightsRegion;"'>
+<!ENTITY % Measure.attspec '%common.atts; "%ref.Measure;"'>
+<!ENTITY % MeasureTypeCode.attspec '%common.atts; "%ref.MeasureTypeCode;"'>
+<!ENTITY % Measurement.attspec '%common.atts; "%ref.Measurement;"'>
+<!ENTITY % MeasureUnitCode.attspec '%common.atts; "%ref.MeasureUnitCode;"'>
+<!ENTITY % Height.attspec '%common.atts; "%ref.Height;"'>
+<!ENTITY % Width.attspec '%common.atts; "%ref.Width;"'>
+<!ENTITY % Thickness.attspec '%common.atts; "%ref.Thickness;"'>
+<!ENTITY % Weight.attspec '%common.atts; "%ref.Weight;"'>
+<!ENTITY % Dimensions.attspec '%common.atts; "%ref.Dimensions;"'>
+<!ENTITY % Annotation.attspec '%common.atts; "%ref.Annotation;"'>
+<!ENTITY % MainDescription.attspec '%common.atts; "%ref.MainDescription;"'>
+<!ENTITY % OtherText.attspec '%common.atts; "%ref.OtherText;"'>
+<!ENTITY % TextTypeCode.attspec '%common.atts; "%ref.TextTypeCode;"'>
+<!ENTITY % TextFormat.attspec '%common.atts; "%ref.TextFormat;"'>
+<!ENTITY % Text.attspec '%common.atts; "%ref.Text;"'>
+<!ENTITY % TextLinkType.attspec '%common.atts; "%ref.TextLinkType;"'>
+<!ENTITY % TextLink.attspec '%common.atts; "%ref.TextLink;"'>
+<!ENTITY % TextAuthor.attspec '%common.atts; "%ref.TextAuthor;"'>
+<!ENTITY % TextSourceTitle.attspec '%common.atts; "%ref.TextSourceTitle;"'>
+<!ENTITY % TextPublicationDate.attspec '%common.atts; "%ref.TextPublicationDate;"'>
+<!ENTITY % ReviewQuote.attspec '%common.atts; "%ref.ReviewQuote;"'>
+<!ENTITY % CoverImageFormatCode.attspec '%common.atts; "%ref.CoverImageFormatCode;"'>
+<!ENTITY % CoverImageLinkTypeCode.attspec '%common.atts; "%ref.CoverImageLinkTypeCode;"'>
+<!ENTITY % CoverImageLink.attspec '%common.atts; "%ref.CoverImageLink;"'>
+<!ENTITY % MediaFile.attspec '%common.atts; "%ref.MediaFile;"'>
+<!ENTITY % MediaFileTypeCode.attspec '%common.atts; "%ref.MediaFileTypeCode;"'>
+<!ENTITY % MediaFileFormatCode.attspec '%common.atts; "%ref.MediaFileFormatCode;"'>
+<!ENTITY % ImageResolution.attspec '%common.atts; "%ref.ImageResolution;"'>
+<!ENTITY % MediaFileLinkTypeCode.attspec '%common.atts; "%ref.MediaFileLinkTypeCode;"'>
+<!ENTITY % MediaFileLink.attspec '%common.atts; "%ref.MediaFileLink;"'>
+<!ENTITY % TextWithDownload.attspec '%common.atts; "%ref.TextWithDownload;"'>
+<!ENTITY % DownloadCaption.attspec '%common.atts; "%ref.DownloadCaption;"'>
+<!ENTITY % DownloadCredit.attspec '%common.atts; "%ref.DownloadCredit;"'>
+<!ENTITY % DownloadCopyrightNotice.attspec '%common.atts; "%ref.DownloadCopyrightNotice;"'>
+<!ENTITY % DownloadTerms.attspec '%common.atts; "%ref.DownloadTerms;"'>
+<!ENTITY % ProductWebsite.attspec '%common.atts; "%ref.ProductWebsite;"'>
+<!ENTITY % ProductWebsiteDescription.attspec '%common.atts; "%ref.ProductWebsiteDescription;"'>
+<!ENTITY % ProductWebsiteLink.attspec '%common.atts; "%ref.ProductWebsiteLink;"'>
+<!ENTITY % PrizesDescription.attspec '%common.atts; "%ref.PrizesDescription;"'>
+<!ENTITY % Prize.attspec '%common.atts; "%ref.Prize;"'>
+<!ENTITY % PrizeName.attspec '%common.atts; "%ref.PrizeName;"'>
+<!ENTITY % PrizeYear.attspec '%common.atts; "%ref.PrizeYear;"'>
+<!ENTITY % PrizeCountry.attspec '%common.atts; "%ref.PrizeCountry;"'>
+<!ENTITY % PrizeCode.attspec '%common.atts; "%ref.PrizeCode;"'>
+<!ENTITY % ContentItem.attspec '%common.atts; "%ref.ContentItem;"'>
+<!ENTITY % LevelSequenceNumber.attspec '%common.atts; "%ref.LevelSequenceNumber;"'>
+<!ENTITY % TextItem.attspec '%common.atts; "%ref.TextItem;"'>
+<!ENTITY % TextItemType.attspec '%common.atts; "%ref.TextItemType;"'>
+<!ENTITY % TextItemIdentifier.attspec '%common.atts; "%ref.TextItemIdentifier;"'>
+<!ENTITY % TextItemIDType.attspec '%common.atts; "%ref.TextItemIDType;"'>
+<!ENTITY % FirstPageNumber.attspec '%common.atts; "%ref.FirstPageNumber;"'>
+<!ENTITY % LastPageNumber.attspec '%common.atts; "%ref.LastPageNumber;"'>
+<!ENTITY % ComponentTypeName.attspec '%common.atts; "%ref.ComponentTypeName;"'>
+<!ENTITY % ComponentNumber.attspec '%common.atts; "%ref.ComponentNumber;"'>
+<!ENTITY % ReplacedByISBN.attspec '%common.atts; "%ref.ReplacedByISBN;"'>
+<!ENTITY % ReplacedByEAN13.attspec '%common.atts; "%ref.ReplacedByEAN13;"'>
+<!ENTITY % RelatedProduct.attspec '%common.atts; "%ref.RelatedProduct;"'>
+<!ENTITY % RelationCode.attspec '%common.atts; "%ref.RelationCode;"'>
+<!ENTITY % AlternativeFormatISBN.attspec '%common.atts; "%ref.AlternativeFormatISBN;"'>
+<!ENTITY % AlternativeFormatEAN13.attspec '%common.atts; "%ref.AlternativeFormatEAN13;"'>
+<!ENTITY % AlternativeProductISBN.attspec '%common.atts; "%ref.AlternativeProductISBN;"'>
+<!ENTITY % AlternativeProductEAN13.attspec '%common.atts; "%ref.AlternativeProductEAN13;"'>
+<!ENTITY % OutOfPrintDate.attspec '%common.atts; "%ref.OutOfPrintDate;"'>
+<!ENTITY % SupplyDetail.attspec '%common.atts; "%ref.SupplyDetail;"'>
+<!ENTITY % SupplierEANLocationNumber.attspec '%common.atts; "%ref.SupplierEANLocationNumber;"'>
+<!ENTITY % SupplierSAN.attspec '%common.atts; "%ref.SupplierSAN;"'>
+<!ENTITY % SupplierName.attspec '%common.atts; "%ref.SupplierName;"'>
+<!ENTITY % TelephoneNumber.attspec '%common.atts; "%ref.TelephoneNumber;"'>
+<!ENTITY % FaxNumber.attspec '%common.atts; "%ref.FaxNumber;"'>
+<!ENTITY % EmailAddress.attspec '%common.atts; "%ref.EmailAddress;"'>
+<!ENTITY % SupplyToCountry.attspec '%common.atts; "%ref.SupplyToCountry;"'>
+<!ENTITY % SupplyToRegion.attspec '%common.atts; "%ref.SupplyToRegion;"'>
+<!ENTITY % SupplyToCountryExcluded.attspec '%common.atts; "%ref.SupplyToCountryExcluded;"'>
+<!ENTITY % ReturnsCodeType.attspec '%common.atts; "%ref.ReturnsCodeType;"'>
+<!ENTITY % ReturnsCode.attspec '%common.atts; "%ref.ReturnsCode;"'>
+<!ENTITY % AvailabilityCode.attspec '%common.atts; "%ref.AvailabilityCode;"'>
+<!ENTITY % NewSupplier.attspec '%common.atts; "%ref.NewSupplier;"'>
+<!ENTITY % DateFormat.attspec '%common.atts; "%ref.DateFormat;"'>
+<!ENTITY % ExpectedShipDate.attspec '%common.atts; "%ref.ExpectedShipDate;"'>
+<!ENTITY % OnSaleDate.attspec '%common.atts; "%ref.OnSaleDate;"'>
+<!ENTITY % OrderTime.attspec '%common.atts; "%ref.OrderTime;"'>
+<!ENTITY % PackQuantity.attspec '%common.atts; "%ref.PackQuantity;"'>
+<!ENTITY % AudienceRestrictionFlag.attspec '%common.atts; "%ref.AudienceRestrictionFlag;"'>
+<!ENTITY % AudienceRestrictionNote.attspec '%common.atts; "%ref.AudienceRestrictionNote;"'>
+<!ENTITY % Price.attspec '%common.atts; "%ref.Price;"'>
+<!ENTITY % PriceTypeCode.attspec '%common.atts; "%ref.PriceTypeCode;"'>
+<!ENTITY % PriceQualifier.attspec '%common.atts; "%ref.PriceQualifier;"'>
+<!ENTITY % PriceTypeDescription.attspec '%common.atts; "%ref.PriceTypeDescription;"'>
+<!ENTITY % PricePer.attspec '%common.atts; "%ref.PricePer;"'>
+<!ENTITY % MinimumOrderQuantity.attspec '%common.atts; "%ref.MinimumOrderQuantity;"'>
+<!ENTITY % BatchBonus.attspec '%common.atts; "%ref.BatchBonus;"'>
+<!ENTITY % BatchQuantity.attspec '%common.atts; "%ref.BatchQuantity;"'>
+<!ENTITY % FreeQuantity.attspec '%common.atts; "%ref.FreeQuantity;"'>
+<!ENTITY % ClassOfTrade.attspec '%common.atts; "%ref.ClassOfTrade;"'>
+<!ENTITY % BICDiscountGroupCode.attspec '%common.atts; "%ref.BICDiscountGroupCode;"'>
+<!ENTITY % DiscountPercent.attspec '%common.atts; "%ref.DiscountPercent;"'>
+<!ENTITY % PriceStatus.attspec '%common.atts; "%ref.PriceStatus;"'>
+<!ENTITY % PriceAmount.attspec '%common.atts; "%ref.PriceAmount;"'>
+<!ENTITY % UnpricedItemType.attspec '%common.atts; "%ref.UnpricedItemType;"'>
+<!ENTITY % CurrencyCode.attspec '%common.atts; "%ref.CurrencyCode;"'>
+<!ENTITY % TaxRateCode1.attspec '%common.atts; "%ref.TaxRateCode1;"'>
+<!ENTITY % TaxRatePercent1.attspec '%common.atts; "%ref.TaxRatePercent1;"'>
+<!ENTITY % TaxableAmount1.attspec '%common.atts; "%ref.TaxableAmount1;"'>
+<!ENTITY % TaxAmount1.attspec '%common.atts; "%ref.TaxAmount1;"'>
+<!ENTITY % TaxRateCode2.attspec '%common.atts; "%ref.TaxRateCode2;"'>
+<!ENTITY % TaxRatePercent2.attspec '%common.atts; "%ref.TaxRatePercent2;"'>
+<!ENTITY % TaxableAmount2.attspec '%common.atts; "%ref.TaxableAmount2;"'>
+<!ENTITY % TaxAmount2.attspec '%common.atts; "%ref.TaxAmount2;"'>
+<!ENTITY % PriceEffectiveFrom.attspec '%common.atts; "%ref.PriceEffectiveFrom;"'>
+<!ENTITY % PriceEffectiveUntil.attspec '%common.atts; "%ref.PriceEffectiveUntil;"'>
+<!ENTITY % PromotionCampaign.attspec '%common.atts; "%ref.PromotionCampaign;"'>
+<!ENTITY % PromotionContact.attspec '%common.atts; "%ref.PromotionContact;"'>
+<!ENTITY % InitialPrintRun.attspec '%common.atts; "%ref.InitialPrintRun;"'>
+<!ENTITY % CopiesSold.attspec '%common.atts; "%ref.CopiesSold;"'>
+<!ENTITY % BookClubAdoption.attspec '%common.atts; "%ref.BookClubAdoption;"'>
+<!ENTITY % SubordinateEntries.attspec '%common.atts; "%ref.SubordinateEntries;"'>
+<!ENTITY % ParentIdentifier.attspec '%common.atts; "%ref.ParentIdentifier;"'>
+<!ENTITY % SeriesPartName.attspec '%common.atts; "%ref.SeriesPartName;"'>
+<!ENTITY % FromEANNumber.attspec '%common.atts; "%ref.FromEANNumber;"'>
+<!ENTITY % FromSAN.attspec '%common.atts; "%ref.FromSAN;"'>
+<!ENTITY % FromCompany.attspec '%common.atts; "%ref.FromCompany;"'>
+<!ENTITY % FromPerson.attspec '%common.atts; "%ref.FromPerson;"'>
+<!ENTITY % FromEmail.attspec '%common.atts; "%ref.FromEmail;"'>
+<!ENTITY % ToEANNumber.attspec '%common.atts; "%ref.ToEANNumber;"'>
+<!ENTITY % ToSAN.attspec '%common.atts; "%ref.ToSAN;"'>
+<!ENTITY % ToCompany.attspec '%common.atts; "%ref.ToCompany;"'>
+<!ENTITY % ToPerson.attspec '%common.atts; "%ref.ToPerson;"'>
+<!ENTITY % MessageNumber.attspec '%common.atts; "%ref.MessageNumber;"'>
+<!ENTITY % MessageRepeat.attspec '%common.atts; "%ref.MessageRepeat;"'>
+<!ENTITY % SentDate.attspec '%common.atts; "%ref.SentDate;"'>
+<!ENTITY % MessageNote.attspec '%common.atts; "%ref.MessageNote;"'>
+<!ENTITY % DefaultLanguageOfText.attspec '%common.atts; "%ref.DefaultLanguageOfText;"'>
+<!ENTITY % DefaultPriceTypeCode.attspec '%common.atts; "%ref.DefaultPriceTypeCode;"'>
+<!ENTITY % DefaultCurrencyCode.attspec '%common.atts; "%ref.DefaultCurrencyCode;"'>
+<!ENTITY % DefaultLinearUnit.attspec '%common.atts; "%ref.DefaultLinearUnit;"'>
+<!ENTITY % DefaultWeightUnit.attspec '%common.atts; "%ref.DefaultWeightUnit;"'>
+<!ENTITY % DefaultClassOfTrade.attspec '%common.atts; "%ref.DefaultClassOfTrade;"'>
+<!ENTITY % Header.attspec '%common.atts; "%ref.Header;"'>
+
+<!-- The fixed attributes for each element are declared here -->
+
+<!ATTLIST %ONIXMessage; %ONIXMessage.attspec;>
+<!ATTLIST %Product; %Product.attspec;>
+<!ATTLIST %MainSeriesRecord; %MainSeriesRecord.attspec;>
+<!ATTLIST %SubSeriesRecord; %SubSeriesRecord.attspec;>
+<!ATTLIST %RecordReference; %RecordReference.attspec;>
+<!ATTLIST %NotificationType; %NotificationType.attspec;>
+<!ATTLIST %RecordSourceType; %RecordSourceType.attspec;>
+<!ATTLIST %RecordSourceIdentifierType; %RecordSourceIdentifierType.attspec;>
+<!ATTLIST %RecordSourceIdentifier; %RecordSourceIdentifier.attspec;>
+<!ATTLIST %RecordSourceName; %RecordSourceName.attspec;>
+<!ATTLIST %DeletionCode; %DeletionCode.attspec;>
+<!ATTLIST %DeletionText; %DeletionText.attspec;>
+<!ATTLIST %ISBN; %ISBN.attspec;>
+<!ATTLIST %EAN13; %EAN13.attspec;>
+<!ATTLIST %UPC; %UPC.attspec;>
+<!ATTLIST %PublisherProductNo; %PublisherProductNo.attspec;>
+<!ATTLIST %ISMN; %ISMN.attspec;>
+<!ATTLIST %DOI; %DOI.attspec;>
+<!ATTLIST %ProductIdentifier; %ProductIdentifier.attspec;>
+<!ATTLIST %ProductIDType; %ProductIDType.attspec;>
+<!ATTLIST %IDTypeName; %IDTypeName.attspec;>
+<!ATTLIST %IDValue; %IDValue.attspec;>
+<!ATTLIST %Barcode; %Barcode.attspec;>
+<!ATTLIST %ReplacesISBN; %ReplacesISBN.attspec;>
+<!ATTLIST %ReplacesEAN13; %ReplacesEAN13.attspec;>
+<!ATTLIST %ProductForm; %ProductForm.attspec;>
+<!ATTLIST %BookFormDetail; %BookFormDetail.attspec;>
+<!ATTLIST %ProductFormDescription; %ProductFormDescription.attspec;>
+<!ATTLIST %ContainedItem; %ContainedItem.attspec;>
+<!ATTLIST %NumberOfPieces; %NumberOfPieces.attspec;>
+<!ATTLIST %ItemQuantity; %ItemQuantity.attspec;>
+<!ATTLIST %ProductClassification; %ProductClassification.attspec;>
+<!ATTLIST %ProductClassificationType; %ProductClassificationType.attspec;>
+<!ATTLIST %ProductClassificationCode; %ProductClassificationCode.attspec;>
+<!ATTLIST %EpubType; %EpubType.attspec;>
+<!ATTLIST %EpubTypeVersion; %EpubTypeVersion.attspec;>
+<!ATTLIST %EpubTypeDescription; %EpubTypeDescription.attspec;>
+<!ATTLIST %EpubFormat; %EpubFormat.attspec;>
+<!ATTLIST %EpubFormatVersion; %EpubFormatVersion.attspec;>
+<!ATTLIST %EpubFormatDescription; %EpubFormatDescription.attspec;>
+<!ATTLIST %EpubSource; %EpubSource.attspec;>
+<!ATTLIST %EpubSourceVersion; %EpubSourceVersion.attspec;>
+<!ATTLIST %EpubSourceDescription; %EpubSourceDescription.attspec;>
+<!ATTLIST %EpubTypeNote; %EpubTypeNote.attspec;>
+<!ATTLIST %Series; %Series.attspec;>
+<!ATTLIST %SeriesISSN; %SeriesISSN.attspec;>
+<!ATTLIST %PublisherSeriesCode; %PublisherSeriesCode.attspec;>
+<!ATTLIST %SeriesIdentifier; %SeriesIdentifier.attspec;>
+<!ATTLIST %SeriesIDType; %SeriesIDType.attspec;>
+<!ATTLIST %TitleOfSeries; %TitleOfSeries.attspec;>
+<!ATTLIST %NumberWithinSeries; %NumberWithinSeries.attspec;>
+<!ATTLIST %YearOfAnnual; %YearOfAnnual.attspec;>
+<!ATTLIST %Set; %Set.attspec;>
+<!ATTLIST %ISBNOfSet; %ISBNOfSet.attspec;>
+<!ATTLIST %EAN13OfSet; %EAN13OfSet.attspec;>
+<!ATTLIST %TitleOfSet; %TitleOfSet.attspec;>
+<!ATTLIST %SetPartNumber; %SetPartNumber.attspec;>
+<!ATTLIST %SetPartTitle; %SetPartTitle.attspec;>
+<!ATTLIST %ItemNumberWithinSet; %ItemNumberWithinSet.attspec;>
+<!ATTLIST %SetItemTitle; %SetItemTitle.attspec;>
+<!ATTLIST %TextCaseFlag; %TextCaseFlag.attspec;>
+<!ATTLIST %DistinctiveTitle; %DistinctiveTitle.attspec;>
+<!ATTLIST %Subtitle; %Subtitle.attspec;>
+<!ATTLIST %TitlePrefix; %TitlePrefix.attspec;>
+<!ATTLIST %TitleWithoutPrefix; %TitleWithoutPrefix.attspec;>
+<!ATTLIST %TranslationOfTitle; %TranslationOfTitle.attspec;>
+<!ATTLIST %FormerTitle; %FormerTitle.attspec;>
+<!ATTLIST %Title; %Title.attspec;>
+<!ATTLIST %TitleType; %TitleType.attspec;>
+<!ATTLIST %AbbreviatedLength; %AbbreviatedLength.attspec;>
+<!ATTLIST %TitleText; %TitleText.attspec;>
+<!ATTLIST %WorkIdentifier; %WorkIdentifier.attspec;>
+<!ATTLIST %WorkIDType; %WorkIDType.attspec;>
+<!ATTLIST %Contributor; %Contributor.attspec;>
+<!ATTLIST %SequenceNumber; %SequenceNumber.attspec;>
+<!ATTLIST %ContributorRole; %ContributorRole.attspec;>
+<!ATTLIST %LanguageCode; %LanguageCode.attspec;>
+<!ATTLIST %PersonName; %PersonName.attspec;>
+<!ATTLIST %PersonNameInverted; %PersonNameInverted.attspec;>
+<!ATTLIST %TitlesBeforeNames; %TitlesBeforeNames.attspec;>
+<!ATTLIST %NamesBeforeKey; %NamesBeforeKey.attspec;>
+<!ATTLIST %PrefixToKey; %PrefixToKey.attspec;>
+<!ATTLIST %SuffixToKey; %SuffixToKey.attspec;>
+<!ATTLIST %KeyNames; %KeyNames.attspec;>
+<!ATTLIST %NamesAfterKey; %NamesAfterKey.attspec;>
+<!ATTLIST %LettersAfterNames; %LettersAfterNames.attspec;>
+<!ATTLIST %TitlesAfterNames; %TitlesAfterNames.attspec;>
+<!ATTLIST %Name; %Name.attspec;>
+<!ATTLIST %PersonNameType; %PersonNameType.attspec;>
+<!ATTLIST %BiographicalNote; %BiographicalNote.attspec;>
+<!ATTLIST %ProfessionalPosition; %ProfessionalPosition.attspec;>
+<!ATTLIST %Affiliation; %Affiliation.attspec;>
+<!ATTLIST %CorporateName; %CorporateName.attspec;>
+<!ATTLIST %ContributorDescription; %ContributorDescription.attspec;>
+<!ATTLIST %UnnamedPersons; %UnnamedPersons.attspec;>
+<!ATTLIST %ContributorStatement; %ContributorStatement.attspec;>
+<!ATTLIST %ConferenceDescription; %ConferenceDescription.attspec;>
+<!ATTLIST %ConferenceRole; %ConferenceRole.attspec;>
+<!ATTLIST %ConferenceName; %ConferenceName.attspec;>
+<!ATTLIST %ConferenceNumber; %ConferenceNumber.attspec;>
+<!ATTLIST %ConferenceDate; %ConferenceDate.attspec;>
+<!ATTLIST %ConferencePlace; %ConferencePlace.attspec;>
+<!ATTLIST %EditionTypeCode; %EditionTypeCode.attspec;>
+<!ATTLIST %EditionNumber; %EditionNumber.attspec;>
+<!ATTLIST %EditionVersionNumber; %EditionVersionNumber.attspec;>
+<!ATTLIST %EditionStatement; %EditionStatement.attspec;>
+<!ATTLIST %LanguageOfText; %LanguageOfText.attspec;>
+<!ATTLIST %OriginalLanguage; %OriginalLanguage.attspec;>
+<!ATTLIST %Language; %Language.attspec;>
+<!ATTLIST %LanguageRole; %LanguageRole.attspec;>
+<!ATTLIST %CountryCode; %CountryCode.attspec;>
+<!ATTLIST %NumberOfPages; %NumberOfPages.attspec;>
+<!ATTLIST %PagesRoman; %PagesRoman.attspec;>
+<!ATTLIST %PagesArabic; %PagesArabic.attspec;>
+<!ATTLIST %NumberOfIllustrations; %NumberOfIllustrations.attspec;>
+<!ATTLIST %IllustrationsNote; %IllustrationsNote.attspec;>
+<!ATTLIST %Illustrations; %Illustrations.attspec;>
+<!ATTLIST %IllustrationType; %IllustrationType.attspec;>
+<!ATTLIST %Number; %Number.attspec;>
+<!ATTLIST %MapScale; %MapScale.attspec;>
+<!ATTLIST %Extent; %Extent.attspec;>
+<!ATTLIST %ExtentType; %ExtentType.attspec;>
+<!ATTLIST %ExtentValue; %ExtentValue.attspec;>
+<!ATTLIST %ExtentUnit; %ExtentUnit.attspec;>
+<!ATTLIST %BASICMainSubject; %BASICMainSubject.attspec;>
+<!ATTLIST %BASICVersion; %BASICVersion.attspec;>
+<!ATTLIST %BICMainSubject; %BICMainSubject.attspec;>
+<!ATTLIST %BICVersion; %BICVersion.attspec;>
+<!ATTLIST %MainSubject; %MainSubject.attspec;>
+<!ATTLIST %MainSubjectSchemeIdentifier; %MainSubjectSchemeIdentifier.attspec;>
+<!ATTLIST %Subject; %Subject.attspec;>
+<!ATTLIST %SubjectSchemeIdentifier; %SubjectSchemeIdentifier.attspec;>
+<!ATTLIST %SubjectSchemeName; %SubjectSchemeName.attspec;>
+<!ATTLIST %SubjectSchemeVersion; %SubjectSchemeVersion.attspec;>
+<!ATTLIST %SubjectCode; %SubjectCode.attspec;>
+<!ATTLIST %SubjectHeadingText; %SubjectHeadingText.attspec;>
+<!ATTLIST %PersonAsSubject; %PersonAsSubject.attspec;>
+<!ATTLIST %CorporateBodyAsSubject; %CorporateBodyAsSubject.attspec;>
+<!ATTLIST %PlaceAsSubject; %PlaceAsSubject.attspec;>
+<!ATTLIST %AudienceCode; %AudienceCode.attspec;>
+<!ATTLIST %Audience; %Audience.attspec;>
+<!ATTLIST %AudienceCodeType; %AudienceCodeType.attspec;>
+<!ATTLIST %AudienceCodeTypeName; %AudienceCodeTypeName.attspec;>
+<!ATTLIST %AudienceCodeValue; %AudienceCodeValue.attspec;>
+<!ATTLIST %USSchoolGrade; %USSchoolGrade.attspec;>
+<!ATTLIST %InterestAge; %InterestAge.attspec;>
+<!ATTLIST %AudienceRange; %AudienceRange.attspec;>
+<!ATTLIST %AudienceRangeQualifier; %AudienceRangeQualifier.attspec;>
+<!ATTLIST %AudienceRangePrecision; %AudienceRangePrecision.attspec;>
+<!ATTLIST %AudienceRangeValue; %AudienceRangeValue.attspec;>
+<!ATTLIST %AudienceDescription; %AudienceDescription.attspec;>
+<!ATTLIST %Complexity; %Complexity.attspec;>
+<!ATTLIST %ComplexitySchemeIdentifier; %ComplexitySchemeIdentifier.attspec;>
+<!ATTLIST %ComplexityCode; %ComplexityCode.attspec;>
+<!ATTLIST %ImprintName; %ImprintName.attspec;>
+<!ATTLIST %PublisherName; %PublisherName.attspec;>
+<!ATTLIST %PublishingRole; %PublishingRole.attspec;>
+<!ATTLIST %Imprint; %Imprint.attspec;>
+<!ATTLIST %Publisher; %Publisher.attspec;>
+<!ATTLIST %NameCodeType; %NameCodeType.attspec;>
+<!ATTLIST %NameCodeTypeName; %NameCodeTypeName.attspec;>
+<!ATTLIST %NameCodeValue; %NameCodeValue.attspec;>
+<!ATTLIST %CityOfPublication; %CityOfPublication.attspec;>
+<!ATTLIST %CountryOfPublication; %CountryOfPublication.attspec;>
+<!ATTLIST %CopublisherName; %CopublisherName.attspec;>
+<!ATTLIST %SponsorName; %SponsorName.attspec;>
+<!ATTLIST %OriginalPublisher; %OriginalPublisher.attspec;>
+<!ATTLIST %AnnouncementDate; %AnnouncementDate.attspec;>
+<!ATTLIST %PublicationDate; %PublicationDate.attspec;>
+<!ATTLIST %CopyrightYear; %CopyrightYear.attspec;>
+<!ATTLIST %YearFirstPublished; %YearFirstPublished.attspec;>
+<!ATTLIST %SalesRights; %SalesRights.attspec;>
+<!ATTLIST %NotForSale; %NotForSale.attspec;>
+<!ATTLIST %SalesRightsType; %SalesRightsType.attspec;>
+<!ATTLIST %RightsCountry; %RightsCountry.attspec;>
+<!ATTLIST %RightsRegion; %RightsRegion.attspec;>
+<!ATTLIST %Measure; %Measure.attspec;>
+<!ATTLIST %MeasureTypeCode; %MeasureTypeCode.attspec;>
+<!ATTLIST %Measurement; %Measurement.attspec;>
+<!ATTLIST %MeasureUnitCode; %MeasureUnitCode.attspec;>
+<!ATTLIST %Height; %Height.attspec;>
+<!ATTLIST %Width; %Width.attspec;>
+<!ATTLIST %Thickness; %Thickness.attspec;>
+<!ATTLIST %Weight; %Weight.attspec;>
+<!ATTLIST %Dimensions; %Dimensions.attspec;>
+<!ATTLIST %Annotation; %Annotation.attspec;>
+<!ATTLIST %MainDescription; %MainDescription.attspec;>
+<!ATTLIST %OtherText; %OtherText.attspec;>
+<!ATTLIST %TextTypeCode; %TextTypeCode.attspec;>
+<!ATTLIST %TextFormat; %TextFormat.attspec;>
+<!ATTLIST %Text; %Text.attspec;>
+<!ATTLIST %TextLinkType; %TextLinkType.attspec;>
+<!ATTLIST %TextLink; %TextLink.attspec;>
+<!ATTLIST %TextAuthor; %TextAuthor.attspec;>
+<!ATTLIST %TextSourceTitle; %TextSourceTitle.attspec;>
+<!ATTLIST %TextPublicationDate; %TextPublicationDate.attspec;>
+<!ATTLIST %ReviewQuote; %ReviewQuote.attspec;>
+<!ATTLIST %CoverImageFormatCode; %CoverImageFormatCode.attspec;>
+<!ATTLIST %CoverImageLinkTypeCode; %CoverImageLinkTypeCode.attspec;>
+<!ATTLIST %CoverImageLink; %CoverImageLink.attspec;>
+<!ATTLIST %MediaFile; %MediaFile.attspec;>
+<!ATTLIST %MediaFileTypeCode; %MediaFileTypeCode.attspec;>
+<!ATTLIST %MediaFileFormatCode; %MediaFileFormatCode.attspec;>
+<!ATTLIST %ImageResolution; %ImageResolution.attspec;>
+<!ATTLIST %MediaFileLinkTypeCode; %MediaFileLinkTypeCode.attspec;>
+<!ATTLIST %MediaFileLink; %MediaFileLink.attspec;>
+<!ATTLIST %TextWithDownload; %TextWithDownload.attspec;>
+<!ATTLIST %DownloadCaption; %DownloadCaption.attspec;>
+<!ATTLIST %DownloadCredit; %DownloadCredit.attspec;>
+<!ATTLIST %DownloadCopyrightNotice; %DownloadCopyrightNotice.attspec;>
+<!ATTLIST %DownloadTerms; %DownloadTerms.attspec;>
+<!ATTLIST %ProductWebsite; %ProductWebsite.attspec;>
+<!ATTLIST %ProductWebsiteDescription; %ProductWebsiteDescription.attspec;>
+<!ATTLIST %ProductWebsiteLink; %ProductWebsiteLink.attspec;>
+<!ATTLIST %PrizesDescription; %PrizesDescription.attspec;>
+<!ATTLIST %Prize; %Prize.attspec;>
+<!ATTLIST %PrizeName; %PrizeName.attspec;>
+<!ATTLIST %PrizeYear; %PrizeYear.attspec;>
+<!ATTLIST %PrizeCountry; %PrizeCountry.attspec;>
+<!ATTLIST %PrizeCode; %PrizeCode.attspec;>
+<!ATTLIST %ContentItem; %ContentItem.attspec; >
+<!ATTLIST %LevelSequenceNumber; %LevelSequenceNumber.attspec;>
+<!ATTLIST %TextItem; %TextItem.attspec; >
+<!ATTLIST %TextItemType; %TextItemType.attspec; >
+<!ATTLIST %TextItemIdentifier; %TextItemIdentifier.attspec; >
+<!ATTLIST %TextItemIDType; %TextItemIDType.attspec; >
+<!ATTLIST %FirstPageNumber; %FirstPageNumber.attspec; >
+<!ATTLIST %LastPageNumber; %LastPageNumber.attspec; >
+<!ATTLIST %ComponentTypeName; %ComponentTypeName.attspec; >
+<!ATTLIST %ComponentNumber; %ComponentNumber.attspec; >
+<!ATTLIST %ReplacedByISBN; %ReplacedByISBN.attspec;>
+<!ATTLIST %ReplacedByEAN13; %ReplacedByEAN13.attspec;>
+<!ATTLIST %RelatedProduct; %RelatedProduct.attspec;>
+<!ATTLIST %RelationCode; %RelationCode.attspec;>
+<!ATTLIST %AlternativeFormatISBN; %AlternativeFormatISBN.attspec;>
+<!ATTLIST %AlternativeFormatEAN13; %AlternativeFormatEAN13.attspec;>
+<!ATTLIST %AlternativeProductISBN; %AlternativeProductISBN.attspec;>
+<!ATTLIST %AlternativeProductEAN13; %AlternativeProductEAN13.attspec;>
+<!ATTLIST %OutOfPrintDate; %OutOfPrintDate.attspec;>
+<!ATTLIST %SupplyDetail; %SupplyDetail.attspec;>
+<!ATTLIST %SupplierEANLocationNumber; %SupplierEANLocationNumber.attspec;>
+<!ATTLIST %SupplierSAN; %SupplierSAN.attspec;>
+<!ATTLIST %SupplierName; %SupplierName.attspec;>
+<!ATTLIST %TelephoneNumber; %TelephoneNumber.attspec;>
+<!ATTLIST %FaxNumber; %FaxNumber.attspec;>
+<!ATTLIST %EmailAddress; %EmailAddress.attspec;>
+<!ATTLIST %SupplyToCountry; %SupplyToCountry.attspec;>
+<!ATTLIST %SupplyToRegion; %SupplyToRegion.attspec;>
+<!ATTLIST %SupplyToCountryExcluded; %SupplyToCountryExcluded.attspec;>
+<!ATTLIST %ReturnsCodeType; %ReturnsCodeType.attspec;>
+<!ATTLIST %ReturnsCode; %ReturnsCode.attspec;>
+<!ATTLIST %AvailabilityCode; %AvailabilityCode.attspec;>
+<!ATTLIST %NewSupplier; %NewSupplier.attspec;>
+<!ATTLIST %DateFormat; %DateFormat.attspec;>
+<!ATTLIST %ExpectedShipDate; %ExpectedShipDate.attspec;>
+<!ATTLIST %OnSaleDate; %OnSaleDate.attspec;>
+<!ATTLIST %OrderTime; %OrderTime.attspec;>
+<!ATTLIST %PackQuantity; %PackQuantity.attspec;>
+<!ATTLIST %AudienceRestrictionFlag; %AudienceRestrictionFlag.attspec;>
+<!ATTLIST %AudienceRestrictionNote; %AudienceRestrictionNote.attspec;>
+<!ATTLIST %Price; %Price.attspec;>
+<!ATTLIST %PriceTypeCode; %PriceTypeCode.attspec;>
+<!ATTLIST %PriceQualifier; %PriceQualifier.attspec;>
+<!ATTLIST %PriceTypeDescription; %PriceTypeDescription.attspec;>
+<!ATTLIST %PricePer; %PricePer.attspec;>
+<!ATTLIST %MinimumOrderQuantity; %MinimumOrderQuantity.attspec;>
+<!ATTLIST %BatchBonus; %BatchBonus.attspec;>
+<!ATTLIST %BatchQuantity; %BatchQuantity.attspec;>
+<!ATTLIST %FreeQuantity; %FreeQuantity.attspec;>
+<!ATTLIST %ClassOfTrade; %ClassOfTrade.attspec;>
+<!ATTLIST %BICDiscountGroupCode; %BICDiscountGroupCode.attspec;>
+<!ATTLIST %DiscountPercent; %DiscountPercent.attspec;>
+<!ATTLIST %PriceStatus; %PriceStatus.attspec;>
+<!ATTLIST %PriceAmount; %PriceAmount.attspec;>
+<!ATTLIST %UnpricedItemType; %UnpricedItemType.attspec;>
+<!ATTLIST %CurrencyCode; %CurrencyCode.attspec;>
+<!ATTLIST %TaxRateCode1; %TaxRateCode1.attspec;>
+<!ATTLIST %TaxRatePercent1; %TaxRatePercent1.attspec;>
+<!ATTLIST %TaxableAmount1; %TaxableAmount1.attspec;>
+<!ATTLIST %TaxAmount1; %TaxAmount1.attspec;>
+<!ATTLIST %TaxRateCode2; %TaxRateCode2.attspec;>
+<!ATTLIST %TaxRatePercent2; %TaxRatePercent2.attspec;>
+<!ATTLIST %TaxableAmount2; %TaxableAmount2.attspec;>
+<!ATTLIST %TaxAmount2; %TaxAmount2.attspec;>
+<!ATTLIST %PriceEffectiveFrom; %PriceEffectiveFrom.attspec;>
+<!ATTLIST %PriceEffectiveUntil; %PriceEffectiveUntil.attspec;>
+<!ATTLIST %PromotionCampaign; %PromotionCampaign.attspec;>
+<!ATTLIST %PromotionContact; %PromotionContact.attspec;>
+<!ATTLIST %InitialPrintRun; %InitialPrintRun.attspec;>
+<!ATTLIST %CopiesSold; %CopiesSold.attspec;>
+<!ATTLIST %BookClubAdoption; %BookClubAdoption.attspec;>
+<!ATTLIST %SubordinateEntries; %SubordinateEntries.attspec;>
+<!ATTLIST %ParentIdentifier; %ParentIdentifier.attspec;>
+<!ATTLIST %SeriesPartName; %SeriesPartName.attspec;>
+<!ATTLIST %FromEANNumber; %FromEANNumber.attspec;>
+<!ATTLIST %FromSAN; %FromSAN.attspec;>
+<!ATTLIST %FromCompany; %FromCompany.attspec;>
+<!ATTLIST %FromPerson; %FromPerson.attspec;>
+<!ATTLIST %FromEmail; %FromEmail.attspec;>
+<!ATTLIST %ToEANNumber; %ToEANNumber.attspec;>
+<!ATTLIST %ToSAN; %ToSAN.attspec;>
+<!ATTLIST %ToCompany; %ToCompany.attspec;>
+<!ATTLIST %ToPerson; %ToPerson.attspec;>
+<!ATTLIST %MessageNumber; %MessageNumber.attspec;>
+<!ATTLIST %MessageRepeat; %MessageRepeat.attspec;>
+<!ATTLIST %SentDate; %SentDate.attspec;>
+<!ATTLIST %MessageNote; %MessageNote.attspec;>
+<!ATTLIST %DefaultLanguageOfText; %DefaultLanguageOfText.attspec;>
+<!ATTLIST %DefaultPriceTypeCode; %DefaultPriceTypeCode.attspec;>
+<!ATTLIST %DefaultCurrencyCode; %DefaultCurrencyCode.attspec;>
+<!ATTLIST %DefaultLinearUnit; %DefaultLinearUnit.attspec;>
+<!ATTLIST %DefaultWeightUnit; %DefaultWeightUnit.attspec;>
+<!ATTLIST %DefaultClassOfTrade; %DefaultClassOfTrade.attspec;>
+<!ATTLIST %Header; %Header.attspec;>
+
+<!-- SPECIAL CHARACTER ENTITY SETS DECLARED AND REFERENCED HERE -->
+<!ENTITY % xhtml-lat1 PUBLIC "-//W3C//ENTITIES Latin 1 for XHTML//EN"
+           "xhtml-lat1.ent">
+%xhtml-lat1;
+<!ENTITY % xhtml-special PUBLIC "-//W3C//ENTITIES Special for XHTML//EN"
+           "xhtml-special.ent">
+%xhtml-special;
+<!ENTITY % xhtml-symbol PUBLIC "-//W3C//ENTITIES Symbols for XHTML//EN"
+           "xhtml-symbol.ent">
+%xhtml-symbol;
+
+<!ENTITY % GroupsAsElements "IGNORE">
+
+<!--
+**************************************************
+*                                                *
+*                    GROUP MH6                   *
+*             MESSAGE HEADER ELEMENTS            *
+*                                                *
+**************************************************
+-->
+
+<!ELEMENT %FromEANNumber; (#PCDATA)>
+<!ELEMENT %FromSAN; (#PCDATA)>
+<!ELEMENT %FromCompany; (#PCDATA)>
+<!ELEMENT %FromPerson; (#PCDATA)>
+<!ELEMENT %FromEmail; (#PCDATA)>
+<!ELEMENT %ToEANNumber; (#PCDATA)>
+<!ELEMENT %ToSAN; (#PCDATA)>
+<!ELEMENT %ToCompany; (#PCDATA)>
+<!ELEMENT %ToPerson; (#PCDATA)>
+<!ELEMENT %MessageNumber; (#PCDATA)>
+<!ELEMENT %MessageRepeat; (#PCDATA)>
+<!ELEMENT %SentDate; (#PCDATA)>
+<!ELEMENT %MessageNote; (#PCDATA)>
+<!ELEMENT %DefaultLanguageOfText; (#PCDATA)>
+<!ELEMENT %DefaultPriceTypeCode; (#PCDATA)>
+<!ELEMENT %DefaultCurrencyCode; (#PCDATA)>
+<!ELEMENT %DefaultLinearUnit; (#PCDATA)>
+<!ELEMENT %DefaultWeightUnit; (#PCDATA)>
+<!ELEMENT %DefaultClassOfTrade; (#PCDATA)>
+
+<!ENTITY % HeaderModel "(((%FromEANNumber; | %FromSAN;), (%FromCompany;)?) | %FromCompany;), 
+                        %FromPerson;, (%FromEmail;)?, (%ToEANNumber;)?, (%ToSAN;)?, (%ToCompany;)?, 
+                        (%ToPerson;)?, (%MessageNumber;)?, (%MessageRepeat;)?, %SentDate;, (%MessageNote;)?, 
+                        (%DefaultLanguageOfText;)?, (%DefaultPriceTypeCode;)?, (%DefaultCurrencyCode;)?, 
+                        (%DefaultLinearUnit;)?, (%DefaultWeightUnit;)?, (%DefaultClassOfTrade;)?">
+
+<!ELEMENT %Header; (%HeaderModel;)>
+
+<!ENTITY % Group-MH6-mod "((%HeaderModel;) | %Header;)">
+
+<![%GroupsAsElements;[
+<!ENTITY % Group-MH6 "Group-MH6">
+<!ELEMENT %Group-MH6; (%Group-MH6-mod;)>
+]]>
+<!ENTITY % Group-MH6 "%Group-MH6-mod;">
+
+<!--
+**************************************************
+*                                                *
+*                    GROUP PR1                   *
+*    RECORD REFERENCE NUMBER, TYPE AND SOURCE    *
+*                                                *
+**************************************************
+-->
+
+<!ELEMENT %RecordReference; (#PCDATA)>
+<!ELEMENT %NotificationType; (#PCDATA)>
+<!ELEMENT %DeletionCode; (#PCDATA)>
+<!ELEMENT %DeletionText; (#PCDATA)>
+<!ELEMENT %RecordSourceType; (#PCDATA)>
+<!ELEMENT %RecordSourceIdentifierType; (#PCDATA)>
+<!ELEMENT %RecordSourceIdentifier; (#PCDATA)>
+<!ELEMENT %RecordSourceName; (#PCDATA)>
+
+<!ENTITY % Group-PR1-mod "%RecordReference;, %NotificationType;, (%DeletionCode;)?, 
+                          (%DeletionText;)?, (%RecordSourceType;)?, 
+                          (%RecordSourceIdentifierType;, %RecordSourceIdentifier;)?, 
+                          (%RecordSourceName;)?">
+
+<![%GroupsAsElements;[
+<!ENTITY % Group-PR1 "Group-PR1">
+<!ELEMENT %Group-PR1; (%Group-PR1-mod;)>
+]]>
+<!ENTITY % Group-PR1 "%Group-PR1-mod;">
+
+<!--
+**************************************************
+*                                                *
+*                    GROUP PR2                   *
+*                 PRODUCT NUMBERS                *
+*                                                *
+**************************************************
+-->
+
+<!ELEMENT %EAN13; (#PCDATA)>
+<!ELEMENT %ISBN; (#PCDATA)>
+<!ELEMENT %UPC; (#PCDATA)>
+<!ELEMENT %PublisherProductNo; (#PCDATA)>
+<!ELEMENT %ISMN; (#PCDATA)>
+<!ELEMENT %DOI; (#PCDATA)>
+<!ELEMENT %ProductIDType; (#PCDATA)>
+<!ELEMENT %IDTypeName; (#PCDATA)>
+<!ELEMENT %IDValue; (#PCDATA)>
+<!ELEMENT %Barcode; (#PCDATA)>
+<!ELEMENT %ReplacesEAN13; (#PCDATA)>
+<!ELEMENT %ReplacesISBN; (#PCDATA)>
+
+<!ELEMENT %ProductIdentifier; (%ProductIDType;, (%IDTypeName;)?, %IDValue;)>
+
+<!ENTITY % Group-PR2-mod 
+           "((%ISBN;, (%EAN13;)?, (%UPC;)?, (%PublisherProductNo;)?, (%ISMN;)?, (%DOI;)?, (%ProductIdentifier;)*) | 
+             (%EAN13;, (%UPC;)?, (%PublisherProductNo;)?, (%ISMN;)?, (%DOI;)?, (%ProductIdentifier;)*) | 
+             (%UPC;, (%PublisherProductNo;)?, (%ISMN;)?, (%DOI;)?, (%ProductIdentifier;)*) | 
+             (%PublisherProductNo;, (%ISMN;)?, (%DOI;)?, (%ProductIdentifier;)*) | 
+             (%ISMN;, (%DOI;)?, (%ProductIdentifier;)*) | (%DOI;, (%ProductIdentifier;)*) | (%ProductIdentifier;)+), 
+             (%Barcode;)?, (%ReplacesISBN;)?, (%ReplacesEAN13;)?">
+
+<![%GroupsAsElements;[
+<!ENTITY % Group-PR2 "Group-PR2">
+<!ELEMENT %Group-PR2; (%Group-PR2-mod;)>
+]]>
+<!ENTITY % Group-PR2 "%Group-PR2-mod;">
+
+<!--
+**************************************************
+*                                                *
+*                    GROUP PR3                   *
+*                  PRODUCT FORM                  *
+*                                                *
+**************************************************
+-->
+
+<!ELEMENT %ProductForm; (#PCDATA)>
+<!ELEMENT %BookFormDetail; (#PCDATA)>
+<!ELEMENT %ProductFormDescription; (#PCDATA)>
+<!ELEMENT %NumberOfPieces; (#PCDATA)>
+<!ELEMENT %ItemQuantity; (#PCDATA)>
+<!ELEMENT %ProductClassificationType; (#PCDATA)>
+<!ELEMENT %ProductClassificationCode; (#PCDATA)>
+
+<!ELEMENT %ContainedItem; ((%ISBN;)?, (%EAN13;)?, %ProductForm;, (%BookFormDetail;)*, 
+                           (%ProductFormDescription;)?, (%NumberOfPieces;)?, (%ItemQuantity;)?)>
+
+<!ELEMENT %ProductClassification; (%ProductClassificationType;, %ProductClassificationCode;)>
+
+<!ENTITY % Group-PR3-mod "%ProductForm;, (%BookFormDetail;)*, 
+                          (%ProductFormDescription;)?, (%NumberOfPieces;)?, 
+                          (%ContainedItem;)*, (%ProductClassification;)*">
+
+<![%GroupsAsElements;[
+<!ENTITY % Group-PR3 "Group-PR3">
+<!ELEMENT %Group-PR3; (%Group-PR3-mod;)>
+]]>
+<!ENTITY % Group-PR3 "%Group-PR3-mod;">
+
+<!--
+**************************************************
+*                                                *
+*                    GROUP PR4                   *
+*               EPUBLICATION DETAIL              *
+*                                                *
+**************************************************
+-->
+
+<!ELEMENT %EpubType; (#PCDATA)>
+<!ELEMENT %EpubTypeVersion; (#PCDATA)>
+<!ELEMENT %EpubTypeDescription; (#PCDATA)>
+<!ELEMENT %EpubFormat; (#PCDATA)>
+<!ELEMENT %EpubFormatVersion; (#PCDATA)>
+<!ELEMENT %EpubFormatDescription; (#PCDATA)>
+<!ELEMENT %EpubSource; (#PCDATA)>
+<!ELEMENT %EpubSourceVersion; (#PCDATA)>
+<!ELEMENT %EpubSourceDescription; (#PCDATA)>
+<!ELEMENT %EpubTypeNote; (#PCDATA)>
+
+<!ENTITY % Group-PR4-mod "(%EpubType;, (%EpubTypeVersion;)?, (%EpubTypeDescription;)?, 
+                           (%EpubFormat;, (%EpubFormatVersion;)?)?, (%EpubFormatDescription;)?, 
+                           (%EpubSource;, (%EpubSourceVersion;)?)?, (%EpubSourceDescription;)?, 
+                           (%EpubTypeNote;)?)?">
+
+<![%GroupsAsElements;[
+<!ENTITY % Group-PR4 "Group-PR4">
+<!ELEMENT %Group-PR4; (%Group-PR4-mod;)>
+]]>
+<!ENTITY % Group-PR4 "%Group-PR4-mod;">
+
+<!--
+**************************************************
+*                                                *
+*                    GROUP PR5                   *
+*                     SERIES                     *
+*                                                *
+**************************************************
+-->
+
+<!ELEMENT %SeriesISSN; (#PCDATA)>
+<!ELEMENT %PublisherSeriesCode; (#PCDATA)>
+<!ELEMENT %SeriesIDType; (#PCDATA)>
+<!ELEMENT %TitleOfSeries; (#PCDATA)>
+<!ELEMENT %NumberWithinSeries; (#PCDATA)>
+<!ELEMENT %YearOfAnnual; (#PCDATA)>
+
+<!ELEMENT %SeriesIdentifier; (%SeriesIDType;, (%IDTypeName;)?, %IDValue;)>
+
+<!ENTITY % SeriesModel "(%SeriesISSN;)?, (%PublisherSeriesCode;)?, (%SeriesIdentifier;)*, 
+                         %TitleOfSeries;, (%Contributor;)*, (%NumberWithinSeries;)?, 
+                         (%YearOfAnnual;)?">
+
+<!ELEMENT %Series; (%SeriesModel;)>
+
+<!ENTITY % Group-PR5-mod "((%SeriesModel;) | (%Series;)+)?">
+
+<![%GroupsAsElements;[
+<!ENTITY % Group-PR5 "Group-PR5">
+<!ELEMENT %Group-PR5; (%Group-PR5-mod;)>
+]]>
+<!ENTITY % Group-PR5 "%Group-PR5-mod;">
+
+<!--
+**************************************************
+*                                                *
+*                    GROUP PR6                   *
+*                       SET                      *
+*                                                *
+**************************************************
+-->
+
+<!ELEMENT %EAN13OfSet; (#PCDATA)>
+<!ELEMENT %ISBNOfSet; (#PCDATA)>
+<!ELEMENT %TitleOfSet; (#PCDATA)>
+<!ELEMENT %SetPartNumber; (#PCDATA)>
+<!ELEMENT %SetPartTitle; (#PCDATA)>
+<!ELEMENT %ItemNumberWithinSet; (#PCDATA)>
+<!ELEMENT %SetItemTitle; (#PCDATA)>
+
+<!ENTITY % SetModel "(%ISBNOfSet;)?, (%EAN13OfSet;)?, (%ProductIdentifier;)*, 
+                     %TitleOfSet;, (%SetPartNumber;)?, (%SetPartTitle;)?, 
+                     (%ItemNumberWithinSet;)?, (%SetItemTitle;)?">
+
+<!ELEMENT %Set; (%SetModel;)>
+
+<!ENTITY % Group-PR6-mod "((%SetModel;) | (%Set;)+)?">
+
+<![%GroupsAsElements;[
+<!ENTITY % Group-PR6 "Group-PR6">
+<!ELEMENT %Group-PR6; (%Group-PR6-mod;)>
+]]>
+<!ENTITY % Group-PR6 "%Group-PR6-mod;">
+
+<!--
+**************************************************
+*                                                *
+*                    GROUP PR7                   *
+*                      TITLE                     *
+*                                                *
+**************************************************
+-->
+
+<!ELEMENT %TextCaseFlag; (#PCDATA)>
+<!ELEMENT %DistinctiveTitle; (#PCDATA)>
+<!ELEMENT %Subtitle; (#PCDATA)>
+<!ELEMENT %TitlePrefix; (#PCDATA)>
+<!ELEMENT %TitleWithoutPrefix; (#PCDATA)>
+<!ELEMENT %TranslationOfTitle; (#PCDATA)>
+<!ELEMENT %FormerTitle; (#PCDATA)>
+<!ELEMENT %TitleType; (#PCDATA)>
+<!ELEMENT %AbbreviatedLength; (#PCDATA)>
+<!ELEMENT %TitleText; (#PCDATA)>
+<!ELEMENT %WorkIDType; (#PCDATA)>
+
+<!ELEMENT %Title; (%TitleType;, (%AbbreviatedLength;)?, (%TextCaseFlag;)?, %TitleText;, (%Subtitle;)?)>
+
+<!ELEMENT %WorkIdentifier; (%WorkIDType;, (%IDTypeName;)?, %IDValue;)>
+
+<!ENTITY % Group-PR7-mod "(%TextCaseFlag;)?, 
+                          (%DistinctiveTitle; | (%TitlePrefix;, %TitleWithoutPrefix;)), 
+                          (%Subtitle;)?, (%TranslationOfTitle;)?, (%FormerTitle;)*, 
+                          (%Title;)*, (%WorkIdentifier;)*">
+
+<![%GroupsAsElements;[
+<!ENTITY % Group-PR7 "Group-PR7">
+<!ELEMENT %Group-PR7; (%Group-PR7-mod;)>
+]]>
+<!ENTITY % Group-PR7 "%Group-PR7-mod;">
+
+<!--
+**************************************************
+*                                                *
+*                    GROUP PR8                   *
+*                   AUTHORSHIP                   *
+*                                                *
+**************************************************
+-->
+
+<!ELEMENT %SequenceNumber; (#PCDATA)>
+<!ELEMENT %ContributorRole; (#PCDATA)>
+<!ELEMENT %LanguageCode; (#PCDATA)>
+<!ELEMENT %PersonName; (#PCDATA)>
+<!ELEMENT %PersonNameInverted; (#PCDATA)>
+<!ELEMENT %TitlesBeforeNames; (#PCDATA)>
+<!ELEMENT %NamesBeforeKey; (#PCDATA)>
+<!ELEMENT %PrefixToKey; (#PCDATA)>
+<!ELEMENT %SuffixToKey; (#PCDATA)>
+<!ELEMENT %KeyNames; (#PCDATA)>
+<!ELEMENT %NamesAfterKey; (#PCDATA)>
+<!ELEMENT %LettersAfterNames; (#PCDATA)>
+<!ELEMENT %TitlesAfterNames; (#PCDATA)>
+<!ELEMENT %PersonNameType; (#PCDATA)>
+<!ELEMENT %BiographicalNote; (#PCDATA)>
+<!ELEMENT %ProfessionalPosition; (#PCDATA)>
+<!ELEMENT %Affiliation; (#PCDATA)>
+<!ELEMENT %CorporateName; (#PCDATA)>
+<!ELEMENT %ContributorDescription; (#PCDATA)>
+<!ELEMENT %UnnamedPersons; (#PCDATA)>
+<!ELEMENT %ContributorStatement; (#PCDATA)>
+
+<!ENTITY % StructuredNameModel "(%TitlesBeforeNames;)?, (%NamesBeforeKey;)?, (%PrefixToKey;)?, 
+                      %KeyNames;, (%NamesAfterKey;)?, (%SuffixToKey;)?, 
+                      (%LettersAfterNames;)?, (%TitlesAfterNames;)?">
+
+<!ELEMENT %Name; (%PersonNameType;, %StructuredNameModel;)>
+
+<!ELEMENT %Contributor; ((%SequenceNumber;)?, (%ContributorRole;, (%LanguageCode;)?)+, 
+                         ((((%CorporateName;, (%BiographicalNote;)?) | 
+                            (((%PersonName;, (%PersonNameInverted;)?, (%StructuredNameModel;)?) | 
+                              (%PersonNameInverted;, (%StructuredNameModel;)?) | 
+                              (%StructuredNameModel;)), 
+                             (%Name;)*, (%BiographicalNote;)?, (%ProfessionalPosition;)?, 
+                             (%Affiliation;)?)), (%ContributorDescription;)?) | 
+                          (%UnnamedPersons;)))>
+
+<!ENTITY % Group-PR8-mod "(%Contributor;)*, (%ContributorStatement;)?">
+
+<![%GroupsAsElements;[
+<!ENTITY % Group-PR8 "Group-PR8">
+<!ELEMENT %Group-PR8; (%Group-PR8-mod;)>
+]]>
+<!ENTITY % Group-PR8 "%Group-PR8-mod;">
+
+<!--
+**************************************************
+*                                                *
+*                    GROUP PR9                   *
+*                   CONFERENCE                   *
+*                                                *
+**************************************************
+-->
+
+<!ELEMENT %ConferenceDescription; (#PCDATA)>
+<!ELEMENT %ConferenceRole; (#PCDATA)>
+<!ELEMENT %ConferenceName; (#PCDATA)>
+<!ELEMENT %ConferenceNumber; (#PCDATA)>
+<!ELEMENT %ConferenceDate; (#PCDATA)>
+<!ELEMENT %ConferencePlace; (#PCDATA)>
+
+<!ENTITY % Group-PR9-mod "(%ConferenceDescription; | 
+                         ((%ConferenceRole;)?, %ConferenceName;, (%ConferenceNumber;)?, 
+                          (%ConferenceDate;)?, (%ConferencePlace;)?))?">
+
+<![%GroupsAsElements;[
+<!ENTITY % Group-PR9 "Group-PR9">
+<!ELEMENT %Group-PR9; (%Group-PR9-mod;)>
+]]>
+<!ENTITY % Group-PR9 "%Group-PR9-mod;">
+
+<!--
+**************************************************
+*                                                *
+*                   GROUP PR10                   *
+*                     EDITION                    *
+*                                                *
+**************************************************
+-->
+
+<!ELEMENT %EditionTypeCode; (#PCDATA)>
+<!ELEMENT %EditionNumber; (#PCDATA)>
+<!ELEMENT %EditionVersionNumber; (#PCDATA)>
+<!ELEMENT %EditionStatement; (#PCDATA)>
+
+<!ENTITY % Group-PR10-mod "(%EditionTypeCode;)*, (%EditionNumber;)?, (%EditionVersionNumber;)?, 
+                           (%EditionStatement;)?">
+
+<![%GroupsAsElements;[
+<!ENTITY % Group-PR10 "Group-PR10">
+<!ELEMENT %Group-PR10; (%Group-PR10-mod;)>
+]]>
+<!ENTITY % Group-PR10 "%Group-PR10-mod;">
+
+<!--
+**************************************************
+*                                                *
+*                   GROUP PR11                   *
+*                    LANGUAGE                    *
+*                                                *
+**************************************************
+-->
+
+<!ELEMENT %LanguageOfText; (#PCDATA)>
+<!ELEMENT %OriginalLanguage; (#PCDATA)>
+<!ELEMENT %LanguageRole; (#PCDATA)>
+<!ELEMENT %CountryCode; (#PCDATA)>
+
+<!ELEMENT %Language; (%LanguageRole;, %LanguageCode;, (%CountryCode;)?)>
+
+<!ENTITY % Group-PR11-mod "(%LanguageOfText;)*, (%OriginalLanguage;)?, (%Language;)*">
+
+<![%GroupsAsElements;[
+<!ENTITY % Group-PR11 "Group-PR11">
+<!ELEMENT %Group-PR11; (%Group-PR11-mod;)>
+]]>
+<!ENTITY % Group-PR11 "%Group-PR11-mod;">
+
+<!--
+**************************************************
+*                                                *
+*                   GROUP PR12                   *
+*            EXTENTS AND OTHER CONTENT           *
+*                                                *
+**************************************************
+-->
+
+<!ELEMENT %NumberOfPages; (#PCDATA)>
+<!ELEMENT %PagesRoman; (#PCDATA)>
+<!ELEMENT %PagesArabic; (#PCDATA)>
+<!ELEMENT %NumberOfIllustrations; (#PCDATA)>
+<!ELEMENT %IllustrationsNote; (#PCDATA)>
+<!ELEMENT %IllustrationType; (#PCDATA)>
+<!ELEMENT %Number; (#PCDATA)>
+<!ELEMENT %MapScale; (#PCDATA)>
+<!ELEMENT %ExtentType; (#PCDATA)>
+<!ELEMENT %ExtentValue; (#PCDATA)>
+<!ELEMENT %ExtentUnit; (#PCDATA)>
+
+<!ELEMENT %Illustrations; (%IllustrationType;, %Number;)>
+
+<!ELEMENT %Extent; (%ExtentType;, %ExtentValue;, (%ExtentUnit;)?)>
+
+<!ENTITY % Group-PR12-mod "(%NumberOfPages;)?, (%PagesRoman;)?, (%PagesArabic;)?, (%Extent;)*, 
+                           (%NumberOfIllustrations;)?, (%IllustrationsNote;)?, (%Illustrations;)*, 
+                           (%MapScale;)?">
+
+<![%GroupsAsElements;[
+<!ENTITY % Group-PR12 "Group-PR12">
+<!ELEMENT %Group-PR12; (%Group-PR12-mod;)>
+]]>
+<!ENTITY % Group-PR12 "%Group-PR12-mod;">
+
+<!--
+**************************************************
+*                                                *
+*                   GROUP PR13                   *
+*                     SUBJECT                    *
+*                                                *
+**************************************************
+-->
+
+<!ELEMENT %BASICMainSubject; (#PCDATA)>
+<!ELEMENT %BASICVersion; (#PCDATA)>
+<!ELEMENT %BICMainSubject; (#PCDATA)>
+<!ELEMENT %BICVersion; (#PCDATA)>
+<!ELEMENT %MainSubjectSchemeIdentifier; (#PCDATA)>
+<!ELEMENT %SubjectSchemeIdentifier; (#PCDATA)>
+<!ELEMENT %SubjectSchemeName; (#PCDATA)>
+<!ELEMENT %SubjectSchemeVersion; (#PCDATA)>
+<!ELEMENT %SubjectCode; (#PCDATA)>
+<!ELEMENT %SubjectHeadingText; (#PCDATA)>
+<!ELEMENT %CorporateBodyAsSubject; (#PCDATA)>
+<!ELEMENT %PlaceAsSubject; (#PCDATA)>
+
+<!ELEMENT %MainSubject; (%MainSubjectSchemeIdentifier;, (%SubjectSchemeVersion;)?, 
+                         ((%SubjectCode;, (%SubjectHeadingText;)?) | %SubjectHeadingText;))>
+
+<!ELEMENT %Subject; (%SubjectSchemeIdentifier;, (%SubjectSchemeName;)?, (%SubjectSchemeVersion;)?, 
+                     ((%SubjectCode;, (%SubjectHeadingText;)?) | %SubjectHeadingText;))>
+
+<!ELEMENT %PersonAsSubject; (%PersonName; | %PersonNameInverted; | 
+                             (%StructuredNameModel;))>
+
+<!ENTITY % Group-PR13-mod "(%BASICMainSubject;, (%BASICVersion;)?)?, (%BICMainSubject;, (%BICVersion;)?)?, 
+                         (%MainSubject;)?, (%Subject;)*, (%PersonAsSubject;)*, (%CorporateBodyAsSubject;)*, 
+                         (%PlaceAsSubject;)*">
+
+<![%GroupsAsElements;[
+<!ENTITY % Group-PR13 "Group-PR13">
+<!ELEMENT %Group-PR13; (%Group-PR13-mod;)>
+]]>
+<!ENTITY % Group-PR13 "%Group-PR13-mod;">
+
+<!--
+**************************************************
+*                                                *
+*                   GROUP PR14                   *
+*                    AUDIENCE                    *
+*                                                *
+**************************************************
+-->
+
+<!ELEMENT %AudienceCodeType; (#PCDATA)>
+<!ELEMENT %AudienceCodeTypeName; (#PCDATA)>
+<!ELEMENT %AudienceCodeValue; (#PCDATA)>
+<!ELEMENT %AudienceCode; (#PCDATA)>
+<!ELEMENT %USSchoolGrade; (#PCDATA)>
+<!ELEMENT %InterestAge; (#PCDATA)>
+<!ELEMENT %AudienceRangeQualifier; (#PCDATA)>
+<!ELEMENT %AudienceRangePrecision; (#PCDATA)>
+<!ELEMENT %AudienceRangeValue; (#PCDATA)>
+<!ELEMENT %AudienceDescription; (#PCDATA)>
+<!ELEMENT %ComplexitySchemeIdentifier; (#PCDATA)>
+<!ELEMENT %ComplexityCode; (#PCDATA)>
+
+<!ELEMENT %Audience; (%AudienceCodeType;, (%AudienceCodeTypeName;)?, %AudienceCodeValue;)>
+
+<!ELEMENT %AudienceRange; ((%AudienceRangeQualifier;)?, %AudienceRangePrecision;, 
+                           %AudienceRangeValue;, (%AudienceRangePrecision;, %AudienceRangeValue;)?)>
+
+<!ELEMENT %Complexity; ((%ComplexitySchemeIdentifier;), (%ComplexityCode;))>
+
+<!ENTITY % Group-PR14-mod "(%AudienceCode;)*, (%Audience;)*, (%USSchoolGrade;)?, (%InterestAge;)?, 
+                     (%AudienceRange;)*, (%AudienceDescription;)?, (%Complexity;)*">
+
+<![%GroupsAsElements;[
+<!ENTITY % Group-PR14 "Group-PR14">
+<!ELEMENT %Group-PR14; (%Group-PR14-mod;)>
+]]>
+<!ENTITY % Group-PR14 "%Group-PR14-mod;">
+
+<!--
+**************************************************
+*                                                *
+*                   GROUP PR15                   *
+*     DESCRIPTIONS AND OTHER SUPPORTING TEXT     *
+*                                                *
+**************************************************
+-->
+
+<!ELEMENT %Annotation; (#PCDATA)>
+<!ELEMENT %MainDescription; (#PCDATA)>
+<!ELEMENT %TextTypeCode; (#PCDATA)>
+<!ELEMENT %TextFormat; (#PCDATA)>
+<!ELEMENT %Text; (#PCDATA)>
+<!ELEMENT %TextLinkType; (#PCDATA)>
+<!ELEMENT %TextLink; (#PCDATA)>
+<!ELEMENT %TextAuthor; (#PCDATA)>
+<!ELEMENT %TextSourceTitle; (#PCDATA)>
+<!ELEMENT %TextPublicationDate; (#PCDATA)>
+<!ELEMENT %ReviewQuote; (#PCDATA)>
+
+<!ELEMENT %OtherText; ((%TextTypeCode;)?, (%TextFormat;)?, (%Text; | (%TextLinkType;, %TextLink;)), 
+                       (%TextAuthor;)?, (%TextSourceTitle;)?, (%TextPublicationDate;)?)>
+
+<!ENTITY % Group-PR15-mod "(%Annotation;)?, (%MainDescription;)?, (%OtherText;)*, (%ReviewQuote;)*">
+
+<![%GroupsAsElements;[
+<!ENTITY % Group-PR15 "Group-PR15">
+<!ELEMENT %Group-PR15; (%Group-PR15-mod;)>
+]]>
+<!ENTITY % Group-PR15 "%Group-PR15-mod;">
+
+<!--
+**************************************************
+*                                                *
+*                   GROUP PR16                   *
+*      LINKS TO IMAGE / AUDIO / VIDEO FILES      *
+*                                                *
+**************************************************
+-->
+
+<!ELEMENT %CoverImageFormatCode; (#PCDATA)>
+<!ELEMENT %CoverImageLinkTypeCode; (#PCDATA)>
+<!ELEMENT %CoverImageLink; (#PCDATA)>
+<!ELEMENT %MediaFileTypeCode; (#PCDATA)>
+<!ELEMENT %MediaFileFormatCode; (#PCDATA)>
+<!ELEMENT %ImageResolution; (#PCDATA)>
+<!ELEMENT %MediaFileLinkTypeCode; (#PCDATA)>
+<!ELEMENT %MediaFileLink; (#PCDATA)>
+<!ELEMENT %TextWithDownload; (#PCDATA)>
+<!ELEMENT %DownloadCaption; (#PCDATA)>
+<!ELEMENT %DownloadCredit; (#PCDATA)>
+<!ELEMENT %DownloadCopyrightNotice; (#PCDATA)>
+<!ELEMENT %DownloadTerms; (#PCDATA)>
+<!ELEMENT %ProductWebsiteDescription; (#PCDATA)>
+<!ELEMENT %ProductWebsiteLink; (#PCDATA)>
+
+<!ELEMENT %MediaFile; (%MediaFileTypeCode;, (%MediaFileFormatCode;)?, (%ImageResolution;)?, 
+                       %MediaFileLinkTypeCode;, %MediaFileLink;, 
+                       ((%TextWithDownload;) | 
+                        (%DownloadCaption;, (%DownloadCredit;)?, (%DownloadCopyrightNotice;)?) | 
+                        (%DownloadCredit;, (%DownloadCopyrightNotice;)?) | %DownloadCopyrightNotice;)?, 
+                       (%DownloadTerms;)?)>
+
+<!ELEMENT %ProductWebsite; ((%ProductWebsiteDescription;)?, %ProductWebsiteLink;)>
+
+<!ENTITY % Group-PR16-mod "(%CoverImageFormatCode;, %CoverImageLinkTypeCode;, %CoverImageLink;)?, 
+                         (%MediaFile;)*, (%ProductWebsite;)*">
+
+<![%GroupsAsElements;[
+<!ENTITY % Group-PR16 "Group-PR16">
+<!ELEMENT %Group-PR16; (%Group-PR16-mod;)>
+]]>
+<!ENTITY % Group-PR16 "%Group-PR16-mod;">
+
+<!--
+**************************************************
+*                                                *
+*                   GROUP PR17                   *
+*                     PRIZES                     *
+*                                                *
+**************************************************
+-->
+
+<!ELEMENT %PrizesDescription; (#PCDATA)>
+<!ELEMENT %PrizeName; (#PCDATA)>
+<!ELEMENT %PrizeYear; (#PCDATA)>
+<!ELEMENT %PrizeCountry; (#PCDATA)>
+<!ELEMENT %PrizeCode; (#PCDATA)>
+
+<!ELEMENT %Prize; (%PrizeName;, (%PrizeYear;)?, (%PrizeCountry;)?, (%PrizeCode;)?)>
+
+<!ENTITY % Group-PR17-mod "(%PrizesDescription; | (%Prize;)+)?">
+
+<![%GroupsAsElements;[
+<!ENTITY % Group-PR17 "Group-PR17">
+<!ELEMENT %Group-PR17; (%Group-PR17-mod;)>
+]]>
+<!ENTITY % Group-PR17 "%Group-PR17-mod;">
+
+<!--
+**************************************************
+*                                                *
+*                   GROUP PR18                   *
+*                  CONTENT ITEMS                 *
+*                                                *
+**************************************************
+-->
+
+<!ELEMENT %TextItemType; (#PCDATA)>
+<!ELEMENT %TextItemIDType; (#PCDATA)>
+<!ELEMENT %FirstPageNumber; (#PCDATA)>
+<!ELEMENT %LastPageNumber; (#PCDATA)>
+<!ELEMENT %ComponentTypeName; (#PCDATA)>
+<!ELEMENT %ComponentNumber; (#PCDATA)>
+
+<!ELEMENT %TextItemIdentifier; (%TextItemIDType;, (%IDTypeName;)?, %IDValue;)>
+
+<!ELEMENT %TextItem; (%TextItemType;, (%TextItemIdentifier;)*, (%FirstPageNumber;)?, 
+                      (%LastPageNumber;)?, (%NumberOfPages;)?)>
+
+<!ELEMENT %ContentItem; ((%LevelSequenceNumber;)?, %TextItem;, 
+                         ((%ComponentTypeName;, (%ComponentNumber;)?, (%DistinctiveTitle;)?) | 
+                          (%DistinctiveTitle;)), (%Title;)*, (%Contributor;)*)>
+
+<!ENTITY % Group-PR18-mod "(%ContentItem;)*">
+
+<![%GroupsAsElements;[
+<!ENTITY % Group-PR18 "Group-PR18">
+<!ELEMENT %Group-PR18; (%Group-PR18-mod;)>
+]]>
+<!ENTITY % Group-PR18 "%Group-PR18-mod;">
+
+<!--
+**************************************************
+*                                                *
+*                   GROUP PR19                   *
+*              PUBLISHER INFORMATION             *
+*                                                *
+**************************************************
+-->
+
+<!ELEMENT %ImprintName; (#PCDATA)>
+<!ELEMENT %PublisherName; (#PCDATA)>
+<!ELEMENT %PublishingRole; (#PCDATA)>
+<!ELEMENT %NameCodeType; (#PCDATA)>
+<!ELEMENT %NameCodeTypeName; (#PCDATA)>
+<!ELEMENT %NameCodeValue; (#PCDATA)>
+<!ELEMENT %CityOfPublication; (#PCDATA)>
+<!ELEMENT %CountryOfPublication; (#PCDATA)>
+<!ELEMENT %CopublisherName; (#PCDATA)>
+<!ELEMENT %SponsorName; (#PCDATA)>
+<!ELEMENT %OriginalPublisher; (#PCDATA)>
+
+<!ELEMENT %Imprint; (%NameCodeType;, (%NameCodeTypeName;)?, %NameCodeValue;, (%ImprintName;)?)>
+
+<!ELEMENT %Publisher; ((%PublishingRole;)?, %NameCodeType;, (%NameCodeTypeName;)?, %NameCodeValue;, (%PublisherName;)?)>
+<!ENTITY % Group-PR19-mod "((%ImprintName;, (%Imprint;)*, (%PublisherName;)?, (%Publisher;)?) | 
+                          ((%Imprint;)*, %PublisherName;, (%Publisher;)?)), 
+                         (%CityOfPublication;)*, (%CountryOfPublication;)?, 
+                         (%CopublisherName;)*, (%SponsorName;)*, (%OriginalPublisher;)?">
+
+<![%GroupsAsElements;[
+<!ENTITY % Group-PR19 "Group-PR19">
+<!ELEMENT %Group-PR19; (%Group-PR19-mod;)>
+]]>
+<!ENTITY % Group-PR19 "%Group-PR19-mod;">
+
+<!--
+**************************************************
+*                                                *
+*                   GROUP PR20                   *
+*                PUBLISHING DATES                *
+*                                                *
+**************************************************
+-->
+
+<!ELEMENT %AnnouncementDate; (#PCDATA)>
+<!ELEMENT %PublicationDate; (#PCDATA)>
+<!ELEMENT %CopyrightYear; (#PCDATA)>
+<!ELEMENT %YearFirstPublished; (#PCDATA)>
+
+<!ENTITY % Group-PR20-mod "(%AnnouncementDate;)?, (%PublicationDate;)?, (%CopyrightYear;)?, 
+                         (%YearFirstPublished;)?">
+
+<![%GroupsAsElements;[
+<!ENTITY % Group-PR20 "Group-PR20">
+<!ELEMENT %Group-PR20; (%Group-PR20-mod;)>
+]]>
+<!ENTITY % Group-PR20 "%Group-PR20-mod;">
+
+<!--
+**************************************************
+*                                                *
+*                   GROUP PR21                   *
+*               TERRITORIAL RIGHTS               *
+*                                                *
+**************************************************
+-->
+
+<!ELEMENT %SalesRightsType; (#PCDATA)>
+<!ELEMENT %RightsCountry; (#PCDATA)>
+<!ELEMENT %RightsRegion; (#PCDATA)>
+
+<!ENTITY % TerritoriesModel "(((%RightsCountry;)+, (%RightsRegion;)*) | (%RightsRegion;)+)">
+
+<!ELEMENT %SalesRights; (%SalesRightsType;, %TerritoriesModel;)>
+
+<!ELEMENT %NotForSale; (%TerritoriesModel;, (%ISBN;)?, (%EAN13;)?, (%PublisherName;)?)>
+
+<!ENTITY % Group-PR21-mod "(%SalesRights;, (%SalesRights;, (%SalesRights;)?)?)?, (%NotForSale;)*">
+
+<![%GroupsAsElements;[
+<!ENTITY % Group-PR21 "Group-PR21">
+<!ELEMENT %Group-PR21; (%Group-PR21-mod;)>
+]]>
+<!ENTITY % Group-PR21 "%Group-PR21-mod;">
+
+<!--
+**************************************************
+*                                                *
+*                   GROUP PR22                   *
+*                   DIMENSIONS                   *
+*                                                *
+**************************************************
+-->
+
+<!ELEMENT %MeasureTypeCode; (#PCDATA)>
+<!ELEMENT %Measurement; (#PCDATA)>
+<!ELEMENT %MeasureUnitCode; (#PCDATA)>
+<!ELEMENT %Height; (#PCDATA)>
+<!ELEMENT %Width; (#PCDATA)>
+<!ELEMENT %Thickness; (#PCDATA)>
+<!ELEMENT %Weight; (#PCDATA)>
+<!ELEMENT %Dimensions; (#PCDATA)>
+
+<!ENTITY % DimensionsUsingDefaults "(((%Height;, (%Width;)?, (%Thickness;)?), (%Weight;)?) | (%Weight;))">
+
+<!ELEMENT %Measure; (%MeasureTypeCode;, %Measurement;, %MeasureUnitCode;)>
+
+<!ENTITY % Group-PR22-mod "(((%DimensionsUsingDefaults; | (%Measure;)+), (%Dimensions;)?) | %Dimensions;)?">
+
+<![%GroupsAsElements;[
+<!ENTITY % Group-PR22 "Group-PR22">
+<!ELEMENT %Group-PR22; (%Group-PR22-mod;)>
+]]>
+<!ENTITY % Group-PR22 "%Group-PR22-mod;">
+
+<!--
+**************************************************
+*                                                *
+*                   GROUP PR23                   *
+*                RELATED PRODUCTS                *
+*                                                *
+**************************************************
+-->
+
+<!ELEMENT %ReplacedByEAN13; (#PCDATA)>
+<!ELEMENT %ReplacedByISBN; (#PCDATA)>
+<!ELEMENT %RelationCode; (#PCDATA)>
+<!ELEMENT %AlternativeFormatEAN13; (#PCDATA)>
+<!ELEMENT %AlternativeFormatISBN; (#PCDATA)>
+<!ELEMENT %AlternativeProductISBN; (#PCDATA)>
+<!ELEMENT %AlternativeProductEAN13; (#PCDATA)>
+<!ELEMENT %OutOfPrintDate; (#PCDATA)>
+
+<!ENTITY % RelatedEpub "%EpubType;, (%EpubTypeVersion;)?, (%EpubTypeDescription;)?, 
+                        (%EpubFormat;, (%EpubFormatVersion;)?)?, (%EpubFormatDescription;)?, 
+                        (%EpubTypeNote;)?">
+
+<!ELEMENT %RelatedProduct; (%RelationCode;, 
+                            ((%ISBN;, (%EAN13;)?, (%ProductIdentifier;)*) | 
+                            (%EAN13;, (%ProductIdentifier;)*) | (%ProductIdentifier;)+), 
+                            %ProductForm;, (%BookFormDetail;)*, (%ProductFormDescription;)?, (%RelatedEpub;)?)>
+
+<!ENTITY % Group-PR23-mod "(%ReplacedByISBN;)?, (%ReplacedByEAN13;)?, 
+                         (%AlternativeFormatISBN;)?, (%AlternativeFormatEAN13;)?, 
+                         (%AlternativeProductISBN;)?, (%AlternativeProductEAN13;)?, 
+                         (%RelatedProduct;)*, (%OutOfPrintDate;)?">
+
+<![%GroupsAsElements;[
+<!ENTITY % Group-PR23 "Group-PR23">
+<!ELEMENT %Group-PR23; (%Group-PR23-mod;)>
+]]>
+<!ENTITY % Group-PR23 "%Group-PR23-mod;">
+
+<!--
+**************************************************
+*                                                *
+*                   GROUP PR24                   *
+*        SUPPLIER, AVAILABILITY AND PRICES       *
+*                                                *
+**************************************************
+-->
+
+<!ELEMENT %SupplierEANLocationNumber; (#PCDATA)>
+<!ELEMENT %SupplierSAN; (#PCDATA)>
+<!ELEMENT %SupplierName; (#PCDATA)>
+<!ELEMENT %TelephoneNumber; (#PCDATA)>
+<!ELEMENT %FaxNumber; (#PCDATA)>
+<!ELEMENT %EmailAddress; (#PCDATA)>
+<!ELEMENT %SupplyToCountry; (#PCDATA)>
+<!ELEMENT %SupplyToRegion; (#PCDATA)>
+<!ELEMENT %SupplyToCountryExcluded; (#PCDATA)>
+<!ELEMENT %ReturnsCodeType; (#PCDATA)>
+<!ELEMENT %ReturnsCode; (#PCDATA)>
+<!ELEMENT %AvailabilityCode; (#PCDATA)>
+<!ELEMENT %DateFormat; (#PCDATA)>
+<!ELEMENT %ExpectedShipDate; (#PCDATA)>
+<!ELEMENT %OnSaleDate; (#PCDATA)>
+<!ELEMENT %OrderTime; (#PCDATA)>
+<!ELEMENT %PackQuantity; (#PCDATA)>
+<!ELEMENT %AudienceRestrictionFlag; (#PCDATA)>
+<!ELEMENT %AudienceRestrictionNote; (#PCDATA)>
+<!ELEMENT %PriceTypeCode; (#PCDATA)>
+<!ELEMENT %PriceQualifier; (#PCDATA)>
+<!ELEMENT %PriceTypeDescription; (#PCDATA)>
+<!ELEMENT %PricePer; (#PCDATA)>
+<!ELEMENT %MinimumOrderQuantity; (#PCDATA)>
+<!ELEMENT %BatchQuantity; (#PCDATA)>
+<!ELEMENT %FreeQuantity; (#PCDATA)>
+<!ELEMENT %ClassOfTrade; (#PCDATA)>
+<!ELEMENT %BICDiscountGroupCode; (#PCDATA)>
+<!ELEMENT %DiscountPercent; (#PCDATA)>
+<!ELEMENT %PriceStatus; (#PCDATA)>
+<!ELEMENT %PriceAmount; (#PCDATA)>
+<!ELEMENT %UnpricedItemType; (#PCDATA)>
+<!ELEMENT %CurrencyCode; (#PCDATA)>
+<!ELEMENT %TaxRateCode1; (#PCDATA)>
+<!ELEMENT %TaxRatePercent1; (#PCDATA)>
+<!ELEMENT %TaxableAmount1; (#PCDATA)>
+<!ELEMENT %TaxAmount1; (#PCDATA)>
+<!ELEMENT %TaxRateCode2; (#PCDATA)>
+<!ELEMENT %TaxRatePercent2; (#PCDATA)>
+<!ELEMENT %TaxableAmount2; (#PCDATA)>
+<!ELEMENT %TaxAmount2; (#PCDATA)>
+<!ELEMENT %PriceEffectiveFrom; (#PCDATA)>
+<!ELEMENT %PriceEffectiveUntil; (#PCDATA)>
+
+<!ELEMENT %NewSupplier; ((((%SupplierEANLocationNumber; | %SupplierSAN;), (%SupplierName;)?) | %SupplierName;), 
+                         (%TelephoneNumber;)*, (%FaxNumber;)*, (%EmailAddress;)*)>
+
+<!ELEMENT %BatchBonus; (%BatchQuantity;, %FreeQuantity;)>
+
+<!ELEMENT %Price; (%PriceTypeCode;, (%PriceQualifier;)?, (%PriceTypeDescription;)?, (%PricePer;)?, 
+                   (%MinimumOrderQuantity;)?, (%BatchBonus;)*, (%ClassOfTrade;)?, (%BICDiscountGroupCode;)?, 
+                   (%DiscountPercent;)?, (%PriceStatus;)?, %PriceAmount;, (%CurrencyCode;)?, (%CountryCode;)*, 
+                   (%TaxRateCode1;, (%TaxRatePercent1;, %TaxableAmount1;, %TaxAmount1;)?, 
+                    (%TaxRateCode2;, (%TaxRatePercent2;, %TaxableAmount2;, %TaxAmount2;)?)?)?, 
+                   (%PriceEffectiveFrom;)?, (%PriceEffectiveUntil;)?)>
+
+<!ELEMENT %SupplyDetail; ((((%SupplierEANLocationNumber; | %SupplierSAN;), (%SupplierName;)?) | %SupplierName;), 
+                          (%TelephoneNumber;)*, (%FaxNumber;)*, (%EmailAddress;)*, 
+                          ((%SupplyToCountry; | %SupplyToRegion;)+, (%SupplyToCountryExcluded;)*)?, 
+                          (%ReturnsCodeType;, %ReturnsCode;)?, %AvailabilityCode;, (%NewSupplier;)?, 
+                          ((%DateFormat;)?, %ExpectedShipDate;)?, (%OnSaleDate;)?, (%OrderTime;)?, 
+                          (%PackQuantity;)?, (%AudienceRestrictionFlag;)?, (%AudienceRestrictionNote;)?, 
+                          ((%PriceAmount;) | (%UnpricedItemType;) | (%Price;)+))>
+
+<!ENTITY % Group-PR24-mod "(%SupplyDetail;)*">
+
+<![%GroupsAsElements;[
+<!ENTITY % Group-PR24 "Group-PR24">
+<!ELEMENT %Group-PR24; (%Group-PR24-mod;)>
+]]>
+<!ENTITY % Group-PR24 "%Group-PR24-mod;">
+
+<!--
+**************************************************
+*                                                *
+*                   GROUP PR25                   *
+*           SALES PROMOTION INFORMATION          *
+*                                                *
+**************************************************
+-->
+
+<!ELEMENT %PromotionCampaign; (#PCDATA)>
+<!ELEMENT %PromotionContact; (#PCDATA)>
+<!ELEMENT %InitialPrintRun; (#PCDATA)>
+<!ELEMENT %CopiesSold; (#PCDATA)>
+<!ELEMENT %BookClubAdoption; (#PCDATA)>
+
+<!ENTITY % Group-PR25-mod "(%PromotionCampaign;)?, (%PromotionContact;)?, (%InitialPrintRun;)?, 
+                         (%CopiesSold;)?, (%BookClubAdoption;)?">
+
+<![%GroupsAsElements;[
+<!ENTITY % Group-PR25 "Group-PR25">
+<!ELEMENT %Group-PR25; (%Group-PR25-mod;)>
+]]>
+<!ENTITY % Group-PR25 "%Group-PR25-mod;">
+
+<!--
+**************************************************
+*                                                *
+*                    GROUP MS1                   *
+*    RECORD REFERENCE NUMBER, TYPE AND SOURCE    *
+*                                                *
+**************************************************
+-->
+
+<!-- Group MS1 is identical to Group PR1 -->
+
+<![%GroupsAsElements;[
+<!ENTITY % Group-MS1 "Group-MS1">
+<!ELEMENT %Group-MS1; (%Group-PR1-mod;)>
+]]>
+<!ENTITY % Group-MS1 "%Group-PR1-mod;">
+
+<!--
+**************************************************
+*                                                *
+*                    GROUP MS2                   *
+*            MAIN SERIES IDENTIFIERS             *
+*                                                *
+**************************************************
+-->
+
+<!-- See Group PR5 for details of element type %SeriesIdentifier; -->
+
+<!ENTITY % Group-MS2-mod "(%SeriesIdentifier;)+">
+
+<![%GroupsAsElements;[
+<!ENTITY % Group-MS2 "Group-MS2">
+<!ELEMENT %Group-MS2; (%Group-MS2-mod;)>
+]]>
+<!ENTITY % Group-MS2 "%Group-MS2-mod;">
+
+<!--
+**************************************************
+*                                                *
+*                    GROUP MS3                   *
+*                MAIN SERIES TITLE               *
+*                                                *
+**************************************************
+-->
+
+<!-- See Group PR7 for details of element type %Title; -->
+
+<!ENTITY % Group-MS3-mod "(%Title;)+">
+
+<![%GroupsAsElements;[
+<!ENTITY % Group-MS3 "Group-MS3">
+<!ELEMENT %Group-MS3; (%Group-MS3-mod;)>
+]]>
+<!ENTITY % Group-MS3 "%Group-MS3-mod;">
+
+<!--
+**************************************************
+*                                                *
+*                    GROUP MS4                   *
+*            MAIN SERIES CONTRIBUTORS            *
+*                                                *
+**************************************************
+-->
+
+<!-- See Group PR8 for details of element type %Contributor; -->
+
+<!ENTITY % Group-MS4-mod "(%Contributor;)*">
+
+<![%GroupsAsElements;[
+<!ENTITY % Group-MS4 "Group-MS4">
+<!ELEMENT %Group-MS4; (%Group-MS4-mod;)>
+]]>
+<!ENTITY % Group-MS4 "%Group-MS4-mod;">
+
+<!--
+**************************************************
+*                                                *
+*                    GROUP MS5                   *
+*            MAIN SERIES TEXT ELEMENTS           *
+*                                                *
+**************************************************
+-->
+
+<!-- See Group PR15 for details of element type %OtherText; -->
+
+<!ENTITY % Group-MS5-mod "(%OtherText;)*">
+
+<![%GroupsAsElements;[
+<!ENTITY % Group-MS5 "Group-MS5">
+<!ELEMENT %Group-MS5; (%Group-MS5-mod;)>
+]]>
+<!ENTITY % Group-MS5 "%Group-MS5-mod;">
+
+<!--
+**************************************************
+*                                                *
+*                    GROUP MS6                   *
+*          NUMBER OF SUBORDINATE ENTRIES         *
+*                                                *
+**************************************************
+-->
+
+<!ELEMENT %SubordinateEntries; (#PCDATA)>
+
+<!ENTITY % Group-MS6-mod "(%SubordinateEntries;)?">
+
+<![%GroupsAsElements;[
+<!ENTITY % Group-MS6 "Group-MS6">
+<!ELEMENT %Group-MS6; (%Group-MS6-mod;)>
+]]>
+<!ENTITY % Group-MS6 "%Group-MS6-mod;">
+
+<!--
+**************************************************
+*                                                *
+*                    GROUP SS1                   *
+*    RECORD REFERENCE NUMBER, TYPE AND SOURCE    *
+*                                                *
+**************************************************
+-->
+
+<!-- Group SS1 is identical to Group PR1 -->
+
+<![%GroupsAsElements;[
+<!ENTITY % Group-SS1 "Group-SS1">
+<!ELEMENT %Group-SS1; (%Group-PR1-mod;)>
+]]>
+<!ENTITY % Group-SS1 "%Group-PR1-mod;">
+
+<!--
+**************************************************
+*                                                *
+*                    GROUP SS2                   *
+*              SubSeriesRecord IDENTIFIERS             *
+*                                                *
+**************************************************
+-->
+
+<!-- See Group PR5 for details of element type %SeriesIdentifier; -->
+
+<!ELEMENT %ParentIdentifier; (%SeriesIDType;, (%IDTypeName;)?, %IDValue;)>
+
+<!ENTITY % Group-SS2-mod "(%SeriesIdentifier;)+, %ParentIdentifier;">
+
+<![%GroupsAsElements;[
+<!ENTITY % Group-SS2 "Group-SS2">
+<!ELEMENT %Group-SS2; (%Group-SS2-mod;)>
+]]>
+<!ENTITY % Group-SS2 "%Group-SS2-mod;">
+
+<!--
+**************************************************
+*                                                *
+*                    GROUP SS3                   *
+*         SubSeriesRecord VOLUME OR PART DETAIL        *
+*                                                *
+**************************************************
+-->
+
+<!ELEMENT %LevelSequenceNumber; (#PCDATA)>
+<!ELEMENT %SeriesPartName; (#PCDATA)>
+
+<!ENTITY % Group-SS3-mod "%LevelSequenceNumber;, ((%SeriesPartName;)?, %NumberWithinSeries;)?">
+
+<![%GroupsAsElements;[
+<!ENTITY % Group-SS3 "Group-SS3">
+<!ELEMENT %Group-SS3; (%Group-SS3-mod;)>
+]]>
+<!ENTITY % Group-SS3 "%Group-SS3-mod;">
+
+<!--
+**************************************************
+*                                                *
+*                    GROUP SS4                   *
+*                 SubSeriesRecord TITLE                *
+*                                                *
+**************************************************
+-->
+
+<!-- See Group PR7 for details of element type %Title; -->
+
+<!ENTITY % Group-SS4-mod "(%Title;)+">
+
+<![%GroupsAsElements;[
+<!ENTITY % Group-SS4 "Group-SS4">
+<!ELEMENT %Group-SS4; (%Group-SS4-mod;)>
+]]>
+<!ENTITY % Group-SS4 "%Group-SS4-mod;">
+
+<!--
+**************************************************
+*                                                *
+*                    GROUP SS5                   *
+*             SubSeriesRecord CONTRIBUTORS             *
+*                                                *
+**************************************************
+-->
+
+<!-- See Group PR8 for details of element type %Contributor; -->
+
+<!ENTITY % Group-SS5-mod "(%Contributor;)*">
+
+<![%GroupsAsElements;[
+<!ENTITY % Group-SS5 "Group-SS5">
+<!ELEMENT %Group-SS5; (%Group-SS5-mod;)>
+]]>
+<!ENTITY % Group-SS5 "%Group-SS5-mod;">
+
+<!--
+**************************************************
+*                                                *
+*                    GROUP SS6                   *
+*             SubSeriesRecord TEXT ELEMENTS            *
+*                                                *
+**************************************************
+-->
+
+<!-- See Group PR15 for details of element type %OtherText; -->
+
+<!ENTITY % Group-SS6-mod "(%OtherText;)*">
+
+<![%GroupsAsElements;[
+<!ENTITY % Group-SS6 "Group-SS6">
+<!ELEMENT %Group-SS6; (%Group-SS6-mod;)>
+]]>
+<!ENTITY % Group-SS6 "%Group-SS6-mod;">
+
+<!--
+**************************************************
+*                                                *
+*                    GROUP SS7                   *
+*          NUMBER OF SUBORDINATE ENTRIES         *
+*                                                *
+**************************************************
+-->
+
+<!-- See Group MS6 for details of element type %SubordinateEntries; -->
+
+<!ENTITY % Group-SS7-mod "(%SubordinateEntries;)?">
+
+<![%GroupsAsElements;[
+<!ENTITY % Group-SS7 "Group-SS7">
+<!ELEMENT %Group-SS7; (%Group-SS7-mod;)>
+]]>
+<!ENTITY % Group-SS7 "%Group-SS7-mod;">
+
+<!--
+**************************************************
+*                                                *
+*           TOP-LEVEL MESSAGE STRUCTURE          *
+*                                                *
+**************************************************
+-->
+
+<!ELEMENT %ONIXMessage; (%Group-MH6;, (%Product; | %MainSeriesRecord; | %SubSeriesRecord;)+)>
+
+<!-- DTD RELEASE NUMBER -->
+
+<!ATTLIST %ONIXMessage; release CDATA #FIXED "2.0">
+
+<![%ExtendedProductModel;[
+
+<!ENTITY % ExtendedModelDeclarations SYSTEM "onix-extended.elt">
+
+<!ELEMENT %Product;     (%Group-PR1;, 
+                         (%Group-PR2;, %Group-PR3;, %Group-PR4;, %Group-PR5;, %Group-PR6;, 
+                          %Group-PR7;, %Group-PR8;, %Group-PR9;, %Group-PR10;, 
+                          %Group-PR11;, %Group-PR12;, %Group-PR13;, %Group-PR14;, 
+                          %Group-PR15;, %Group-PR16;, %Group-PR17;, %Group-PR18;, 
+                          %Group-PR19;, %Group-PR20;, %Group-PR21;)?, 
+                         (%Group-PR22;)?, (%Group-PR23;)?, (%Group-PR24;)?, (%Group-PR25;)?,
+                         %SuperGroup-Z;)>
+
+<!ENTITY % UnextendedProductModel "IGNORE" >
+
+]]>
+<!ENTITY % ExtendedModelDeclarations " ">
+%ExtendedModelDeclarations;
+
+<!ENTITY % UnextendedProductModel "INCLUDE">
+
+<![%UnextendedProductModel;[
+
+<!ELEMENT %Product;     (%Group-PR1;, 
+                         (%Group-PR2;, %Group-PR3;, %Group-PR4;, %Group-PR5;, %Group-PR6;, 
+                          %Group-PR7;, %Group-PR8;, %Group-PR9;, %Group-PR10;, 
+                          %Group-PR11;, %Group-PR12;, %Group-PR13;, %Group-PR14;, 
+                          %Group-PR15;, %Group-PR16;, %Group-PR17;, %Group-PR18;, 
+                          %Group-PR19;, %Group-PR20;, %Group-PR21;)?, 
+                         (%Group-PR22;)?, (%Group-PR23;)?, (%Group-PR24;)?, (%Group-PR25;)?)>
+
+]]>
+
+<!ELEMENT %MainSeriesRecord; (%Group-MS1;, %Group-MS2;, %Group-MS3;, %Group-MS4;, %Group-MS5;, %Group-MS6;)>
+
+<!ELEMENT %SubSeriesRecord; (%Group-SS1;, %Group-SS2;, %Group-SS3;, %Group-SS4;, %Group-SS5;, %Group-SS6;, %Group-SS7;)>

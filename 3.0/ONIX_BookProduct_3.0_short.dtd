@@ -1,0 +1,2518 @@
+<?xml encoding="UTF-8"?>
+
+<!--
+**************************************************
+*                                                *
+*               ONIX INTERNATIONAL               *
+*                                                *
+*     BOOK PRODUCT INFORMATION MESSAGE SCHEMA    *
+*                                                *
+*                STRUCTURE MODULE                *
+*                    XML DTD                     *
+*                SHORT TAG VERSION               *
+*                                                *
+*          Original author: Francis Cave         *
+*                                                *
+*                  Release 3.0                   *
+*                  Revision 00 (corrected)       *
+*                Status: RELEASED                *
+*            Release date: 2009-04-09            *
+*               Corrected: 2009-05-11            *
+*                                                *
+*             (c) 2000-2009 EDItEUR              *
+*             http://www.editeur.org/            *
+*                                                *
+**************************************************
+
+
+TERMS AND CONDITIONS OF USE OF THE ONIX BOOK PRODUCT INFORMATION MESSAGE SCHEMA
+
+All ONIX standards and documentation are copyright materials, made available 
+free of charge for general use.  If you use any version of the ONIX Book Product 
+Information Message Schema, you will be deemed to have accepted these terms and 
+conditions:
+
+1.  You agree that you will not add to, delete from or amend any version of the 
+ONIX Product Information Message Schema, or any part of the Schema except for 
+strictly internal use in your own organisation.
+
+2.  You agree that if you wish to add to, amend, or make extracts of any version 
+of the Schema for any purpose that is not strictly internal to your own organisation, 
+you will in the first instance notify EDItEUR and allow EDItEUR to review 
+and comment on your proposed use, in the interest of securing an orderly 
+development of the Schema for the benefit of other users.
+
+If you do not accept these terms, you must not use any version of the ONIX Product 
+Information Message Schema.
+
+Full copies of all published versions of the latest release of this Schema and all 
+associated documentation are available from the EDItEUR web site, where may also be 
+found details of how to contact EDItEUR for advice on the use of this Schema. The URL 
+for the EDItEUR web site is:
+
+http://www.editeur.org/
+
+
+
+SCHEMA REVISION HISTORY (IN REVERSE CHRONOLOGICAL ORDER)
+
+2009-05-11: Content model of MarketPublishingDetail corrected
+
+2009-04-09: Release 3.0 schema for public release
+
+-->
+
+<!ENTITY % ONIX_BookProduct_CodeLists SYSTEM "ONIX_BookProduct_CodeLists.dtd">
+%ONIX_BookProduct_CodeLists;
+
+<!ENTITY % ONIX_XHTML_Subset SYSTEM "ONIX_XHTML_Subset.dtd">
+%ONIX_XHTML_Subset;
+
+<!ENTITY % dt.DateOrDateTime "CDATA">
+
+<!ENTITY % generalAttributes "
+  datestamp %dt.DateOrDateTime; #IMPLIED
+  sourcetype (%SourceTypeCode;) #IMPLIED
+  sourcename CDATA #IMPLIED">
+
+<!ELEMENT addressee (addresseeidentifier*,x300?,x299?,j272?)>
+<!ATTLIST addressee
+  refname (Addressee) #IMPLIED
+  shortname (addressee) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT addresseeidentifier (m380,b233?,b244)>
+<!ATTLIST addresseeidentifier
+  refname (AddresseeIdentifier) #IMPLIED
+  shortname (addresseeidentifier) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT m380 (#PCDATA)>
+<!ATTLIST m380
+  refname (AddresseeIDType) #IMPLIED
+  shortname (m380) #IMPLIED
+  %generalAttributes;>
+
+<!ENTITY % dt.NonEmptyString "#PCDATA">
+
+<!ELEMENT x300 (%dt.NonEmptyString;)>
+<!ATTLIST x300
+  refname (AddresseeName) #IMPLIED
+  shortname (x300) #IMPLIED
+  %generalAttributes;>
+
+<!ENTITY % languageAttributes "
+  language (%List74;) #IMPLIED">
+
+<!ELEMENT b046 (%dt.NonEmptyString;)>
+<!ATTLIST b046
+  refname (Affiliation) #IMPLIED
+  shortname (b046) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;>
+
+<!ELEMENT agentidentifier (j400,b233?,b244)>
+<!ATTLIST agentidentifier
+  refname (AgentIdentifier) #IMPLIED
+  shortname (agentidentifier) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT j400 (#PCDATA)>
+<!ATTLIST j400
+  refname (AgentIDType) #IMPLIED
+  shortname (j400) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT j401 (%dt.NonEmptyString;)>
+<!ATTLIST j401
+  refname (AgentName) #IMPLIED
+  shortname (j401) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;>
+
+<!ELEMENT j402 (#PCDATA)>
+<!ATTLIST j402
+  refname (AgentRole) #IMPLIED
+  shortname (j402) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT alternativename (x414,nameidentifier*,b036?,b037?,
+                           (b038?,b039?,b247?,b040,b041?,b248?,b042?,
+                            b043?)?,
+                           b047?)>
+<!ATTLIST alternativename
+  refname (AlternativeName) #IMPLIED
+  shortname (alternativename) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT ancillarycontent (x423,x424?,b257?)>
+<!ATTLIST ancillarycontent
+  refname (AncillaryContent) #IMPLIED
+  shortname (ancillarycontent) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x423 (#PCDATA)>
+<!ATTLIST x423
+  refname (AncillaryContentType) #IMPLIED
+  shortname (x423) #IMPLIED
+  %generalAttributes;>
+
+<!ENTITY % textformatAttribute "
+  textformat (%TextFormatCode;) #IMPLIED">
+
+<!ELEMENT x424 %Flow;>
+<!ATTLIST x424
+  refname (AncillaryContentDescription) #IMPLIED
+  shortname (x424) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;
+  %textformatAttribute;>
+
+<!ELEMENT audience (b204,b205?,b206)>
+<!ATTLIST audience
+  refname (Audience) #IMPLIED
+  shortname (audience) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b073 (#PCDATA)>
+<!ATTLIST b073
+  refname (AudienceCode) #IMPLIED
+  shortname (b073) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b204 (#PCDATA)>
+<!ATTLIST b204
+  refname (AudienceCodeType) #IMPLIED
+  shortname (b204) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b205 (%dt.NonEmptyString;)>
+<!ATTLIST b205
+  refname (AudienceCodeTypeName) #IMPLIED
+  shortname (b205) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b206 (%dt.NonEmptyString;)>
+<!ATTLIST b206
+  refname (AudienceCodeValue) #IMPLIED
+  shortname (b206) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b207 %Flow;>
+<!ATTLIST b207
+  refname (AudienceDescription) #IMPLIED
+  shortname (b207) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;
+  %textformatAttribute;>
+
+<!ELEMENT audiencerange (b074,b075,b076,(b075,b076)?)>
+<!ATTLIST audiencerange
+  refname (AudienceRange) #IMPLIED
+  shortname (audiencerange) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b075 (#PCDATA)>
+<!ATTLIST b075
+  refname (AudienceRangePrecision) #IMPLIED
+  shortname (b075) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b074 (#PCDATA)>
+<!ATTLIST b074
+  refname (AudienceRangeQualifier) #IMPLIED
+  shortname (b074) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b076 (%dt.NonEmptyString;)>
+<!ATTLIST b076
+  refname (AudienceRangeValue) #IMPLIED
+  shortname (b076) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT barcode (x312,x313?)>
+<!ATTLIST barcode
+  refname (Barcode) #IMPLIED
+  shortname (barcode) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x312 (#PCDATA)>
+<!ATTLIST x312
+  refname (BarcodeType) #IMPLIED
+  shortname (x312) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT batchbonus (j264,j265)>
+<!ATTLIST batchbonus
+  refname (BatchBonus) #IMPLIED
+  shortname (batchbonus) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT j264 (#PCDATA)>
+<!ATTLIST j264
+  refname (BatchQuantity) #IMPLIED
+  shortname (j264) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT bible (b352+,b353+,b389?,b354*,b355?,b356?,b357*)>
+<!ATTLIST bible
+  refname (Bible) #IMPLIED
+  shortname (bible) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b352 (#PCDATA)>
+<!ATTLIST b352
+  refname (BibleContents) #IMPLIED
+  shortname (b352) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b354 (#PCDATA)>
+<!ATTLIST b354
+  refname (BiblePurpose) #IMPLIED
+  shortname (b354) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b356 (#PCDATA)>
+<!ATTLIST b356
+  refname (BibleReferenceLocation) #IMPLIED
+  shortname (b356) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b357 (#PCDATA)>
+<!ATTLIST b357
+  refname (BibleTextFeature) #IMPLIED
+  shortname (b357) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b355 (#PCDATA)>
+<!ATTLIST b355
+  refname (BibleTextOrganization) #IMPLIED
+  shortname (b355) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b353 (#PCDATA)>
+<!ATTLIST b353
+  refname (BibleVersion) #IMPLIED
+  shortname (b353) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b044 %Flow;>
+<!ATTLIST b044
+  refname (BiographicalNote) #IMPLIED
+  shortname (b044) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;
+  %textformatAttribute;>
+
+<!ELEMENT k169 %Flow;>
+<!ATTLIST k169
+  refname (BookClubAdoption) #IMPLIED
+  shortname (k169) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;
+  %textformatAttribute;>
+
+<!ELEMENT j375 (#PCDATA)>
+<!ATTLIST j375
+  refname (CBO) #IMPLIED
+  shortname (j375) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x434 %Flow;>
+<!ATTLIST x434
+  refname (CitationNote) #IMPLIED
+  shortname (x434) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;
+  %textformatAttribute;>
+
+<!ELEMENT citedcontent (x430,x427*,x431?,x428?,(x432,x433)?,x434?,x435*,
+                        contentdate*)>
+<!ATTLIST citedcontent
+  refname (CitedContent) #IMPLIED
+  shortname (citedcontent) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x430 (#PCDATA)>
+<!ATTLIST x430
+  refname (CitedContentType) #IMPLIED
+  shortname (x430) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b209 (%dt.NonEmptyString;)>
+<!ATTLIST b209
+  refname (CityOfPublication) #IMPLIED
+  shortname (b209) #IMPLIED
+  %generalAttributes;>
+
+<!ENTITY % gp.prizes "prize*">
+
+<!ENTITY % gp.descriptions "textcontent*,citedcontent*,
+                            supportingresource*">
+
+<!ELEMENT collateraldetail ((%gp.descriptions;),(%gp.prizes;))>
+<!ATTLIST collateraldetail
+  refname (CollateralDetail) #IMPLIED
+  shortname (collateraldetail) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT collection (x329,x330?,collectionidentifier*,titledetail*,
+                      contributor*)>
+<!ATTLIST collection
+  refname (Collection) #IMPLIED
+  shortname (collection) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT collectionidentifier (x344,b233?,b244)>
+<!ATTLIST collectionidentifier
+  refname (CollectionIdentifier) #IMPLIED
+  shortname (collectionidentifier) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x344 (#PCDATA)>
+<!ATTLIST x344
+  refname (CollectionIDType) #IMPLIED
+  shortname (x344) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x329 (#PCDATA)>
+<!ATTLIST x329
+  refname (CollectionType) #IMPLIED
+  shortname (x329) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT complexity (b077,b078)>
+<!ATTLIST complexity
+  refname (Complexity) #IMPLIED
+  shortname (complexity) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b078 (%dt.NonEmptyString;)>
+<!ATTLIST b078
+  refname (ComplexityCode) #IMPLIED
+  shortname (b078) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b077 (#PCDATA)>
+<!ATTLIST b077
+  refname (ComplexitySchemeIdentifier) #IMPLIED
+  shortname (b077) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b289 (%dt.NonEmptyString;)>
+<!ATTLIST b289
+  refname (ComponentNumber) #IMPLIED
+  shortname (b289) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b288 (%dt.NonEmptyString;)>
+<!ATTLIST b288
+  refname (ComponentTypeName) #IMPLIED
+  shortname (b288) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;>
+
+<!ELEMENT conference (b051?,b052,b341?,b053?,b342?,b054?,b055?,
+                      conferencesponsor*,website*)>
+<!ATTLIST conference
+  refname (Conference) #IMPLIED
+  shortname (conference) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b341 (%dt.NonEmptyString;)>
+<!ATTLIST b341
+  refname (ConferenceAcronym) #IMPLIED
+  shortname (b341) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b054 (#PCDATA)>
+<!ATTLIST b054
+  refname (ConferenceDate) #IMPLIED
+  shortname (b054) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b052 %Flow;>
+<!ATTLIST b052
+  refname (ConferenceName) #IMPLIED
+  shortname (b052) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;
+  %textformatAttribute;>
+
+<!ELEMENT b053 (%dt.NonEmptyString;)>
+<!ATTLIST b053
+  refname (ConferenceNumber) #IMPLIED
+  shortname (b053) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b055 (%dt.NonEmptyString;)>
+<!ATTLIST b055
+  refname (ConferencePlace) #IMPLIED
+  shortname (b055) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b051 (#PCDATA)>
+<!ATTLIST b051
+  refname (ConferenceRole) #IMPLIED
+  shortname (b051) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT conferencesponsor (conferencesponsoridentifier*,(b036|b047)?)>
+<!ATTLIST conferencesponsor
+  refname (ConferenceSponsor) #IMPLIED
+  shortname (conferencesponsor) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b391 (#PCDATA)>
+<!ATTLIST b391
+  refname (ConferenceSponsorIDType) #IMPLIED
+  shortname (b391) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT conferencesponsoridentifier (b391,b233?,b244)>
+<!ATTLIST conferencesponsoridentifier
+  refname (ConferenceSponsorIdentifier) #IMPLIED
+  shortname (conferencesponsoridentifier) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b342 %Flow;>
+<!ATTLIST b342
+  refname (ConferenceTheme) #IMPLIED
+  shortname (b342) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;
+  %textformatAttribute;>
+
+<!ELEMENT x299 (%dt.NonEmptyString;)>
+<!ATTLIST x299
+  refname (ContactName) #IMPLIED
+  shortname (x299) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x427 (#PCDATA)>
+<!ATTLIST x427
+  refname (ContentAudience) #IMPLIED
+  shortname (x427) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT contentdate (x429,j260,b306)>
+<!ATTLIST contentdate
+  refname (ContentDate) #IMPLIED
+  shortname (contentdate) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x429 (#PCDATA)>
+<!ATTLIST x429
+  refname (ContentDateRole) #IMPLIED
+  shortname (x429) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT contentdetail (contentitem)+>
+<!ATTLIST contentdetail
+  refname (ContentDetail) #IMPLIED
+  shortname (contentdetail) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT contentitem (b284?,textitem,b288?,b289?,titledetail*,
+                       contributor*,subject*,nameassubject*,
+                       textcontent*,citedcontent*,supportingresource*,
+                       relatedwork*)>
+<!ATTLIST contentitem
+  refname (ContentItem) #IMPLIED
+  shortname (contentitem) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT contributor (b034?,b035+,x412*,x413*,x414?,nameidentifier*,
+                       b036?,b037?,
+                       (b038?,b039?,b247?,b040,b041?,b248?,b042?,
+                        b043?)?,
+                       b047?,alternativename*,contributordate*,
+                       professionalaffiliation*,b044?,website*,b048?,
+                       b249?,contributorplace*)>
+<!ATTLIST contributor
+  refname (Contributor) #IMPLIED
+  shortname (contributor) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT contributordate (x417,j260,b306)>
+<!ATTLIST contributordate
+  refname (ContributorDate) #IMPLIED
+  shortname (contributordate) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x417 (#PCDATA)>
+<!ATTLIST x417
+  refname (ContributorDateRole) #IMPLIED
+  shortname (x417) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b048 %Flow;>
+<!ATTLIST b048
+  refname (ContributorDescription) #IMPLIED
+  shortname (b048) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;
+  %textformatAttribute;>
+
+<!ELEMENT contributorplace (x418,(b251|b398))>
+<!ATTLIST contributorplace
+  refname (ContributorPlace) #IMPLIED
+  shortname (contributorplace) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x418 (#PCDATA)>
+<!ATTLIST x418
+  refname (ContributorPlaceRelator) #IMPLIED
+  shortname (x418) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b035 (#PCDATA)>
+<!ATTLIST b035
+  refname (ContributorRole) #IMPLIED
+  shortname (b035) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b049 %Flow;>
+<!ATTLIST b049
+  refname (ContributorStatement) #IMPLIED
+  shortname (b049) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;
+  %textformatAttribute;>
+
+<!ELEMENT k168 %Flow;>
+<!ATTLIST k168
+  refname (CopiesSold) #IMPLIED
+  shortname (k168) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;
+  %textformatAttribute;>
+
+<!ELEMENT copyrightowner (copyrightowneridentifier*,(b036|b047)?)>
+<!ATTLIST copyrightowner
+  refname (CopyrightOwner) #IMPLIED
+  shortname (copyrightowner) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b392 (#PCDATA)>
+<!ATTLIST b392
+  refname (CopyrightOwnerIDType) #IMPLIED
+  shortname (b392) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT copyrightowneridentifier (b392,b233?,b244)>
+<!ATTLIST copyrightowneridentifier
+  refname (CopyrightOwnerIdentifier) #IMPLIED
+  shortname (copyrightowneridentifier) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT copyrightstatement (b087+,copyrightowner*)>
+<!ATTLIST copyrightstatement
+  refname (CopyrightStatement) #IMPLIED
+  shortname (copyrightstatement) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b087 (%dt.NonEmptyString;)>
+<!ATTLIST b087
+  refname (CopyrightYear) #IMPLIED
+  shortname (b087) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b047 (%dt.NonEmptyString;)>
+<!ATTLIST b047
+  refname (CorporateName) #IMPLIED
+  shortname (b047) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x449 (#PCDATA)>
+<!ATTLIST x449
+  refname (CountriesIncluded) #IMPLIED
+  shortname (x449) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x451 (#PCDATA)>
+<!ATTLIST x451
+  refname (CountriesExcluded) #IMPLIED
+  shortname (x451) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b251 (#PCDATA)>
+<!ATTLIST b251
+  refname (CountryCode) #IMPLIED
+  shortname (b251) #IMPLIED
+  %generalAttributes;>
+
+<!ENTITY % CountryCodeList "CDATA">
+
+<!ELEMENT x316 (#PCDATA)>
+<!ATTLIST x316
+  refname (CountryOfManufacture) #IMPLIED
+  shortname (x316) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b083 (#PCDATA)>
+<!ATTLIST b083
+  refname (CountryOfPublication) #IMPLIED
+  shortname (b083) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT j152 (#PCDATA)>
+<!ATTLIST j152
+  refname (CurrencyCode) #IMPLIED
+  shortname (j152) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x475 (#PCDATA)>
+<!ATTLIST x475
+  refname (CurrencyZone) #IMPLIED
+  shortname (x475) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b306 (%dt.NonEmptyString;)>
+<!ATTLIST b306
+  refname (Date) #IMPLIED
+  shortname (b306) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT j260 (#PCDATA)>
+<!ATTLIST j260
+  refname (DateFormat) #IMPLIED
+  shortname (j260) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT m186 (#PCDATA)>
+<!ATTLIST m186
+  refname (DefaultCurrencyCode) #IMPLIED
+  shortname (m186) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT m184 (#PCDATA)>
+<!ATTLIST m184
+  refname (DefaultLanguageOfText) #IMPLIED
+  shortname (m184) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x310 (#PCDATA)>
+<!ATTLIST x310
+  refname (DefaultPriceType) #IMPLIED
+  shortname (x310) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT a199 (%dt.NonEmptyString;)>
+<!ATTLIST a199
+  refname (DeletionText) #IMPLIED
+  shortname (a199) #IMPLIED
+  %generalAttributes;>
+
+<!ENTITY % gp.audience "b073*,audience*,audiencerange*,b207?,
+                        complexity*">
+
+<!ENTITY % gp.subject "subject*,nameassubject*">
+
+<!ENTITY % gp.extents "extent*,x422?,b125?,b062?,ancillarycontent*">
+
+<!ENTITY % gp.language "language*">
+
+<!ENTITY % gp.edition "((x419*,b057?,b217?,b058?)|n386?),
+                       religioustext?">
+
+<!ENTITY % gp.conference "conference*">
+
+<!ENTITY % gp.authorship "(contributor+,b049?)|n339?">
+
+<!ENTITY % gp.title "titledetail+,(b368,b369?,b370?)?">
+
+<!ENTITY % gp.collections "(collection+|x411)?">
+
+<!ENTITY % gp.product_form "x314,b012,b333*,productformfeature*,b225?,
+                            b014?,b384?,x416?,b385*,measure*,x316?,
+                            x317*,epubusageconstraint*,b063*,
+                            productclassification*,productpart*">
+
+<!ELEMENT descriptivedetail ((%gp.product_form;),(%gp.collections;),
+                             (%gp.title;),(%gp.authorship;),
+                             (%gp.conference;),(%gp.edition;),
+                             (%gp.language;),(%gp.extents;),
+                             (%gp.subject;),(%gp.audience;))>
+<!ATTLIST descriptivedetail
+  refname (DescriptiveDetail) #IMPLIED
+  shortname (descriptivedetail) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT discount (x467?,x320?,j267?,x469?)>
+<!ATTLIST discount
+  refname (Discount) #IMPLIED
+  shortname (discount) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x469 (#PCDATA)>
+<!ATTLIST x469
+  refname (DiscountAmount) #IMPLIED
+  shortname (x469) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT j364 (%dt.NonEmptyString;)>
+<!ATTLIST j364
+  refname (DiscountCode) #IMPLIED
+  shortname (j364) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT j363 (#PCDATA)>
+<!ATTLIST j363
+  refname (DiscountCodeType) #IMPLIED
+  shortname (j363) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT j378 (%dt.NonEmptyString;)>
+<!ATTLIST j378
+  refname (DiscountCodeTypeName) #IMPLIED
+  shortname (j378) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;>
+
+<!ELEMENT discountcoded (j363,j378?,j364)>
+<!ATTLIST discountcoded
+  refname (DiscountCoded) #IMPLIED
+  shortname (discountcoded) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x317 (#PCDATA)>
+<!ATTLIST x317
+  refname (EpubTechnicalProtection) #IMPLIED
+  shortname (x317) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b057 (%dt.NonEmptyString;)>
+<!ATTLIST b057
+  refname (EditionNumber) #IMPLIED
+  shortname (b057) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b058 (%dt.NonEmptyString;)>
+<!ATTLIST b058
+  refname (EditionStatement) #IMPLIED
+  shortname (b058) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;>
+
+<!ELEMENT x419 (#PCDATA)>
+<!ATTLIST x419
+  refname (EditionType) #IMPLIED
+  shortname (x419) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b217 (%dt.NonEmptyString;)>
+<!ATTLIST b217
+  refname (EditionVersionNumber) #IMPLIED
+  shortname (b217) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT j272 (%dt.NonEmptyString;)>
+<!ATTLIST j272
+  refname (EmailAddress) #IMPLIED
+  shortname (j272) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b325 (#PCDATA)>
+<!ATTLIST b325
+  refname (EndDate) #IMPLIED
+  shortname (b325) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT epubusageconstraint (x318,x319,epubusagelimit*)>
+<!ATTLIST epubusageconstraint
+  refname (EpubUsageConstraint) #IMPLIED
+  shortname (epubusageconstraint) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT epubusagelimit (x320,x321)>
+<!ATTLIST epubusagelimit
+  refname (EpubUsageLimit) #IMPLIED
+  shortname (epubusagelimit) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x319 (#PCDATA)>
+<!ATTLIST x319
+  refname (EpubUsageStatus) #IMPLIED
+  shortname (x319) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x318 (#PCDATA)>
+<!ATTLIST x318
+  refname (EpubUsageType) #IMPLIED
+  shortname (x318) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x321 (#PCDATA)>
+<!ATTLIST x321
+  refname (EpubUsageUnit) #IMPLIED
+  shortname (x321) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT j302 (#PCDATA)>
+<!ATTLIST j302
+  refname (ExpectedDate) #IMPLIED
+  shortname (j302) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT extent (b218,b219?,x421?,b220)>
+<!ATTLIST extent
+  refname (Extent) #IMPLIED
+  shortname (extent) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b218 (#PCDATA)>
+<!ATTLIST b218
+  refname (ExtentType) #IMPLIED
+  shortname (b218) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b220 (#PCDATA)>
+<!ATTLIST b220
+  refname (ExtentUnit) #IMPLIED
+  shortname (b220) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b219 (#PCDATA)>
+<!ATTLIST b219
+  refname (ExtentValue) #IMPLIED
+  shortname (b219) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x421 (%dt.NonEmptyString;)>
+<!ATTLIST x421
+  refname (ExtentValueRoman) #IMPLIED
+  shortname (x421) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT j271 (%dt.NonEmptyString;)>
+<!ATTLIST j271
+  refname (FaxNumber) #IMPLIED
+  shortname (j271) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x440 %Flow;>
+<!ATTLIST x440
+  refname (FeatureNote) #IMPLIED
+  shortname (x440) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;
+  %textformatAttribute;>
+
+<!ELEMENT x439 (%dt.NonEmptyString;)>
+<!ATTLIST x439
+  refname (FeatureValue) #IMPLIED
+  shortname (x439) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b286 (%dt.NonEmptyString;)>
+<!ATTLIST b286
+  refname (FirstPageNumber) #IMPLIED
+  shortname (b286) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT j265 (#PCDATA)>
+<!ATTLIST j265
+  refname (FreeQuantity) #IMPLIED
+  shortname (j265) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x412 (#PCDATA)>
+<!ATTLIST x412
+  refname (FromLanguage) #IMPLIED
+  shortname (x412) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT header (sender,addressee*,m180?,m181?,x307,m183?,m184?,x310?,
+                  m186?)>
+<!ATTLIST header
+  refname (Header) #IMPLIED
+  shortname (header) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b233 (%dt.NonEmptyString;)>
+<!ATTLIST b233
+  refname (IDTypeName) #IMPLIED
+  shortname (b233) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;>
+
+<!ELEMENT b244 (%dt.NonEmptyString;)>
+<!ATTLIST b244
+  refname (IDValue) #IMPLIED
+  shortname (b244) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x422 (#PCDATA)>
+<!ATTLIST x422
+  refname (Illustrated) #IMPLIED
+  shortname (x422) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b062 %Flow;>
+<!ATTLIST b062
+  refname (IllustrationsNote) #IMPLIED
+  shortname (b062) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;
+  %textformatAttribute;>
+
+<!ELEMENT imprint (imprintidentifier*,b079?)>
+<!ATTLIST imprint
+  refname (Imprint) #IMPLIED
+  shortname (imprint) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT imprintidentifier (x445,b233?,b244)>
+<!ATTLIST imprintidentifier
+  refname (ImprintIdentifier) #IMPLIED
+  shortname (imprintidentifier) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x445 (#PCDATA)>
+<!ATTLIST x445
+  refname (ImprintIDType) #IMPLIED
+  shortname (x445) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b079 (%dt.NonEmptyString;)>
+<!ATTLIST b079
+  refname (ImprintName) #IMPLIED
+  shortname (b079) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT k167 (%dt.NonEmptyString;)>
+<!ATTLIST k167
+  refname (InitialPrintRun) #IMPLIED
+  shortname (k167) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;>
+
+<!ELEMENT b040 (%dt.NonEmptyString;)>
+<!ATTLIST b040
+  refname (KeyNames) #IMPLIED
+  shortname (b040) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT language (b253,b252,b251?,x420?)>
+<!ATTLIST language
+  refname (Language) #IMPLIED
+  shortname (language) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b252 (#PCDATA)>
+<!ATTLIST b252
+  refname (LanguageCode) #IMPLIED
+  shortname (b252) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b253 (#PCDATA)>
+<!ATTLIST b253
+  refname (LanguageRole) #IMPLIED
+  shortname (b253) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b287 (%dt.NonEmptyString;)>
+<!ATTLIST b287
+  refname (LastPageNumber) #IMPLIED
+  shortname (b287) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x446 (%dt.NonEmptyString;)>
+<!ATTLIST x446
+  refname (LatestReprintNumber) #IMPLIED
+  shortname (x446) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b042 (%dt.NonEmptyString;)>
+<!ATTLIST b042
+  refname (LettersAfterNames) #IMPLIED
+  shortname (b042) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b284 (%dt.NonEmptyString;)>
+<!ATTLIST b284
+  refname (LevelSequenceNumber) #IMPLIED
+  shortname (b284) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x432 (%dt.NonEmptyString;)>
+<!ATTLIST x432
+  refname (ListName) #IMPLIED
+  shortname (x432) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;>
+
+<!ELEMENT locationidentifier (j377,b233?,b244)>
+<!ATTLIST locationidentifier
+  refname (LocationIdentifier) #IMPLIED
+  shortname (locationidentifier) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT j377 (#PCDATA)>
+<!ATTLIST j377
+  refname (LocationIDType) #IMPLIED
+  shortname (j377) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT j349 (%dt.NonEmptyString;)>
+<!ATTLIST j349
+  refname (LocationName) #IMPLIED
+  shortname (j349) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;>
+
+<!ELEMENT x425 EMPTY>
+<!ATTLIST x425
+  refname (MainSubject) #IMPLIED
+  shortname (x425) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b063 (#PCDATA)>
+<!ATTLIST b063
+  refname (MapScale) #IMPLIED
+  shortname (b063) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT market (territory,salesrestriction*)>
+<!ATTLIST market
+  refname (Market) #IMPLIED
+  shortname (market) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT marketdate (j408,j260,b306)>
+<!ATTLIST marketdate
+  refname (MarketDate) #IMPLIED
+  shortname (marketdate) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT j408 (#PCDATA)>
+<!ATTLIST j408
+  refname (MarketDateRole) #IMPLIED
+  shortname (j408) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT marketpublishingdetail (publisherrepresentative*,j407,
+                                  marketdate+,k165?,k166?,k167?,k309*,
+                                  k168?,k169?)>
+<!ATTLIST marketpublishingdetail
+  refname (MarketPublishingDetail) #IMPLIED
+  shortname (marketpublishingdetail) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT j407 (#PCDATA)>
+<!ATTLIST j407
+  refname (MarketPublishingStatus) #IMPLIED
+  shortname (j407) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT measure (x315,c094,c095)>
+<!ATTLIST measure
+  refname (Measure) #IMPLIED
+  shortname (measure) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT c094 (#PCDATA)>
+<!ATTLIST c094
+  refname (Measurement) #IMPLIED
+  shortname (c094) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x315 (#PCDATA)>
+<!ATTLIST x315
+  refname (MeasureType) #IMPLIED
+  shortname (x315) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT c095 (#PCDATA)>
+<!ATTLIST c095
+  refname (MeasureUnitCode) #IMPLIED
+  shortname (c095) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT m183 (%dt.NonEmptyString;)>
+<!ATTLIST m183
+  refname (MessageNote) #IMPLIED
+  shortname (m183) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT m180 (#PCDATA)>
+<!ATTLIST m180
+  refname (MessageNumber) #IMPLIED
+  shortname (m180) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT m181 (#PCDATA)>
+<!ATTLIST m181
+  refname (MessageRepeat) #IMPLIED
+  shortname (m181) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT j263 (#PCDATA)>
+<!ATTLIST j263
+  refname (MinimumOrderQuantity) #IMPLIED
+  shortname (j263) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT nameassubject (x414,nameidentifier*,b036?,b037?,
+                         (b038?,b039?,b247?,b040,b041?,b248?,b042?,
+                          b043?)?,
+                         b047?)>
+<!ATTLIST nameassubject
+  refname (NameAsSubject) #IMPLIED
+  shortname (nameassubject) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT nameidentifier (x415,b233?,b244)>
+<!ATTLIST nameidentifier
+  refname (NameIdentifier) #IMPLIED
+  shortname (nameidentifier) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x415 (#PCDATA)>
+<!ATTLIST x415
+  refname (NameIDType) #IMPLIED
+  shortname (x415) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b041 (%dt.NonEmptyString;)>
+<!ATTLIST b041
+  refname (NamesAfterKey) #IMPLIED
+  shortname (b041) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b039 (%dt.NonEmptyString;)>
+<!ATTLIST b039
+  refname (NamesBeforeKey) #IMPLIED
+  shortname (b039) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x414 (#PCDATA)>
+<!ATTLIST x414
+  refname (NameType) #IMPLIED
+  shortname (x414) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT newsupplier (supplieridentifier*,j137?,j270*,j271*,j272*)>
+<!ATTLIST newsupplier
+  refname (NewSupplier) #IMPLIED
+  shortname (newsupplier) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x411 EMPTY>
+<!ATTLIST x411
+  refname (NoCollection) #IMPLIED
+  shortname (x411) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT n339 EMPTY>
+<!ATTLIST n339
+  refname (NoContributor) #IMPLIED
+  shortname (n339) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT n386 EMPTY>
+<!ATTLIST n386
+  refname (NoEdition) #IMPLIED
+  shortname (n386) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT a002 (#PCDATA)>
+<!ATTLIST a002
+  refname (NotificationType) #IMPLIED
+  shortname (a002) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b257 (#PCDATA)>
+<!ATTLIST b257
+  refname (Number) #IMPLIED
+  shortname (b257) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x323 (#PCDATA)>
+<!ATTLIST x323
+  refname (NumberOfCopies) #IMPLIED
+  shortname (x323) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b125 (#PCDATA)>
+<!ATTLIST b125
+  refname (NumberOfIllustrations) #IMPLIED
+  shortname (b125) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x322 (#PCDATA)>
+<!ATTLIST x322
+  refname (NumberOfItemsOfThisForm) #IMPLIED
+  shortname (x322) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b061 (%dt.NonEmptyString;)>
+<!ATTLIST b061
+  refname (NumberOfPages) #IMPLIED
+  shortname (b061) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT onixmessage (header,product+)>
+<!ATTLIST onixmessage
+  refname (ONIXMessage) #IMPLIED
+  shortname (onixmessage) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT j350 (#PCDATA)>
+<!ATTLIST j350
+  refname (OnHand) #IMPLIED
+  shortname (j350) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT j351 (#PCDATA)>
+<!ATTLIST j351
+  refname (OnOrder) #IMPLIED
+  shortname (j351) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT onorderdetail (j351,j302)>
+<!ATTLIST onorderdetail
+  refname (OnOrderDetail) #IMPLIED
+  shortname (onorderdetail) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT j144 (%dt.NonEmptyString;)>
+<!ATTLIST j144
+  refname (OrderTime) #IMPLIED
+  shortname (j144) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT j145 (%dt.NonEmptyString;)>
+<!ATTLIST j145
+  refname (PackQuantity) #IMPLIED
+  shortname (j145) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT pagerun (b286,b287?)>
+<!ATTLIST pagerun
+  refname (PageRun) #IMPLIED
+  shortname (pagerun) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x410 (%dt.NonEmptyString;)>
+<!ATTLIST x410
+  refname (PartNumber) #IMPLIED
+  shortname (x410) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b337 (#PCDATA)>
+<!ATTLIST b337
+  refname (Percent) #IMPLIED
+  shortname (b337) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT j267 (#PCDATA)>
+<!ATTLIST j267
+  refname (DiscountPercent) #IMPLIED
+  shortname (j267) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b036 (%dt.NonEmptyString;)>
+<!ATTLIST b036
+  refname (PersonName) #IMPLIED
+  shortname (b036) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b037 (%dt.NonEmptyString;)>
+<!ATTLIST b037
+  refname (PersonNameInverted) #IMPLIED
+  shortname (b037) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x433 (#PCDATA)>
+<!ATTLIST x433
+  refname (PositionOnList) #IMPLIED
+  shortname (x433) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x313 (#PCDATA)>
+<!ATTLIST x313
+  refname (PositionOnProduct) #IMPLIED
+  shortname (x313) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b247 (%dt.NonEmptyString;)>
+<!ATTLIST b247
+  refname (PrefixToKey) #IMPLIED
+  shortname (b247) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT price (x462?,j261?,j262?,j239?,pricecondition*,j263?,
+                 batchbonus*,discountcoded*,discount*,j266?,j151,tax*,
+                 j152?,territory?,x475?,pricedate*,x301?,x313?)>
+<!ATTLIST price
+  refname (Price) #IMPLIED
+  shortname (price) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT j151 (%dt.NonEmptyString;)>
+<!ATTLIST j151
+  refname (PriceAmount) #IMPLIED
+  shortname (j151) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT pricecondition (x463,priceconditionquantity*)>
+<!ATTLIST pricecondition
+  refname (PriceCondition) #IMPLIED
+  shortname (pricecondition) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT priceconditionquantity (x464,x320,x466)>
+<!ATTLIST priceconditionquantity
+  refname (PriceConditionQuantity) #IMPLIED
+  shortname (priceconditionquantity) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x464 (#PCDATA)>
+<!ATTLIST x464
+  refname (PriceConditionQuantityType) #IMPLIED
+  shortname (x464) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x463 (#PCDATA)>
+<!ATTLIST x463
+  refname (PriceConditionType) #IMPLIED
+  shortname (x463) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT pricedate (x476,j260,b306)>
+<!ATTLIST pricedate
+  refname (PriceDate) #IMPLIED
+  shortname (pricedate) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x476 (#PCDATA)>
+<!ATTLIST x476
+  refname (PriceDateRole) #IMPLIED
+  shortname (x476) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT j239 (#PCDATA)>
+<!ATTLIST j239
+  refname (PricePer) #IMPLIED
+  shortname (j239) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT j261 (#PCDATA)>
+<!ATTLIST j261
+  refname (PriceQualifier) #IMPLIED
+  shortname (j261) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT j266 (#PCDATA)>
+<!ATTLIST j266
+  refname (PriceStatus) #IMPLIED
+  shortname (j266) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x462 (#PCDATA)>
+<!ATTLIST x462
+  refname (PriceType) #IMPLIED
+  shortname (x462) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT j262 (%dt.NonEmptyString;)>
+<!ATTLIST j262
+  refname (PriceTypeDescription) #IMPLIED
+  shortname (j262) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;>
+
+<!ELEMENT x416 (#PCDATA)>
+<!ATTLIST x416
+  refname (PrimaryContentType) #IMPLIED
+  shortname (x416) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x457 EMPTY>
+<!ATTLIST x457
+  refname (PrimaryPart) #IMPLIED
+  shortname (x457) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x301 (#PCDATA)>
+<!ATTLIST x301
+  refname (PrintedOnProduct) #IMPLIED
+  shortname (x301) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT prize (g126,g127?,g128?,g129?,g343?)>
+<!ATTLIST prize
+  refname (Prize) #IMPLIED
+  shortname (prize) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT g129 (#PCDATA)>
+<!ATTLIST g129
+  refname (PrizeCode) #IMPLIED
+  shortname (g129) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT g128 (#PCDATA)>
+<!ATTLIST g128
+  refname (PrizeCountry) #IMPLIED
+  shortname (g128) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT g343 %Flow;>
+<!ATTLIST g343
+  refname (PrizeJury) #IMPLIED
+  shortname (g343) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;
+  %textformatAttribute;>
+
+<!ELEMENT g126 (%dt.NonEmptyString;)>
+<!ATTLIST g126
+  refname (PrizeName) #IMPLIED
+  shortname (g126) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;>
+
+<!ELEMENT g127 (#PCDATA)>
+<!ATTLIST g127
+  refname (PrizeYear) #IMPLIED
+  shortname (g127) #IMPLIED
+  %generalAttributes;>
+
+<!ENTITY % gp.product_numbers "productidentifier+,barcode*">
+
+<!ENTITY % gp.record_metadata "a001,a002,a199?,a194?,
+                               recordsourceidentifier*,a197?">
+
+<!ELEMENT product ((%gp.record_metadata;),(%gp.product_numbers;),
+                   descriptivedetail?,collateraldetail?,contentdetail?,
+                   publishingdetail?,relatedmaterial?,productsupply*)>
+<!ATTLIST product
+  refname (Product) #IMPLIED
+  shortname (product) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT j396 (#PCDATA)>
+<!ATTLIST j396
+  refname (ProductAvailability) #IMPLIED
+  shortname (j396) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT productclassification (b274,b275,b337?)>
+<!ATTLIST productclassification
+  refname (ProductClassification) #IMPLIED
+  shortname (productclassification) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b275 (%dt.NonEmptyString;)>
+<!ATTLIST b275
+  refname (ProductClassificationCode) #IMPLIED
+  shortname (b275) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b274 (#PCDATA)>
+<!ATTLIST b274
+  refname (ProductClassificationType) #IMPLIED
+  shortname (b274) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x314 (#PCDATA)>
+<!ATTLIST x314
+  refname (ProductComposition) #IMPLIED
+  shortname (x314) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b385 (#PCDATA)>
+<!ATTLIST b385
+  refname (ProductContentType) #IMPLIED
+  shortname (b385) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b012 (#PCDATA)>
+<!ATTLIST b012
+  refname (ProductForm) #IMPLIED
+  shortname (b012) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b014 (%dt.NonEmptyString;)>
+<!ATTLIST b014
+  refname (ProductFormDescription) #IMPLIED
+  shortname (b014) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;>
+
+<!ELEMENT b333 (#PCDATA)>
+<!ATTLIST b333
+  refname (ProductFormDetail) #IMPLIED
+  shortname (b333) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT productformfeature (b334,b335?,b336?)>
+<!ATTLIST productformfeature
+  refname (ProductFormFeature) #IMPLIED
+  shortname (productformfeature) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b336 (%dt.NonEmptyString;)>
+<!ATTLIST b336
+  refname (ProductFormFeatureDescription) #IMPLIED
+  shortname (b336) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;>
+
+<!ELEMENT b334 (#PCDATA)>
+<!ATTLIST b334
+  refname (ProductFormFeatureType) #IMPLIED
+  shortname (b334) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b335 (%dt.NonEmptyString;)>
+<!ATTLIST b335
+  refname (ProductFormFeatureValue) #IMPLIED
+  shortname (b335) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b221 (#PCDATA)>
+<!ATTLIST b221
+  refname (ProductIDType) #IMPLIED
+  shortname (b221) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT productidentifier (b221,b233?,b244)>
+<!ATTLIST productidentifier
+  refname (ProductIdentifier) #IMPLIED
+  shortname (productidentifier) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b225 (#PCDATA)>
+<!ATTLIST b225
+  refname (ProductPackaging) #IMPLIED
+  shortname (b225) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT productpart (x457?,productidentifier*,b012,b333*,
+                       productformfeature*,b014?,b385*,x322?,x323?,
+                       x316?)>
+<!ATTLIST productpart
+  refname (ProductPart) #IMPLIED
+  shortname (productpart) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x455 (#PCDATA)>
+<!ATTLIST x455
+  refname (ProductRelationCode) #IMPLIED
+  shortname (x455) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT productsupply (market*,marketpublishingdetail?,supplydetail)>
+<!ATTLIST productsupply
+  refname (ProductSupply) #IMPLIED
+  shortname (productsupply) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT professionalaffiliation (b045?,b046?)>
+<!ATTLIST professionalaffiliation
+  refname (ProfessionalAffiliation) #IMPLIED
+  shortname (professionalaffiliation) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b045 (%dt.NonEmptyString;)>
+<!ATTLIST b045
+  refname (ProfessionalPosition) #IMPLIED
+  shortname (b045) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;>
+
+<!ELEMENT k165 %Flow;>
+<!ATTLIST k165
+  refname (PromotionCampaign) #IMPLIED
+  shortname (k165) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;
+  %textformatAttribute;>
+
+<!ELEMENT k166 %Flow;>
+<!ATTLIST k166
+  refname (PromotionContact) #IMPLIED
+  shortname (k166) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;
+  %textformatAttribute;>
+
+<!ELEMENT publisher (b291,publisheridentifier*,b081?,website*)>
+<!ATTLIST publisher
+  refname (Publisher) #IMPLIED
+  shortname (publisher) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT publisheridentifier (x447,b233?,b244)>
+<!ATTLIST publisheridentifier
+  refname (PublisherIdentifier) #IMPLIED
+  shortname (publisheridentifier) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x447 (#PCDATA)>
+<!ATTLIST x447
+  refname (PublisherIDType) #IMPLIED
+  shortname (x447) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b081 (%dt.NonEmptyString;)>
+<!ATTLIST b081
+  refname (PublisherName) #IMPLIED
+  shortname (b081) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;>
+
+<!ELEMENT publisherrepresentative (j402,agentidentifier*,j401?,j270*,
+                                   j271*,j272*,website*)>
+<!ATTLIST publisherrepresentative
+  refname (PublisherRepresentative) #IMPLIED
+  shortname (publisherrepresentative) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT publishingdate (x448,j260,b306)>
+<!ATTLIST publishingdate
+  refname (PublishingDate) #IMPLIED
+  shortname (publishingdate) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x448 (#PCDATA)>
+<!ATTLIST x448
+  refname (PublishingDateRole) #IMPLIED
+  shortname (x448) #IMPLIED
+  %generalAttributes;>
+
+<!ENTITY % gp.rights_restrictions "salesrights*,salesrestriction*">
+
+<!ENTITY % gp.publishing_status "b394?,b395?,publishingdate*,x446?,
+                                 copyrightstatement*">
+
+<!ENTITY % gp.publisher "imprint*,publisher*,b209*,b083?">
+
+<!ELEMENT publishingdetail ((%gp.publisher;),(%gp.publishing_status;),
+                            (%gp.rights_restrictions;))>
+<!ATTLIST publishingdetail
+  refname (PublishingDetail) #IMPLIED
+  shortname (publishingdetail) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b291 (#PCDATA)>
+<!ATTLIST b291
+  refname (PublishingRole) #IMPLIED
+  shortname (b291) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b394 (#PCDATA)>
+<!ATTLIST b394
+  refname (PublishingStatus) #IMPLIED
+  shortname (b394) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b395 %Flow;>
+<!ATTLIST b395
+  refname (PublishingStatusNote) #IMPLIED
+  shortname (b395) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;
+  %textformatAttribute;>
+
+<!ELEMENT x320 (#PCDATA)>
+<!ATTLIST x320
+  refname (Quantity) #IMPLIED
+  shortname (x320) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x466 (#PCDATA)>
+<!ATTLIST x466
+  refname (QuantityUnit) #IMPLIED
+  shortname (x466) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x467 (#PCDATA)>
+<!ATTLIST x467
+  refname (DiscountType) #IMPLIED
+  shortname (x467) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT a001 (%dt.NonEmptyString;)>
+<!ATTLIST a001
+  refname (RecordReference) #IMPLIED
+  shortname (a001) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT recordsourceidentifier (x311,b233?,b244)>
+<!ATTLIST recordsourceidentifier
+  refname (RecordSourceIdentifier) #IMPLIED
+  shortname (recordsourceidentifier) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x311 (#PCDATA)>
+<!ATTLIST x311
+  refname (RecordSourceIDType) #IMPLIED
+  shortname (x311) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT a197 (%dt.NonEmptyString;)>
+<!ATTLIST a197
+  refname (RecordSourceName) #IMPLIED
+  shortname (a197) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT a194 (#PCDATA)>
+<!ATTLIST a194
+  refname (RecordSourceType) #IMPLIED
+  shortname (a194) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b398 (#PCDATA)>
+<!ATTLIST b398
+  refname (RegionCode) #IMPLIED
+  shortname (b398) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT reissue (j365,j366?,price*,supportingresource*)>
+<!ATTLIST reissue
+  refname (Reissue) #IMPLIED
+  shortname (reissue) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT j365 (#PCDATA)>
+<!ATTLIST j365
+  refname (ReissueDate) #IMPLIED
+  shortname (j365) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT j366 %Flow;>
+<!ATTLIST j366
+  refname (ReissueDescription) #IMPLIED
+  shortname (j366) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;
+  %textformatAttribute;>
+
+<!ELEMENT relatedmaterial (relatedwork*,relatedproduct*)>
+<!ATTLIST relatedmaterial
+  refname (RelatedMaterial) #IMPLIED
+  shortname (relatedmaterial) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT relatedproduct (x455,productidentifier+)>
+<!ATTLIST relatedproduct
+  refname (RelatedProduct) #IMPLIED
+  shortname (relatedproduct) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT relatedwork (x454,workidentifier+)>
+<!ATTLIST relatedwork
+  refname (RelatedWork) #IMPLIED
+  shortname (relatedwork) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT religioustext (bible|(b376,religioustextfeature+))>
+<!ATTLIST religioustext
+  refname (ReligiousText) #IMPLIED
+  shortname (religioustext) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT religioustextfeature (b358,b359,b360?)>
+<!ATTLIST religioustextfeature
+  refname (ReligiousTextFeature) #IMPLIED
+  shortname (religioustextfeature) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b359 (#PCDATA)>
+<!ATTLIST b359
+  refname (ReligiousTextFeatureCode) #IMPLIED
+  shortname (b359) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b360 %Flow;>
+<!ATTLIST b360
+  refname (ReligiousTextFeatureDescription) #IMPLIED
+  shortname (b360) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;
+  %textformatAttribute;>
+
+<!ELEMENT b358 (#PCDATA)>
+<!ATTLIST b358
+  refname (ReligiousTextFeatureType) #IMPLIED
+  shortname (b358) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b376 (#PCDATA)>
+<!ATTLIST b376
+  refname (ReligiousTextIdentifier) #IMPLIED
+  shortname (b376) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT k309 %Flow;>
+<!ATTLIST k309
+  refname (ReprintDetail) #IMPLIED
+  shortname (k309) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;
+  %textformatAttribute;>
+
+<!ELEMENT x436 (#PCDATA)>
+<!ATTLIST x436
+  refname (ResourceContentType) #IMPLIED
+  shortname (x436) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT resourcefeature (x438,x439?,x440?)>
+<!ATTLIST resourcefeature
+  refname (ResourceFeature) #IMPLIED
+  shortname (resourcefeature) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x438 (#PCDATA)>
+<!ATTLIST x438
+  refname (ResourceFeatureType) #IMPLIED
+  shortname (x438) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x441 (#PCDATA)>
+<!ATTLIST x441
+  refname (ResourceForm) #IMPLIED
+  shortname (x441) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x435 (#PCDATA)>
+<!ATTLIST x435
+  refname (ResourceLink) #IMPLIED
+  shortname (x435) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x437 (#PCDATA)>
+<!ATTLIST x437
+  refname (ResourceMode) #IMPLIED
+  shortname (x437) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT resourceversion (x441,resourceversionfeature*,x435+,
+                           contentdate*)>
+<!ATTLIST resourceversion
+  refname (ResourceVersion) #IMPLIED
+  shortname (resourceversion) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT resourceversionfeature (x442,x439?,x440?)>
+<!ATTLIST resourceversionfeature
+  refname (ResourceVersionFeature) #IMPLIED
+  shortname (resourceversionfeature) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x442 (#PCDATA)>
+<!ATTLIST x442
+  refname (ResourceVersionFeatureType) #IMPLIED
+  shortname (x442) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT j269 (%dt.NonEmptyString;)>
+<!ATTLIST j269
+  refname (ReturnsCode) #IMPLIED
+  shortname (j269) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT j268 (#PCDATA)>
+<!ATTLIST j268
+  refname (ReturnsCodeType) #IMPLIED
+  shortname (j268) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x460 (%dt.NonEmptyString;)>
+<!ATTLIST x460
+  refname (ReturnsCodeTypeName) #IMPLIED
+  shortname (x460) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;>
+
+<!ELEMENT returnsconditions (j268,x460?,j269)>
+<!ATTLIST returnsconditions
+  refname (ReturnsConditions) #IMPLIED
+  shortname (returnsconditions) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT salesrights (b089,territory,productidentifier*,b081?)>
+<!ATTLIST salesrights
+  refname (SalesRights) #IMPLIED
+  shortname (salesrights) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b089 (#PCDATA)>
+<!ATTLIST b089
+  refname (SalesRightsType) #IMPLIED
+  shortname (b089) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT salesoutlet (salesoutletidentifier*,b382?)>
+<!ATTLIST salesoutlet
+  refname (SalesOutlet) #IMPLIED
+  shortname (salesoutlet) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT salesoutletidentifier (b393,b233?,b244)>
+<!ATTLIST salesoutletidentifier
+  refname (SalesOutletIdentifier) #IMPLIED
+  shortname (salesoutletidentifier) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b393 (#PCDATA)>
+<!ATTLIST b393
+  refname (SalesOutletIDType) #IMPLIED
+  shortname (b393) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b382 (%dt.NonEmptyString;)>
+<!ATTLIST b382
+  refname (SalesOutletName) #IMPLIED
+  shortname (b382) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;>
+
+<!ELEMENT salesrestriction (b381,salesoutlet*,x453?,b324?,b325?)>
+<!ATTLIST salesrestriction
+  refname (SalesRestriction) #IMPLIED
+  shortname (salesrestriction) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x453 %Flow;>
+<!ATTLIST x453
+  refname (SalesRestrictionNote) #IMPLIED
+  shortname (x453) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;
+  %textformatAttribute;>
+
+<!ELEMENT b381 (#PCDATA)>
+<!ATTLIST b381
+  refname (SalesRestrictionType) #IMPLIED
+  shortname (b381) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x420 (#PCDATA)>
+<!ATTLIST x420
+  refname (ScriptCode) #IMPLIED
+  shortname (x420) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT sender (senderidentifier*,x298?,x299?,j272?)>
+<!ATTLIST sender
+  refname (Sender) #IMPLIED
+  shortname (sender) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT m379 (#PCDATA)>
+<!ATTLIST m379
+  refname (SenderIDType) #IMPLIED
+  shortname (m379) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT senderidentifier (m379,b233?,b244)>
+<!ATTLIST senderidentifier
+  refname (SenderIdentifier) #IMPLIED
+  shortname (senderidentifier) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x298 (%dt.NonEmptyString;)>
+<!ATTLIST x298
+  refname (SenderName) #IMPLIED
+  shortname (x298) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x307 (#PCDATA)>
+<!ATTLIST x307
+  refname (SentDateTime) #IMPLIED
+  shortname (x307) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b034 (#PCDATA)>
+<!ATTLIST b034
+  refname (SequenceNumber) #IMPLIED
+  shortname (b034) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x330 (%dt.NonEmptyString;)>
+<!ATTLIST x330
+  refname (SourceName) #IMPLIED
+  shortname (x330) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x428 (%dt.NonEmptyString;)>
+<!ATTLIST x428
+  refname (SourceTitle) #IMPLIED
+  shortname (x428) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x431 (#PCDATA)>
+<!ATTLIST x431
+  refname (SourceType) #IMPLIED
+  shortname (x431) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b324 (#PCDATA)>
+<!ATTLIST b324
+  refname (StartDate) #IMPLIED
+  shortname (b324) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT stock (locationidentifier?,j349?,(stockquantitycoded|j350),
+                 j351?,j375?,onorderdetail*)>
+<!ATTLIST stock
+  refname (Stock) #IMPLIED
+  shortname (stock) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT j297 (%dt.NonEmptyString;)>
+<!ATTLIST j297
+  refname (StockQuantityCode) #IMPLIED
+  shortname (j297) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT j293 (#PCDATA)>
+<!ATTLIST j293
+  refname (StockQuantityCodeType) #IMPLIED
+  shortname (j293) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT j296 (%dt.NonEmptyString;)>
+<!ATTLIST j296
+  refname (StockQuantityCodeTypeName) #IMPLIED
+  shortname (j296) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;>
+
+<!ELEMENT stockquantitycoded (j293,j296?,j297)>
+<!ATTLIST stockquantitycoded
+  refname (StockQuantityCoded) #IMPLIED
+  shortname (stockquantitycoded) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b389 (#PCDATA)>
+<!ATTLIST b389
+  refname (StudyBibleType) #IMPLIED
+  shortname (b389) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT subject (x425?,b067,b171?,b068?,b069?,b070?)>
+<!ATTLIST subject
+  refname (Subject) #IMPLIED
+  shortname (subject) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b069 (%dt.NonEmptyString;)>
+<!ATTLIST b069
+  refname (SubjectCode) #IMPLIED
+  shortname (b069) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b070 (%dt.NonEmptyString;)>
+<!ATTLIST b070
+  refname (SubjectHeadingText) #IMPLIED
+  shortname (b070) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;>
+
+<!ELEMENT b067 (#PCDATA)>
+<!ATTLIST b067
+  refname (SubjectSchemeIdentifier) #IMPLIED
+  shortname (b067) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b171 (%dt.NonEmptyString;)>
+<!ATTLIST b171
+  refname (SubjectSchemeName) #IMPLIED
+  shortname (b171) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;>
+
+<!ELEMENT b068 (%dt.NonEmptyString;)>
+<!ATTLIST b068
+  refname (SubjectSchemeVersion) #IMPLIED
+  shortname (b068) #IMPLIED
+  %generalAttributes;>
+
+<!ENTITY % textcaseAttribute "
+  textcase (%TextCaseCode;) #IMPLIED">
+
+<!ELEMENT b029 (%dt.NonEmptyString;)>
+<!ATTLIST b029
+  refname (Subtitle) #IMPLIED
+  shortname (b029) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;
+  %textcaseAttribute;>
+
+<!ELEMENT b248 (%dt.NonEmptyString;)>
+<!ATTLIST b248
+  refname (SuffixToKey) #IMPLIED
+  shortname (b248) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT supplier (j292,supplieridentifier*,j137?,j270*,j271*,j272*,
+                    website*)>
+<!ATTLIST supplier
+  refname (Supplier) #IMPLIED
+  shortname (supplier) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x458 (#PCDATA)>
+<!ATTLIST x458
+  refname (SupplierCodeType) #IMPLIED
+  shortname (x458) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x459 (%dt.NonEmptyString;)>
+<!ATTLIST x459
+  refname (SupplierCodeValue) #IMPLIED
+  shortname (x459) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT supplieridentifier (j345,b233?,b244)>
+<!ATTLIST supplieridentifier
+  refname (SupplierIdentifier) #IMPLIED
+  shortname (supplieridentifier) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT j345 (#PCDATA)>
+<!ATTLIST j345
+  refname (SupplierIDType) #IMPLIED
+  shortname (j345) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT j137 (%dt.NonEmptyString;)>
+<!ATTLIST j137
+  refname (SupplierName) #IMPLIED
+  shortname (j137) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;>
+
+<!ELEMENT supplierowncoding (x458,x459)>
+<!ATTLIST supplierowncoding
+  refname (SupplierOwnCoding) #IMPLIED
+  shortname (supplierowncoding) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT j292 (#PCDATA)>
+<!ATTLIST j292
+  refname (SupplierRole) #IMPLIED
+  shortname (j292) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT supplydate (x461,j260?,b306)>
+<!ATTLIST supplydate
+  refname (SupplyDate) #IMPLIED
+  shortname (supplydate) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x461 (#PCDATA)>
+<!ATTLIST x461
+  refname (SupplyDateRole) #IMPLIED
+  shortname (x461) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT supplydetail (supplier+,supplierowncoding*,returnsconditions*,
+                        j396,supplydate*,j144?,newsupplier?,stock*,
+                        j145?,(j192|price+),reissue?)>
+<!ATTLIST supplydetail
+  refname (SupplyDetail) #IMPLIED
+  shortname (supplydetail) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT supportingresource (x436,x427+,x437,resourcefeature*,
+                              resourceversion+)>
+<!ATTLIST supportingresource
+  refname (SupportingResource) #IMPLIED
+  shortname (supportingresource) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT tax (x470?,x471?,x472?,x473?,x474?)>
+<!ATTLIST tax
+  refname (Tax) #IMPLIED
+  shortname (tax) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x474 (#PCDATA)>
+<!ATTLIST x474
+  refname (TaxAmount) #IMPLIED
+  shortname (x474) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x471 (#PCDATA)>
+<!ATTLIST x471
+  refname (TaxRateCode) #IMPLIED
+  shortname (x471) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x472 (#PCDATA)>
+<!ATTLIST x472
+  refname (TaxRatePercent) #IMPLIED
+  shortname (x472) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x473 (#PCDATA)>
+<!ATTLIST x473
+  refname (TaxableAmount) #IMPLIED
+  shortname (x473) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x470 (#PCDATA)>
+<!ATTLIST x470
+  refname (TaxType) #IMPLIED
+  shortname (x470) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT j270 (%dt.NonEmptyString;)>
+<!ATTLIST j270
+  refname (TelephoneNumber) #IMPLIED
+  shortname (j270) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT territory (x449?,x450?,x451?,x452?)>
+<!ATTLIST territory
+  refname (Territory) #IMPLIED
+  shortname (territory) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x450 (#PCDATA)>
+<!ATTLIST x450
+  refname (RegionsIncluded) #IMPLIED
+  shortname (x450) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x452 (#PCDATA)>
+<!ATTLIST x452
+  refname (RegionsExcluded) #IMPLIED
+  shortname (x452) #IMPLIED
+  %generalAttributes;>
+
+<!ENTITY % RegionCodeList "CDATA">
+
+<!ELEMENT d104 %Flow;>
+<!ATTLIST d104
+  refname (Text) #IMPLIED
+  shortname (d104) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;
+  %textformatAttribute;>
+
+<!ELEMENT d107 (%dt.NonEmptyString;)>
+<!ATTLIST d107
+  refname (TextAuthor) #IMPLIED
+  shortname (d107) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;>
+
+<!ELEMENT textcontent (x426,x427+,d104,d107?,b374?,x428?,contentdate*)>
+<!ATTLIST textcontent
+  refname (TextContent) #IMPLIED
+  shortname (textcontent) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT textitem (b290,textitemidentifier*,pagerun*,b061?)>
+<!ATTLIST textitem
+  refname (TextItem) #IMPLIED
+  shortname (textitem) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b285 (#PCDATA)>
+<!ATTLIST b285
+  refname (TextItemIDType) #IMPLIED
+  shortname (b285) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT textitemidentifier (b285,b233?,b244)>
+<!ATTLIST textitemidentifier
+  refname (TextItemIdentifier) #IMPLIED
+  shortname (textitemidentifier) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b290 (#PCDATA)>
+<!ATTLIST b290
+  refname (TextItemType) #IMPLIED
+  shortname (b290) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b374 (%dt.NonEmptyString;)>
+<!ATTLIST b374
+  refname (TextSourceCorporate) #IMPLIED
+  shortname (b374) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;>
+
+<!ELEMENT x426 (#PCDATA)>
+<!ATTLIST x426
+  refname (TextType) #IMPLIED
+  shortname (x426) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b369 (%dt.NonEmptyString;)>
+<!ATTLIST b369
+  refname (ThesisPresentedTo) #IMPLIED
+  shortname (b369) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;>
+
+<!ELEMENT b368 (#PCDATA)>
+<!ATTLIST b368
+  refname (ThesisType) #IMPLIED
+  shortname (b368) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b370 (#PCDATA)>
+<!ATTLIST b370
+  refname (ThesisYear) #IMPLIED
+  shortname (b370) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT titledetail (b202,titleelement+)>
+<!ATTLIST titledetail
+  refname (TitleDetail) #IMPLIED
+  shortname (titledetail) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT titleelement (x409,x410?,b020?,b203?,b030?,b031?,b029?)>
+<!ATTLIST titleelement
+  refname (TitleElement) #IMPLIED
+  shortname (titleelement) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x409 (#PCDATA)>
+<!ATTLIST x409
+  refname (TitleElementLevel) #IMPLIED
+  shortname (x409) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b030 (%dt.NonEmptyString;)>
+<!ATTLIST b030
+  refname (TitlePrefix) #IMPLIED
+  shortname (b030) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;
+  %textcaseAttribute;>
+
+<!ELEMENT b043 (%dt.NonEmptyString;)>
+<!ATTLIST b043
+  refname (TitlesAfterNames) #IMPLIED
+  shortname (b043) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b038 (%dt.NonEmptyString;)>
+<!ATTLIST b038
+  refname (TitlesBeforeNames) #IMPLIED
+  shortname (b038) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b203 (%dt.NonEmptyString;)>
+<!ATTLIST b203
+  refname (TitleText) #IMPLIED
+  shortname (b203) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;
+  %textcaseAttribute;>
+
+<!ELEMENT b202 (#PCDATA)>
+<!ATTLIST b202
+  refname (TitleType) #IMPLIED
+  shortname (b202) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b031 (%dt.NonEmptyString;)>
+<!ATTLIST b031
+  refname (TitleWithoutPrefix) #IMPLIED
+  shortname (b031) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;
+  %textcaseAttribute;>
+
+<!ELEMENT x413 (#PCDATA)>
+<!ATTLIST x413
+  refname (ToLanguage) #IMPLIED
+  shortname (x413) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b384 (#PCDATA)>
+<!ATTLIST b384
+  refname (TradeCategory) #IMPLIED
+  shortname (b384) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b249 EMPTY>
+<!ATTLIST b249
+  refname (UnnamedPersons) #IMPLIED
+  shortname (b249) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT j192 (#PCDATA)>
+<!ATTLIST j192
+  refname (UnpricedItemType) #IMPLIED
+  shortname (j192) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT website (b367?,b294?,b295)>
+<!ATTLIST website
+  refname (Website) #IMPLIED
+  shortname (website) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b294 %Flow;>
+<!ATTLIST b294
+  refname (WebsiteDescription) #IMPLIED
+  shortname (b294) #IMPLIED
+  %generalAttributes;
+  %languageAttributes;
+  %textformatAttribute;>
+
+<!ELEMENT b295 (#PCDATA)>
+<!ATTLIST b295
+  refname (WebsiteLink) #IMPLIED
+  shortname (b295) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b367 (#PCDATA)>
+<!ATTLIST b367
+  refname (WebsiteRole) #IMPLIED
+  shortname (b367) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT workidentifier (b201,b233?,b244)>
+<!ATTLIST workidentifier
+  refname (WorkIdentifier) #IMPLIED
+  shortname (workidentifier) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b201 (#PCDATA)>
+<!ATTLIST b201
+  refname (WorkIDType) #IMPLIED
+  shortname (b201) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT x454 (#PCDATA)>
+<!ATTLIST x454
+  refname (WorkRelationCode) #IMPLIED
+  shortname (x454) #IMPLIED
+  %generalAttributes;>
+
+<!ELEMENT b020 (#PCDATA)>
+<!ATTLIST b020
+  refname (YearOfAnnual) #IMPLIED
+  shortname (b020) #IMPLIED
+  %generalAttributes;>
+
+<!ENTITY % dt.Date "CDATA">
+
+<!ENTITY % dt.Decimal "CDATA">
+
+<!ENTITY % dt.Integer "CDATA">
+
+<!ENTITY % dt.URI "CDATA">
+
+<!ENTITY % dt.Year "CDATA">
+
+<!ENTITY % dt.YearOrYearMonth "CDATA">
+
+<!ENTITY % dt.YearOrYearRange "CDATA">
