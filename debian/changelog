@@ -1,3 +1,9 @@
+onix-dtd (1.1) unstable; urgency=low
+
+  * Update ONIX 3.0 DTDs to latest point release
+
+ -- James Healy <jimmy@deefa.com>  Thu, 23 Dec 2009 00:44:08 +1100
+
 onix-dtd (1.0) unstable; urgency=low
 
   * Initial package creation
