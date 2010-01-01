@@ -1,3 +1,9 @@
+onix-dtd (1.2) unstable; urgency=low
+
+  * Update ONIX 3.0 DTDs to latest point release
+
+ -- James Healy <jimmy@deefa.com>  Fri, 1 Jan 2010 15:25:08 +1100
+
 onix-dtd (1.1) unstable; urgency=low
 
   * Update ONIX 3.0 DTDs to latest point release
