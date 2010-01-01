@@ -17,7 +17,7 @@
 *                  Revision 00 (corrected)       *
 *                Status: RELEASED                *
 *            Release date: 2009-04-09            *
-*           Corrected (4): 2009-09-18            *
+*           Corrected (5): 2009-12-22            *
 *                                                *
 *             (c) 2000-2009 EDItEUR              *
 *             http://www.editeur.org/            *
@@ -55,6 +55,8 @@ http://www.editeur.org/
 
 
 SCHEMA REVISION HISTORY (IN REVERSE CHRONOLOGICAL ORDER)
+
+2009-12-22: Content model of ContributorPlace corrected to allow both CountryCode and RegionCode
 
 2009-09-18: Content model of UnnamedPersons corrected
 
@@ -600,7 +602,7 @@ SCHEMA REVISION HISTORY (IN REVERSE CHRONOLOGICAL ORDER)
   %textformatAttribute;>
 
 <!ELEMENT ContributorPlace (ContributorPlaceRelator,
-                                (CountryCode|RegionCode))>
+                                CountryCode?, RegionCode?)>
 <!ATTLIST ContributorPlace
     refname (ContributorPlace) #IMPLIED
   shortname (contributorplace) #IMPLIED
