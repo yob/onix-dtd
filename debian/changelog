@@ -1,3 +1,9 @@
+onix-dtd (1.3) unstable; urgency=low
+
+  * Add DTDs for short tag version of ONIX 2.1
+
+ -- James Healy <jimmy@deefa.com>  Tues, 5 Jan 2010 14:54:08 +1100
+
 onix-dtd (1.2) unstable; urgency=low
 
   * Update ONIX 3.0 DTDs to latest point release
