@@ -18,3 +18,16 @@ arch:all, so should install on both 32 and 64 bit systems as is.
 == Installing
 
   dpkg -i onix-dtd_1.0_all.deb
+
+== Mac OS X and other UNIX environments
+
+You can use this package by manually installing the XML catalog. Here's one
+approach:
+
+  mkdir -p /usr/local/etc/xml/catalog
+  git clone git://github.com/yob/onix-dtd.git /usr/local/etc/xml/catalog/onix
+  export XML_CATALOG_FILES=/usr/local/etc/xml/catalog/onix/catalog.xml
+
+For a more permanent result, add to your bash profile script:
+
+  export XML_CATALOG_FILES="/usr/local/etc/xml/catalog/onix/catalog.xml $XML_CATALOG_FILES"
